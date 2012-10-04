@@ -1,1 +1,4 @@
 *.obj
+*.exe
+*.tds
+*.ddp
