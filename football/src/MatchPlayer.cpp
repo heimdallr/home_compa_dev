@@ -21,7 +21,7 @@ TfmPlayer *fmPlayer=0;
 // Конструктор
 __fastcall TfmPlayer::TfmPlayer(int id_match, int id1, int id2) : TForm(static_cast<TComponent*>(0)),
 _connect(TConnect::Instance), _id_match(id_match), _id1(id1), _id2(id2), _minute_mask("[0-9]{1,3}"),
-_eventer(_connect->SetEventHandlerList(TConnect::GetEventList(String().sprintf("match_player_%d;match_player_%d;match_%d", _id1, _id2, _id_match)), &EventAlertPlayer))
+_eventer(_connect->SetEventHandler(String().sprintf("match_player_%d;match_player_%d;match_%d", _id1, _id2, _id_match), &EventAlertPlayer))
 {
   TDynamicMenu("select id, name from get_goal_type", miGoal, &actGoalExecute);
   TDynamicMenu("select id, name from get_card_type", miCardChamp, &actCardChampExecute);

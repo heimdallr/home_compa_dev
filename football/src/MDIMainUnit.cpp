@@ -14,8 +14,8 @@
 TfmMDIMain *fmMDIMain;
 //---------------------------------------------------------------------------
 __fastcall TfmMDIMain::TfmMDIMain(TComponent* Owner) : TForm(Owner),
-_opt(TOptions::Instance=TOptionsXML::GetInstance(ChangeFileExt(GetModuleName(0), ".xml"))),
-_connect(TConnect::Instance=TdmConnectImpl::GetInstance(_opt->GetPropMap("Connect"))),
+_opt(TOptionsXML::GetInstance(ChangeFileExt(GetModuleName(0), ".xml"))),
+_connect(TdmConnectImpl::GetInstance(_opt->GetPropMap("Connect"))),
 _id_champ(TOptions::Instance->Get("Options", "IdChamp", "1").ToInt())
 {
 }

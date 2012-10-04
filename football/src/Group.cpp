@@ -44,7 +44,7 @@ __fastcall TfmGroup::TfmGroup(int IdChamp) :
 TForm(static_cast<TComponent*>(0)),
 _id_champ(IdChamp),
 _action_owner(&actSetPlaceExecute, pmMain),
-_eventer(TConnect::Instance->SetEventHandlerList(TConnect::GetEventList("match;place"), &EventsEventAlert))
+_eventer(TConnect::Instance->SetEventHandler("match;place", &EventsEventAlert))
  {
   actLoadExecute(0);
 }

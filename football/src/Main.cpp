@@ -23,7 +23,7 @@ TfmMain *fmMain;
 
 // Конструктор
 __fastcall TfmMain::TfmMain(int IdChamp) : TForm(static_cast<TComponent*>(0)), _connect(TConnect::Instance),
-_eventer(_connect->SetEventHandlerList(TConnect::GetEventList("match"), &EventsEventAlert)),
+_eventer(_connect->SetEventHandler("match", &EventsEventAlert)),
 _nearest(0), _id_champ(IdChamp),
 _group_place_regex(String().sprintf("[%s][0-9]", _connect->GetReadSQL(String().sprintf("select * from get_group_list(%d)", _id_champ), true)->FieldByName("group_list")->AsString))
 {
