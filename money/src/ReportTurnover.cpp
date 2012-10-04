@@ -7,6 +7,7 @@
 #include "CatalogUnit.h"
 #include "GridUtils.h"
 #include "Options.h"
+#include "ActivePtr.h"
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)

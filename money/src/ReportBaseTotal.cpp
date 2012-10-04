@@ -8,6 +8,7 @@
 #include "DataSetLayout.h"
 #include "Options.h"
 #include "GridUtils.h"
+#include "ActivePtr.h"
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)

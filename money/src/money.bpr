@@ -46,15 +46,14 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="NO_STRICT"/>
     <MAINSOURCE value="money.cpp"/>
-    <INCLUDEPATH value="..\..;&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib"/>
+    <INCLUDEPATH value="..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib;..\..\Common\include"/>
     <LIBPATH value="..\..;&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\..\EhLib"/>
     <WARNINGS value="-w-par"/>
     <OTHERFILES value=""/>
   </MACROS>
   <OPTIONS>
-    <IDLCFLAGS value="-I..\.. -I&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot; 
-      -I..\..\Common -I$(BCB)\include -I$(BCB)\include\vcl -I$(BCB)\..\EhLib 
-      -src_suffix cpp -D_DEBUG -boa"/>
+    <IDLCFLAGS value="-I..\..\Common -I$(BCB)\include -I$(BCB)\include\vcl -I$(BCB)\..\EhLib 
+      -I..\..\Common\include -src_suffix cpp -D_DEBUG -boa"/>
     <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
       -tW -tWM"/>
     <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
@@ -134,13 +133,14 @@ ProductVersion=1.0
 Comments=Поделка инвалида, аналогов в интернете - тьма
 
 [HistoryLists\hlIncludePath]
-Count=6
-Item0=..\..;C:\Program Files (x86)\Borland\CBuilder6\Projects;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib
-Item1=C:\Program Files (x86)\Borland\CBuilder6\Projects;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib
-Item2=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib
-Item3=C:\Program Files\Borland\CBuilder6\Projects;..\..\Common;D:\Sasha\money\src;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
-Item4=D:\Sasha\money\src;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
-Item5=C:\Program Files\Borland\CBuilder6\Projects;D:\Sasha\money\src;$(BCB)\include;$(BCB)\include\vcl
+Count=7
+Item0=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib;..\..\Common\include
+Item1=..\..;C:\Program Files (x86)\Borland\CBuilder6\Projects;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib
+Item2=C:\Program Files (x86)\Borland\CBuilder6\Projects;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib
+Item3=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib
+Item4=C:\Program Files\Borland\CBuilder6\Projects;..\..\Common;D:\Sasha\money\src;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
+Item5=D:\Sasha\money\src;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
+Item6=C:\Program Files\Borland\CBuilder6\Projects;D:\Sasha\money\src;$(BCB)\include;$(BCB)\include\vcl
 
 [HistoryLists\hlLibraryPath]
 Count=7

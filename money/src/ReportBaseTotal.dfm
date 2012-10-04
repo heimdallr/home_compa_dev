@@ -297,9 +297,6 @@ inherited fmReportBaseTotal: TfmReportBaseTotal
     end
   end
   inherited alMain: TActionList
-    inherited actRunReport: TAction
-      OnExecute = actRunReportExecute
-    end
     object actLeft: TAction [3]
       Caption = 'actLeft'
       ShortCut = 37

@@ -30,14 +30,14 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="NO_STRICT;_RTLDLL;USEPACKAGES"/>
     <MAINSOURCE value="PlayerParser.bpf"/>
-    <INCLUDEPATH value="D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;..\..\common"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;..\..\common;..\..\common\include"/>
     <LIBPATH value="..\..\Common;$(BCB)\Projects\Lib;D:\Sasha\football\src;$(BCB)\lib\obj;$(BCB)\lib"/>
     <WARNINGS value="-w-par"/>
     <OTHERFILES value=""/>
   </MACROS>
   <OPTIONS>
-    <IDLCFLAGS value="-src_suffix cpp -D_DEBUG -ID:\Sasha\football\src -I$(BCB)\include 
-      -I$(BCB)\include\vcl -I..\..\common -boa"/>
+    <IDLCFLAGS value="-I$(BCB)\include -I$(BCB)\include\vcl -I..\..\common 
+      -I..\..\common\include -src_suffix cpp -D_DEBUG -boa"/>
     <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -tWC 
       -tWM -c"/>
     <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
@@ -90,17 +90,19 @@ ProductVersion=1.0.0.0
 Comments=
 
 [HistoryLists\hlIncludePath]
-Count=5
-Item0=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;..\..\common
-Item1=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;,,\..\common;..\common;D:\Sasha\Common
-Item2=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;,,\..\common
-Item3=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl
-Item4=$(BCB)\include;$(BCB)\include\vcl
+Count=6
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\..\common;..\..\common\include
+Item1=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;..\..\common
+Item2=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;,,\..\common;..\common;D:\Sasha\Common
+Item3=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;,,\..\common
+Item4=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl
+Item5=$(BCB)\include;$(BCB)\include\vcl
 
 [HistoryLists\hlLibraryPath]
-Count=2
-Item0=$(BCB)\Projects\Lib;D:\Sasha\football\src;$(BCB)\lib\obj;$(BCB)\lib
-Item1=$(BCB)\lib\obj;$(BCB)\lib
+Count=3
+Item0=..\..\Common;$(BCB)\Projects\Lib;D:\Sasha\football\src;$(BCB)\lib\obj;$(BCB)\lib
+Item1=$(BCB)\Projects\Lib;D:\Sasha\football\src;$(BCB)\lib\obj;$(BCB)\lib
+Item2=$(BCB)\lib\obj;$(BCB)\lib
 
 [HistoryLists\hlDebugSourcePath]
 Count=1
