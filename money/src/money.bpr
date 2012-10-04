@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\bin\money.exe"/>
+    <OBJFILES value="money.obj ..\..\Common\Connect.obj ..\..\Common\ConnectImpl.obj 
+      ..\..\Common\OptionsXML.obj ..\..\Common\PropertyMap.obj 
+      ..\..\Common\Functions.obj ..\..\Common\DataSetLayout.obj 
+      ..\..\Common\DateInterval.obj ..\..\Common\GetStringUnit.obj 
+      ..\..\Common\SafeAction.obj ..\..\Common\DynamicAction.obj 
+      ..\..\Common\GridUtils.obj ..\..\Common\DBLoginUnit.obj CatalogUnit.obj 
+      AboutUnit.obj Const.obj DataImpl.obj Doc.obj Stock.obj DocStr.obj 
+      DocUnit.obj DocStrUnit.obj ReportBase.obj ReportLauncher.obj 
+      ReportBaseTotal.obj ReportTurnover.obj ReportTurnoverDynamic.obj 
+      ReportStock.obj MainUnit.obj"/>
+    <RESFILES value="money.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) ..\..\Common\Connect.dfm ..\..\Common\ConnectImpl.dfm 
+      ..\..\Common\OptionsXML.dfm ..\..\Common\DateInterval.dfm 
+      ..\..\Common\GetStringUnit.dfm ..\..\Common\DBLoginUnit.dfm 
+      CatalogUnit.dfm AboutUnit.dfm DocUnit.dfm DocStrUnit.dfm ReportBase.dfm 
+      ReportLauncher.dfm ReportBaseTotal.dfm ReportTurnover.dfm 
+      ReportTurnoverDynamic.dfm ReportStock.dfm MainUnit.dfm"/>
+    <LIBFILES value="..\..\Common\msimg32.lib"/>
+    <LIBRARIES value="tee.lib inet.lib xmlrtl.lib dbexpress.lib cds.lib ibxpress.lib dsnap.lib 
+      vcldb.lib dbrtl.lib EhLibB60.lib rtl.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib rtl.lib EhLibB60.lib dbrtl.lib vcldb.lib dsnap.lib ibxpress.lib 
+      cds.lib dbexpress.lib xmlrtl.lib inet.lib tee.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi 
+      vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi 
+      teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi 
+      dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
+      inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
+      bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
+      indy.bpi FR6.bpi"/>
+    <PATHCPP value=".;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="money.cpp"/>
+    <INCLUDEPATH value="..\..;&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib"/>
+    <LIBPATH value="..\..;&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\..\EhLib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\.. -I&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot; 
+      -I..\..\Common -I$(BCB)\include -I$(BCB)\include\vcl -I$(BCB)\..\EhLib 
+      -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="money.res" FORMNAME="" UNITNAME="money.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="money.cpp" FORMNAME="" UNITNAME="money" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\msimg32.lib" FORMNAME="" UNITNAME="msimg32.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\Connect.cpp" FORMNAME="dmConnect" UNITNAME="Connect" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\ConnectImpl.cpp" FORMNAME="dmConnectImpl" UNITNAME="ConnectImpl" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\OptionsXML.cpp" FORMNAME="dmOptionsXML" UNITNAME="OptionsXML" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\PropertyMap.cpp" FORMNAME="" UNITNAME="PropertyMap" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\Functions.cpp" FORMNAME="" UNITNAME="Functions" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\DataSetLayout.cpp" FORMNAME="" UNITNAME="DataSetLayout" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\DateInterval.cpp" FORMNAME="fmDates" UNITNAME="DateInterval" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\GetStringUnit.cpp" FORMNAME="fmGetString" UNITNAME="GetStringUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\SafeAction.cpp" FORMNAME="" UNITNAME="SafeAction" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\DynamicAction.cpp" FORMNAME="" UNITNAME="DynamicAction" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\GridUtils.cpp" FORMNAME="" UNITNAME="GridUtils" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\DBLoginUnit.cpp" FORMNAME="fmLogin" UNITNAME="DBLoginUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="CatalogUnit.cpp" FORMNAME="fmCatalog" UNITNAME="CatalogUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="AboutUnit.cpp" FORMNAME="fmAbout" UNITNAME="AboutUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Const.cpp" FORMNAME="" UNITNAME="Const" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DataImpl.cpp" FORMNAME="" UNITNAME="DataImpl" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Doc.cpp" FORMNAME="" UNITNAME="Doc" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Stock.cpp" FORMNAME="" UNITNAME="Stock" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DocStr.cpp" FORMNAME="" UNITNAME="DocStr" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DocUnit.cpp" FORMNAME="fmDoc" UNITNAME="DocUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DocStrUnit.cpp" FORMNAME="fmDocStr" UNITNAME="DocStrUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ReportBase.cpp" FORMNAME="fmReportBase" UNITNAME="ReportBase" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ReportLauncher.cpp" FORMNAME="dmReportLauncher" UNITNAME="ReportLauncher" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
+      <FILE FILENAME="ReportBaseTotal.cpp" FORMNAME="fmReportBaseTotal" UNITNAME="ReportBaseTotal" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ReportTurnover.cpp" FORMNAME="fmReportTurnover" UNITNAME="ReportTurnover" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ReportTurnoverDynamic.cpp" FORMNAME="fmReportTurnoverDynamic" UNITNAME="ReportTurnoverDynamic" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ReportStock.cpp" FORMNAME="fmReportStock" UNITNAME="ReportStock" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MainUnit.cpp" FORMNAME="fmMain" UNITNAME="MainUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=1
+MajorVer=1
+MinorVer=3
+Release=0
+Build=3
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=HomeCompa
+FileDescription=Money: домашняя бухгалтерия
+FileVersion=1.3.0.3
+InternalName=money
+LegalCopyright=free, ага
+LegalTrademarks=А.Чирятьев
+OriginalFilename=money.exe
+ProductName=Домашняя бухгалтерия
+ProductVersion=1.0
+Comments=Поделка инвалида, аналогов в интернете - тьма
+
+[HistoryLists\hlIncludePath]
+Count=6
+Item0=..\..;C:\Program Files (x86)\Borland\CBuilder6\Projects;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib
+Item1=C:\Program Files (x86)\Borland\CBuilder6\Projects;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib
+Item2=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\..\EhLib
+Item3=C:\Program Files\Borland\CBuilder6\Projects;..\..\Common;D:\Sasha\money\src;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
+Item4=D:\Sasha\money\src;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
+Item5=C:\Program Files\Borland\CBuilder6\Projects;D:\Sasha\money\src;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=7
+Item0=..\..;C:\Program Files (x86)\Borland\CBuilder6\Projects;..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\..\EhLib
+Item1=C:\Program Files (x86)\Borland\CBuilder6\Projects;..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\..\EhLib
+Item2=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\..\EhLib
+Item3=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item4=C:\Program Files\Borland\CBuilder6\Projects;..\..\Common;D:\Sasha\money\src;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
+Item5=D:\Sasha\money\src;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
+Item6=C:\Program Files\Borland\CBuilder6\Projects;D:\Sasha\money\src;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\bin\
+Item1=..\bin
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>
