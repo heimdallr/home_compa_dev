@@ -36,27 +36,6 @@ static T* __fastcall Filter(T *Data, const String &Filter=String()) {
 };
 //---------------------------------------------------------------------------
 
-// Храним признак активности
-template <typename T>
-class TActivePtr {
-  T *_p;
-  bool _a;
-public:
-  __fastcall TActivePtr(T *P, bool A=false) : _p(P), _a(P->Active) {_p->Active=A;}
-  __fastcall ~TActivePtr() {_p->Active=_a;}
-};
-//---------------------------------------------------------------------------
-template <typename T>
-class TActiveSet {
-  T *_p;
-  bool _a;
-public:
-  __fastcall TActiveSet(T *P, bool A=false) : _p(P), _a(A) {_p->Active=A;}
-  __fastcall ~TActiveSet() {_p->Active=!_a;}
-};
-//---------------------------------------------------------------------------
-
-
 // Храним BeforePost, AfterPost
 template <typename T>
 class TPostPtr {
