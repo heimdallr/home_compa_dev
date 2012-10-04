@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Figures>
+  <Figure Caption="Палка">
+    <Items>
+      <Item X="0" Y="0" />
+      <Item X="0" Y="1" />
+      <Item X="0" Y="2" />
+      <Item X="0" Y="3" />
+    </Items>
+  </Figure>
+  <Figure Caption="Квадрат">
+    <Items>
+      <Item X="0" Y="0" />
+      <Item X="0" Y="1" />
+      <Item X="1" Y="0" />
+      <Item X="1" Y="1" />
+    </Items>
+  </Figure>
+  <Figure Caption="Буква Г">
+    <Items>
+      <Item X="0" Y="0" />
+      <Item X="0" Y="1" />
+      <Item X="0" Y="2" />
+      <Item X="-1" Y="2" />
+    </Items>
+  </Figure>
+  <Figure Caption="Не буква Г">
+    <Items>
+      <Item X="0" Y="0" />
+      <Item X="0" Y="1" />
+      <Item X="0" Y="2" />
+      <Item X="1" Y="2" />
+    </Items>
+  </Figure>
+  <Figure Caption="Горка">
+    <Items>
+      <Item X="0" Y="0" />
+      <Item X="-1" Y="1" />
+      <Item X="0" Y="1" />
+      <Item X="1" Y="1" />
+    </Items>
+  </Figure>
+  <Figure Caption="Лесенка вниз">
+    <Items>
+      <Item X="0" Y="0" />
+      <Item X="-1" Y="0" />
+      <Item X="0" Y="1" />
+      <Item X="1" Y="1" />
+    </Items>
+  </Figure>
+  <Figure Caption="Лесенка вверх">
+    <Items>
+      <Item X="0" Y="0" />
+      <Item X="1" Y="0" />
+      <Item X="0" Y="1" />
+      <Item X="-1" Y="1" />
+    </Items>
+  </Figure>
+  <Figure Caption="Пара кирпичей">
+    <Items>
+      <Item X="-1" Y="0" />
+      <Item X="-1" Y="1" />
+      <Item X="1" Y="0" />
+      <Item X="1" Y="1" />
+    </Items>
+  </Figure>
+
+  <Figure Caption="Прошиваем насквозь" Class="Crash" Disable="0">
+    <Items>
+      <Item X="0" Y="0" Disable="0"/>
+    </Items>
+  </Figure>
+  
+  <Figure Caption="Тест" Repeat="1" Disable="1">
+    <Items>
+      <Item X="0" Y="0" Disable="0"/>
+      <Item X="-1" Y="-1" Disable="0"/>
+      <Item X="-1" Y="1" Disable="0"/>
+      <Item X="1" Y="-1"  Disable="0"/>
+      <Item X="1" Y="1"  Disable="0"/>
+    </Items>
+  </Figure>
+</Figures>
