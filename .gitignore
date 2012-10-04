@@ -2,3 +2,5 @@
 *.exe
 *.tds
 *.ddp
+*.~*
+*.dsk
