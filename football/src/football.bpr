@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\bin\football.exe"/>
+    <OBJFILES value="football.obj MDIMainUnit.obj MatchPlayer.obj Group.obj 
+      ..\..\Common\DataSetLayout.obj ..\..\Common\GetStringUnit.obj 
+      ..\..\Common\DynamicMenu.obj ..\..\Common\CatalogUnit.obj 
+      ..\..\Common\Connect.obj ..\..\Common\ConnectImpl.obj 
+      ..\..\Common\OptionsXML.obj ..\..\Common\Functions.obj 
+      ..\..\Common\PropertyMap.obj Main.obj"/>
+    <RESFILES value="football.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) MDIMainUnit.dfm MatchPlayer.dfm Group.dfm 
+      ..\..\Common\GetStringUnit.dfm ..\..\Common\CatalogUnit.dfm 
+      ..\..\Common\Connect.dfm ..\..\Common\ConnectImpl.dfm 
+      ..\..\Common\OptionsXML.dfm Main.dfm"/>
+    <LIBFILES value="&quot;C:\Program Files (x86)\Borland\CBuilder6\Lib\Psdk\msimg32.lib&quot;"/>
+    <LIBRARIES value="inet.lib xmlrtl.lib vcldb.lib EhLibB60.lib dbexpress.lib dsnap.lib cds.lib 
+      ibxpress.lib dbrtl.lib rtl.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib rtl.lib dbrtl.lib ibxpress.lib cds.lib dsnap.lib dbexpress.lib 
+      EhLibB60.lib vcldb.lib xmlrtl.lib inet.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi 
+      vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi 
+      teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi 
+      dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
+      inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
+      bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
+      indy.bpi EhLibB60.bpi EhLibDataDriversB60.bpi"/>
+    <PATHCPP value=".;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common;..\..\Common"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="football.cpp"/>
+    <INCLUDEPATH value="..\..\Common;$(BCB)\include;$(BCB)\include\vcl;..\..\Common\Include;&quot;C:\Program Files (x86)\Borland\EhLib&quot;"/>
+    <LIBPATH value="..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;&quot;C:\Program Files (x86)\Borland\EhLib&quot;"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\..\Common -I$(BCB)\include -I$(BCB)\include\vcl 
+      -I..\..\Common\Include -I&quot;C:\Program Files (x86)\Borland\EhLib&quot; -src_suffix 
+      cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$Y+ -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="football.res" FORMNAME="" UNITNAME="football.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="football.cpp" FORMNAME="" UNITNAME="football" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIMainUnit.cpp" FORMNAME="fmMDIMain" UNITNAME="MDIMainUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MatchPlayer.cpp" FORMNAME="fmPlayer" UNITNAME="MatchPlayer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Group.cpp" FORMNAME="fmGroup" UNITNAME="Group" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\DataSetLayout.cpp" FORMNAME="" UNITNAME="DataSetLayout" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\GetStringUnit.cpp" FORMNAME="fmGetString" UNITNAME="GetStringUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\DynamicMenu.cpp" FORMNAME="" UNITNAME="DynamicMenu" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\CatalogUnit.cpp" FORMNAME="fmCatalog" UNITNAME="CatalogUnit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\Connect.cpp" FORMNAME="dmConnect" UNITNAME="Connect" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\ConnectImpl.cpp" FORMNAME="dmConnectImpl" UNITNAME="ConnectImpl" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\OptionsXML.cpp" FORMNAME="dmOptionsXML" UNITNAME="OptionsXML" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\Functions.cpp" FORMNAME="" UNITNAME="Functions" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Common\PropertyMap.cpp" FORMNAME="" UNITNAME="PropertyMap" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Main.cpp" FORMNAME="fmMain" UNITNAME="Main" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\Program Files (x86)\Borland\CBuilder6\Lib\Psdk\msimg32.lib" FORMNAME="" UNITNAME="msimg32.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=1
+MajorVer=1
+MinorVer=0
+Release=1
+Build=7
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=Главный модуль программы
+FileVersion=1.0.1.7
+InternalName=football
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=football.exe
+ProductName=
+ProductVersion=1.0.1
+SourceCRC=00000000
+
+[HistoryLists\hlIncludePath]
+Count=9
+Item0=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;..\..\Common\Include;C:\Program Files (x86)\Borland\EhLib
+Item1=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;..\..\Common\Include;$(BCB)\..\EhLib
+Item2=C:\Program Files\Borland\CBuilder6\Projects;D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib;..\..\Common\Include
+Item3=D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib;..\..\Common\Include
+Item4=D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib;..\..\Include
+Item5=D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
+Item6=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
+Item7=..\..\Common;D:\;D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl
+Item8=D:\;D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=7
+Item0=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files (x86)\Borland\EhLib
+Item1=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item2=C:\Program Files\Borland\CBuilder6\Projects;D:\;..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
+Item3=D:\;..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
+Item4=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
+Item5=..\..\Common;D:\;D:\Sasha\football\src;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item6=D:\;D:\Sasha\football\src;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\bin\
+Item1=..\bin
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>
