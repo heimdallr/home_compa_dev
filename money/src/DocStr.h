@@ -16,6 +16,7 @@ static Ptr GetInstance(int IdDoc, TIBTransaction *T=0) {return Ptr(new TDocStr(I
   int __fastcall Add(int IdType, int IdTarget, double Summa, double Qty, const String &Note, int IdDeposit);
   void __fastcall Set(int IdType, int IdTarget, double Summa, double Qty, const String &Note, int IdDeposit) const;
   void __fastcall Del() const;
+  int __fastcall Duplicate();
 };
 //---------------------------------------------------------------------------
 #endif

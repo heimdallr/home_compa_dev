@@ -167,4 +167,13 @@ void __fastcall TfmDocStr::actRightExecute(TObject *Sender) {
 }
 //---------------------------------------------------------------------------
 
+// Задуплить количество
+void __fastcall TfmDocStr::actMulExecute(TObject *Sender) {
+  dsSumma->Edit();
+  dsSummaQty->AsInteger *= 2;
+  dsSummaSumma->AsFloat *= 2.0;
+  dsSumma->Post();
+
+}
+//---------------------------------------------------------------------------
 

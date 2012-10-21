@@ -449,6 +449,11 @@ object fmMain: TfmMain
       ShortCut = 16397
       OnExecute = actEditDocExecute
     end
+    object actMul: TAction
+      Caption = 'actMul'
+      ShortCut = 16461
+      OnExecute = actMulExecute
+    end
   end
   object dsrcStock: TDataSource
     Left = 932

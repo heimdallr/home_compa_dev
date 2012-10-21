@@ -238,4 +238,13 @@ void __fastcall TfmMain::FormDeactivate(TObject *Sender) {
 }
 //---------------------------------------------------------------------------
 
+// Задуплить строку
+void __fastcall TfmMain::actMulExecute(TObject *Sender) {
+  if(!dbgDoc->RowDetailPanel->Visible) return;
+  if(_doc->GetDataSet()->FieldByName("state")->AsInteger) return;
+  if(!dbgStr->Focused()) return;
+  if(!_doc_str->GetDataSet()->RecordCount) return;
+  _doc_str->Duplicate();
+}
+//---------------------------------------------------------------------------
 

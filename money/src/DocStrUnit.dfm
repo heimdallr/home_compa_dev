@@ -292,6 +292,11 @@ object fmDocStr: TfmDocStr
       ShortCut = 39
       OnExecute = actRightExecute
     end
+    object actMul: TAction
+      Caption = 'actMul'
+      ShortCut = 16461
+      OnExecute = actMulExecute
+    end
   end
   object dsrcTarget: TDataSource
     DataSet = dsTarget

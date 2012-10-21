@@ -62,6 +62,7 @@ __published:	// IDE-managed Components
   TAction *actOkNew;
   TAction *actLeft;
   TAction *actRight;
+  TAction *actMul;
   void __fastcall actCancelExecute(TObject *Sender);
   void __fastcall FormResize(TObject *Sender);
   void __fastcall eSummaEnter(TObject *Sender);
@@ -75,6 +76,7 @@ __published:	// IDE-managed Components
   void __fastcall FormPaint(TObject *Sender);
   void __fastcall actLeftExecute(TObject *Sender);
   void __fastcall actRightExecute(TObject *Sender);
+  void __fastcall actMulExecute(TObject *Sender);
 private:	// User declarations
 static TClientDataSet* __fastcall GetTargetDataSet();
   TClientDataSet *_doc;

@@ -76,6 +76,7 @@ __published:	// IDE-managed Components
   TMenuItem *mmReport;
   TAction *actEditDoc;
   TMenuItem *actEditDoc1;
+  TAction *actMul;
   void __fastcall actExitExecute(TObject *Sender);
   void __fastcall actLoadExecute(TObject *Sender);
   void __fastcall actChangeDateIntervalExecute(TObject *Sender);
@@ -102,6 +103,7 @@ __published:	// IDE-managed Components
   void __fastcall FormActivate(TObject *Sender);
   void __fastcall FormDeactivate(TObject *Sender);
   void __fastcall actEditDocExecute(TObject *Sender);
+  void __fastcall actMulExecute(TObject *Sender);
 private:	// User declarations
 typedef std::map<String, int> TAlertEventCount;
 static TPropertyMap GetConnectProperty(TOptions *Opt);

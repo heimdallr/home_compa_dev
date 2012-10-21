@@ -1,10 +1,6 @@
-//---------------------------------------------------------------------------
-
-
 #pragma hdrstop
-
 #include "DocStr.h"
-
+#include <math>
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)
@@ -78,6 +74,11 @@ void __fastcall TDocStr::Del() const {
   SQL->ParamByName("id")->AsInteger = _data->FieldByName("id")->AsInteger;
   SQL->ExecQuery();
   SQL->Transaction->Commit();
+}
+//---------------------------------------------------------------------------
+
+int __fastcall TDocStr::Duplicate() {
+  return Add(_data->FieldByName("id_str_type")->AsInteger, _data->FieldByName("id_target_person")->AsInteger, fabs(_data->FieldByName("summa")->AsFloat), _data->FieldByName("qty")->AsFloat, _data->FieldByName("note")->AsString, _data->FieldByName("id_deposit_to")->AsInteger);
 }
 //---------------------------------------------------------------------------
 

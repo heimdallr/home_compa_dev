@@ -1,7 +1,7 @@
 <Money>
 	<Connect Host="localhost" DatabaseName="money" User="MONEY" Password="money" CType="WIN1251"/>
 	<Layout>
-		<fmMain Top="91" Left="334" Height="803" Width="1378">
+		<fmMain Top="295" Left="417" Height="803" Width="1378">
 			<pnlRight Top="29" Left="1000" Height="722" Width="370"/>
 			<pnlStr Top="368" Left="0" Height="354" Width="996"/>
 			<dbgDoc Top="0" Left="0" Height="722" Width="996">
