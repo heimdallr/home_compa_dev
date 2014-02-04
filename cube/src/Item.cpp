@@ -1,6 +1,7 @@
 //---------------------------------------------------------------------------
 #include <iterator>
 #include <numeric>
+#include <limits>
 #pragma hdrstop
 
 #include "Item.h"
@@ -38,7 +39,14 @@ Item::Array Item::Matrix::Multiply(const Array &array) const {
 //---------------------------------------------------------------------------
 
 void Item::Matrix::Normalize(Arrays &arrays) {
-// todo
+  Array array(Dim, std::numeric_limits<int>::max());
+  for (Arrays::const_iterator it = arrays.begin(); it != arrays.end(); ++it)
+    for (int i=0; i<Dim; ++i)
+      if (array[i] > (*it)[i])
+        array[i] = (*it)[i];
+  for (Arrays::iterator it = arrays.begin(); it != arrays.end(); ++it)
+    for (int i=0; i<Dim; ++i)
+      (*it)[i] -= array[i];
 }
 //---------------------------------------------------------------------------
 
