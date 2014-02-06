@@ -1,94 +1,96 @@
 //---------------------------------------------------------------------------
-#include <iterator>
-#include <numeric>
-#include <limits>
 #pragma hdrstop
 
 #include "Item.h"
+#include "Utils.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-Item::Array Item::Matrix::ToArray(int val) {
-  Array res;
-  for (int i=0; i<Dim; ++i) {
-    res.push_back(val % Dim);
-    val /= Dim;
-  }
-  return res;
+//---------------------------------------------------------------------------
+
+Item::Item(int id) : _id(id), _size(Dimensions, 0) {
 }
 //---------------------------------------------------------------------------
 
-int Item::Matrix::ToInt(const Item::Array &array) {
-  Array::const_reverse_iterator it = array.rbegin();
-  int res = *it;
-  for (++it; it!=array.rend(); ++it) {
-    res *= array.size();
-    res += *it;
-  }
-  return res;
+bool Item::Less(const Item &rh) const {
+  return std::lexicographical_compare(_elems.begin(), _elems.end(), rh._elems.begin(), rh._elems.end());
 }
 //---------------------------------------------------------------------------
 
-Item::Array Item::Matrix::Multiply(const Array &array) const {
-  Array res;
-  Array::const_iterator it = _data.begin();
-  for (int i=0; i<Dim; ++i, it+=Dim)
-    res.push_back(std::inner_product(array.begin(), array.end(), it, 0));
-  return res;
+void Item::FillItemRound(UniqueItems &items) const {
+  FillItemMoves(items);
+  Item item = RoundClockwise();
+  for (int i=0; i<3; ++i, item = item.RoundClockwise())
+    item.FillItemMoves(items);
 }
 //---------------------------------------------------------------------------
 
-void Item::Matrix::Normalize(Arrays &arrays) {
-  Array array(Dim, std::numeric_limits<int>::max());
-  for (Arrays::const_iterator it = arrays.begin(); it != arrays.end(); ++it)
-    for (int i=0; i<Dim; ++i)
-      if (array[i] > (*it)[i])
-        array[i] = (*it)[i];
-  for (Arrays::iterator it = arrays.begin(); it != arrays.end(); ++it)
-    for (int i=0; i<Dim; ++i)
-      (*it)[i] -= array[i];
+void Item::FillItemMoves(UniqueItems &items) const {
+  Array offset(Dimensions, 0), mx(Dimensions, 0);
+  for (int i=0; i<Dimensions; ++i)
+    mx[i] = Dimensions - _size[i];
+  GetNext(mx, CheckFillItemMoves(*this, items));
 }
 //---------------------------------------------------------------------------
 
-void Item::Matrix::Multiply(const Elems &src, Elems &dst) const
-{
-  Arrays arrays;
-  for (Elems::const_iterator it = src.begin(); it != src.end(); ++it)
-    arrays.push_back(Multiply(ToArray(*it)));
-  Normalize(arrays);
-  for (Arrays::const_iterator it=arrays.begin(); it!=arrays.end(); ++it)
-    dst.insert(ToInt(*it));
+void Item::FillItems(Items &items) const {
+  UniqueItems u;
+  FillItemRound(u);
+
+  Item item = RoundLeft();
+  for (int i=0; i<3; ++i, item = item.RoundLeft())
+    item.FillItemRound(u);
+
+  RoundUp().FillItemRound(u);
+  RoundDown().FillItemRound(u);
+
+  std::copy(u.begin(), u.end(), std::back_inserter(items));
 }
 //---------------------------------------------------------------------------
 
-Item::Matrix::Matrix(const int *data) : _data(data, data + Dim*Dim) {
-}
-//---------------------------------------------------------------------------
-
-std::ostream& Item::operator>>(std::ostream &stream) const {
-  std::ostream_iterator<int> oit(stream, " ");
+void Item::CountSize() {
+  Array mn(Dimensions, std::numeric_limits<int>::max()), mx(Dimensions, std::numeric_limits<int>::min());
   for (Elems::const_iterator it = _elems.begin(); it != _elems.end(); ++it) {
-    stream << "{ ";
-    Array array(Matrix::ToArray(*it));
-    std::copy(array.begin(), array.end(), oit);
-    stream << "} ";
+    Array e = ToArray(*it);
+    for (int i=0; i<Dimensions; ++i) {
+      if (mn[i] > e[i])
+        mn[i] = e[i];
+      if (mx[i] < e[i])
+        mx[i] = e[i];
+    }
   }
-  stream << std::endl;
-  return stream;
+  for (int i=0; i<Dimensions; ++i)
+    _size[i] = mx[i] - mn[i];
 }
 //---------------------------------------------------------------------------
 
 Item& Item::operator<<(int elem) {
   _elems.insert(elem);
+  CountSize();
   return *this;
 }
 //---------------------------------------------------------------------------
 
 Item Item::Round(const Matrix &matrix) const {
-  Item res;
+  Item res(_id);
   matrix.Multiply(_elems, res._elems);
+  res.CountSize();
   return res;
 };
+//---------------------------------------------------------------------------
+
+Item Item::Move(const Array &offset) const {
+  Item res(_id);
+  res._size = _size;
+  for (Elems::const_iterator it = _elems.begin(); it != _elems.end(); ++it) {
+    Array e = ToArray(*it);
+    for (int i=0; i<Dimensions; ++i)
+      e[i] += offset[i];
+    res << ToInt(e);
+  }
+  return res;
+}
 //---------------------------------------------------------------------------
 
 Item Item::RoundUp() const {
@@ -111,38 +113,53 @@ Item Item::RoundDown() const {
 }
 Item Item::RoundLeft() const {
   static const int array[] = {
-    0, 0, 0,
-    0, 0, 0,
-    0, 0, 1
+     0, 1, 0,
+    -1, 0, 0,
+     0, 0, 1
   };
   static const Matrix matrix(array);
   return Round(matrix);
 }
 Item Item::RoundRight() const {
   static const int array[] = {
-    0, 0, 0,
-    0, 0, 0,
-    0, 0, 1
+    0, -1, 0,
+    1,  0, 0,
+    0,  0, 1
   };
   static const Matrix matrix(array);
   return Round(matrix);
 }
 Item Item::RoundClockwise() const {
   static const int array[] = {
-    0, 0, 0,
-    0, 1, 0,
-    0, 0, 0
+    0,  0, 1,
+    0,  1, 0,
+    -1, 0, 0
   };
   static const Matrix matrix(array);
   return Round(matrix);
 }
 Item Item::RoundCounterClockwise() const {
   static const int array[] = {
-    0, 0, 0,
-    0, 1, 0,
-    0, 0, 0
+    0, 0, -1,
+    0, 1,  0,
+    1, 0,  0
   };
   static const Matrix matrix(array);
   return Round(matrix);
 }
+//---------------------------------------------------------------------------
+
+std::ostream& Item::operator>>(std::ostream &stream) const {
+  std::ostream_iterator<int> oit(stream, " ");
+  stream << _id;
+  for (Elems::const_iterator it = _elems.begin(); it != _elems.end(); ++it) {
+    stream << ": { ";
+    Array array(ToArray(*it));
+    std::copy(array.begin(), array.end(), oit);
+    stream << "} ";
+  }
+  stream << std::endl;
+  return stream;
+}
+//---------------------------------------------------------------------------
 
