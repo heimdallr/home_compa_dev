@@ -10,6 +10,7 @@ Matrix::Matrix(const int *data) : _data(data, data + Dimensions*Dimensions) {
 }
 //---------------------------------------------------------------------------
 
+// умножение на вектор
 Array Matrix::Multiply(const Array &array) const {
   Array res;
   Array::const_iterator it = _data.begin();
@@ -19,6 +20,7 @@ Array Matrix::Multiply(const Array &array) const {
 }
 //---------------------------------------------------------------------------
 
+// нормализация элемента
 void Matrix::Normalize(Arrays &arrays) {
   Array array(Dimensions, std::numeric_limits<int>::max());
   for (Arrays::const_iterator it = arrays.begin(); it != arrays.end(); ++it)
@@ -31,8 +33,8 @@ void Matrix::Normalize(Arrays &arrays) {
 }
 //---------------------------------------------------------------------------
 
-void Matrix::Multiply(const Elems &src, Elems &dst) const
-{
+// умножение на множество точек
+void Matrix::Multiply(const Elems &src, Elems &dst) const {
   Arrays arrays;
   for (Elems::const_iterator it = src.begin(); it != src.end(); ++it)
     arrays.push_back(Multiply(ToArray(*it)));

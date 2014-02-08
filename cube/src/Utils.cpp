@@ -3,7 +3,6 @@
 #pragma hdrstop
 
 #include "Utils.h"
-#include "Utils.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -27,36 +26,15 @@ int ToInt(const Array &array) {
   return res;
 }
 //---------------------------------------------------------------------------
-/*
-template<typename Check>
-void GetNext(const Array &maxval, Check check) {
-  Array array;
-  Array s;
-  int i = 0;
-  while (true) {
-    for (; i<maxval[s.size()]; ++i) {
-      if (!check.Check(s.size(), i))
-        continue;
 
-      check.Insert(s.size(), i);
-      s.push_back(i);
-      if (s.size() == maxval.size()) {
-        std::copy(s.begin(), s.end(), array.begin());
-        check.Ready(array);
-        s.pop_back();
-        check.Delete(s.size(), i);
-        continue;
-      }
-      i = 0;
-      break;
-    }
-    if (s.empty())
-      return;
-
-    i = s.back() + 1;
-    s.pop_back();
+// Двигаем точки элемента
+void Move(const Elems &src, Elems &dst, const Array &offset) {
+  for (Elems::const_iterator it = src.begin(); it != src.end(); ++it) {
+    Array e = ToArray(*it);
+    for (int i=0; i<Dimensions; ++i)
+      e[i] += offset[i];
+    dst.insert(ToInt(e));
   }
 }
 //---------------------------------------------------------------------------
 
-*/
