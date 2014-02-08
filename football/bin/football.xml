@@ -1,15 +1,15 @@
 <Money>
 	<Connect Host="localhost" DatabaseName="football" User="football" Password="football" CType="WIN1251"/>
-	<Options Year="2010" IdChamp="565"/>
+	<Options Year="2010" IdChamp="733"/>
 	<Layout>
 		<fmMain Top="3" Left="101" Height="1204" Width="962">
-			<dbgData Top="0" Left="0" Height="733" Width="567">
+			<dbgData Top="0" Left="0" Height="1140" Width="954">
 				<ORD_NUM Visible="True" Index="0" Width="44"/>
 				<PLAY_AT Visible="True" Index="1" Width="104"/>
 				<STATUS Visible="True" Index="2" Width="167"/>
 				<GROUP_NAME Visible="True" Index="3" Width="110"/>
-				<COUNTRIES Visible="True" Index="4" Width="42"/>
-				<GOAL_COUNT Visible="True" Index="5" Width="59"/><CITY_NAME Visible="True" Index="6" Width="32"/></dbgData>
+				<COUNTRIES Visible="True" Index="4" Width="266"/>
+				<GOAL_COUNT Visible="True" Index="5" Width="59"/><CITY_NAME Visible="True" Index="6" Width="195"/></dbgData>
 		</fmMain>
-		<fmMDIMain Top="0" Left="0" Height="1191" Width="962"/><fmMain_1><dbgData Top="0" Left="0" Height="1142" Width="954"><ORD_NUM Visible="True" Index="0" Width="54"/><PLAY_AT Visible="True" Index="1" Width="128"/><STATUS Visible="True" Index="2" Width="128"/><GROUP_NAME Visible="True" Index="3" Width="75"/><COUNTRIES Visible="True" Index="4" Width="376"/><GOAL_COUNT Visible="True" Index="5" Width="128"/><CITY_NAME Visible="True" Index="6" Width="56"/></dbgData></fmMain_1></Layout>
+		<fmMDIMain Top="0" Left="0" Height="1191" Width="962"/><fmMain_1><dbgData Top="0" Left="0" Height="1140" Width="954"><ORD_NUM Visible="True" Index="0" Width="54"/><PLAY_AT Visible="True" Index="1" Width="128"/><STATUS Visible="True" Index="2" Width="128"/><GROUP_NAME Visible="True" Index="3" Width="75"/><COUNTRIES Visible="True" Index="4" Width="380"/><GOAL_COUNT Visible="True" Index="5" Width="128"/><CITY_NAME Visible="True" Index="6" Width="52"/></dbgData></fmMain_1></Layout>
 </Money>
