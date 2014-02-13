@@ -44,6 +44,7 @@ public:
   // конструкторы
   explicit Item(int id);
   explicit Item(const std::string &str);
+  int GetId() const;
   // пишем элемент в поток
   std::ostream& operator>>(std::ostream &stream) const;
   // добавляем точку в элемент

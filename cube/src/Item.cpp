@@ -33,6 +33,11 @@ Item::Item(const std::string &str) : _id(0), _size(Dimensions, 0) {
 }
 //---------------------------------------------------------------------------
 
+int Item::GetId() const
+{
+	return _id;
+}
+
 // сравнивалка элементов
 bool Item::Less(const Item &rh) const {
   return std::lexicographical_compare(_elems.begin(), _elems.end(), rh._elems.begin(), rh._elems.end());
