@@ -4,6 +4,7 @@
 #include <QtGui/QMainWindow>
 #include "ui_visu.h"
 #include "ItemStorage.h"
+#include "View.h"
 
 class visu : public QMainWindow
 {
@@ -15,6 +16,7 @@ public:
 private:
 	Ui::visuClass ui;
 	ItemStorage _storage;
+	View *_view;
 
 private slots:
 	void SlotCompositionChanged(int number);
