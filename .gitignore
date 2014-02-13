@@ -6,3 +6,14 @@
 *.dsk
 *.bcc32pch
 *.log
+
+*.suo
+*.user
+
+ipch/
+*.sdf
+*.opensdf
+
+[Dd]ebug/
+[Rr]elease/
+bin/
