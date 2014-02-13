@@ -37,6 +37,10 @@ int Item::GetId() const
 {
 	return _id;
 }
+const Elems& Item::GetElems() const
+{
+	return _elems;
+}
 
 // сравнивалка элементов
 bool Item::Less(const Item &rh) const {
