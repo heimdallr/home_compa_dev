@@ -9,6 +9,8 @@
 
 *.suo
 *.user
+*.vspscc
+*.vssscc
 
 ipch/
 *.sdf
