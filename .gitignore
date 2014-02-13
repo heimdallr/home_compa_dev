@@ -17,3 +17,5 @@ ipch/
 [Dd]ebug/
 [Rr]elease/
 bin/
+
+GeneratedFiles/
