@@ -1,13 +1,5 @@
-//---------------------------------------------------------------------------
-#pragma hdrstop
-
 #include "Item.h"
 #include "Utils.h"
-
-//---------------------------------------------------------------------------
-#pragma package(smart_init)
-
-//---------------------------------------------------------------------------
 
 // Конструктор
 Item::Item(int id) : _id(id), _size(Dimensions, 0) {
@@ -159,9 +151,9 @@ Item Item::RoundCounterClockwise() const {
 // пишем элемент в поток
 std::ostream& Item::operator>>(std::ostream &stream) const {
   std::ostream_iterator<int> oit(stream, " ");
-  stream << _id;
+  stream << _id << ":";
   for (Elems::const_iterator it = _elems.begin(); it != _elems.end(); ++it) {
-    stream << ": { ";
+    stream << " { ";
     Array array(ToArray(*it));
     std::copy(array.begin(), array.end(), oit);
     stream << "} ";
@@ -187,3 +179,14 @@ void Item::SetToCube(Array &cube, int n) const {
 }
 //---------------------------------------------------------------------------
 
+// пишем элемент в поток
+std::ostream& operator<<(std::ostream &stream, const Item &item) {
+  return item >> stream;
+}
+//---------------------------------------------------------------------------
+
+// сравнивалка элементов
+bool operator<(const Item &lh, const Item &rh) {
+  return lh.Less(rh);
+}
+//---------------------------------------------------------------------------

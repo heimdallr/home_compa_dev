@@ -1,10 +1,5 @@
-//---------------------------------------------------------------------------
-#pragma hdrstop
-
 #include "Matrix.h"
 #include "Utils.h"
-//---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 Matrix::Matrix(const int *data) : _data(data, data + Dimensions*Dimensions) {
 }

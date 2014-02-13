@@ -71,15 +71,11 @@ public:
 };
 //---------------------------------------------------------------------------
 
+
 // пишем элемент в поток
-std::ostream& operator<<(std::ostream &stream, const Item &item) {
-  return item >> stream;
-}
+std::ostream& operator<<(std::ostream &stream, const Item &item);
+// сравнивалка элементов
+bool operator<(const Item &lh, const Item &rh);
 //---------------------------------------------------------------------------
 
-// сравнивалка элементов
-bool operator<(const Item &lh, const Item &rh) {
-  return lh.Less(rh);
-}
-//---------------------------------------------------------------------------
 #endif
