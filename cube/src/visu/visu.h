@@ -11,11 +11,13 @@ class visu : public QMainWindow
 
 public:
 	visu(const std::string &fileName);
-	~visu();
 
 private:
 	Ui::visuClass ui;
 	ItemStorage _storage;
+
+private slots:
+	void SlotCompositionChanged(int number);
 };
 
 #endif // VISU_H
