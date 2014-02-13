@@ -1,8 +1,35 @@
+#include <sstream>
+
 #include "Item.h"
 #include "Utils.h"
 
 // Конструктор
 Item::Item(int id) : _id(id), _size(Dimensions, 0) {
+}
+//---------------------------------------------------------------------------
+
+Item::Item(const std::string &str) : _id(0), _size(Dimensions, 0) {
+	std::istringstream stream(str);
+	stream >> _id;
+	char c('\0');
+	while (!stream.eof())
+	{
+		while(c != '{' && !stream.eof())
+			stream >> c;
+		if (stream.eof())
+			break;
+		Array array;
+		for (int i=0; i<Dimensions; ++i)
+		{
+			int n;
+			stream >> n;
+			array.push_back(n);
+		}
+		while(c != '}' && !stream.eof())
+			stream >> c;
+		_elems.insert(ToInt(array));
+	}
+	CountSize();
 }
 //---------------------------------------------------------------------------
 
