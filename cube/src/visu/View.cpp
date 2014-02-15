@@ -7,13 +7,13 @@ View::View()
 	, _yRotate(0.0)
 {
 	ui.setupUi(this);
-	_colorMap.insert(ColorMap::value_type(1, Qt::red));
-	_colorMap.insert(ColorMap::value_type(2, Qt::yellow));
+	_colorMap.insert(ColorMap::value_type(1, QColor(0xEE4000)));
+	_colorMap.insert(ColorMap::value_type(2, QColor(0xFFD000)));
 	_colorMap.insert(ColorMap::value_type(3, Qt::white));
-	_colorMap.insert(ColorMap::value_type(4, Qt::blue));
-	_colorMap.insert(ColorMap::value_type(5, Qt::magenta));
-	_colorMap.insert(ColorMap::value_type(6, Qt::darkRed));
-	_colorMap.insert(ColorMap::value_type(7, Qt::darkGreen));
+	_colorMap.insert(ColorMap::value_type(4, QColor(0x78329B)));
+	_colorMap.insert(ColorMap::value_type(5, QColor(0x000080)));
+	_colorMap.insert(ColorMap::value_type(6, QColor(0xEE0000)));
+	_colorMap.insert(ColorMap::value_type(7, QColor(0x008B45)));
 
 }
 
@@ -29,7 +29,7 @@ void View::initializeGL()
 void View::resizeGL(int width, int height)
 {
 	glViewport(0, 0, width, height);
-	glMatrixMode(GL_PROJECTION);
+	glMatrixMode(GL_PROJECTION);;
 	glLoadIdentity();
 	glFrustum(-1.5, 1.5,  -1.5, 1.5,  0.5, 5.0);
 }
