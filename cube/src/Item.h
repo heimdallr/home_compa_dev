@@ -30,12 +30,12 @@ private:
 
   // объект-коллбек для генерации новых объектов перебором всех линейных сдвигов
   // все положения разрешены, уведомления не нужны
-  struct CheckFillItemMoves : public CheckBase {
+  struct CheckFillItemMoves : public CheckNext {
     const Item &_item;
     Items &_items;
     // найденные элементы тупо кладем в контейнер
     CheckFillItemMoves(const Item &item, Items &items) : _item(item), _items(items) {}
-    void Ready(const Array &array) {
+    void Ready(const Array &array) override {
       _items.push_back(_item.Move(array));
     }
   };

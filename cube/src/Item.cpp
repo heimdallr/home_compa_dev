@@ -4,11 +4,11 @@
 #include "Utils.h"
 
 // Конструктор
-Item::Item(int id) : _id(id), _size(Dimensions, 0) {
+Item::Item(int id) : _id(id), _elems(), _size(Dimensions, 0) {
 }
 //---------------------------------------------------------------------------
 
-Item::Item(const std::string &str) : _id(0), _size(Dimensions, 0) {
+Item::Item(const std::string &str) : _id(0), _elems(), _size(Dimensions, 0) {
 	std::istringstream stream(str);
 	stream >> _id;
 	char c('\0');
@@ -64,7 +64,8 @@ void Item::FillItemMoves(Items &items) const {
   Array offset(Dimensions, 0), mx(Dimensions, 0);
   for (int i=0; i<Dimensions; ++i)
     mx[i] = Dimensions - _size[i];
-  GetNext(mx, CheckFillItemMoves(*this, items));
+  CheckFillItemMoves check(*this, items);
+  GetNext(mx, check);
 }
 //---------------------------------------------------------------------------
 

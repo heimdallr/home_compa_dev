@@ -1,6 +1,6 @@
 #include "..\Item.h"
 
-class CheckStack {
+class CheckStack : public CheckNext {
   std::vector<int> _cube;
   const Item::Storage &_storage;
   Arrays &_res;
@@ -62,7 +62,8 @@ int main(int argc, char* argv[])
 
   // Перебор
   Arrays res;
-  GetNext(mx, CheckStack(storage, res));
+  CheckStack check(storage, res);
+  GetNext(mx, check);
 
   // Выводим результат
   for (int i=0, size_i=res.size(); i<size_i; ++i) {
