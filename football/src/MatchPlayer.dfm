@@ -7,7 +7,7 @@ object fmPlayer: TfmPlayer
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -10
+  Font.Height = -13
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIChild
@@ -17,22 +17,22 @@ object fmPlayer: TfmPlayer
   WindowState = wsMaximized
   OnClose = FormClose
   OnResize = FormResize
-  PixelsPerInch = 96
-  TextHeight = 13
+  PixelsPerInch = 120
+  TextHeight = 16
   object pnlPlayer2: TGroupBox
     Left = 0
-    Top = 215
+    Top = 265
     Width = 862
-    Height = 395
+    Height = 343
     Align = alClient
     Caption = 'pnlPlayer2'
     TabOrder = 1
     object dbgChamp2: TDBGridEh
       Tag = 1
-      Left = 8
-      Top = 16
-      Width = 272
-      Height = 371
+      Left = 10
+      Top = 19
+      Width = 335
+      Height = 314
       Align = alLeft
       AllowedOperations = []
       Ctl3D = False
@@ -42,7 +42,7 @@ object fmPlayer: TfmPlayer
       FooterColor = clBtnFace
       FooterFont.Charset = DEFAULT_CHARSET
       FooterFont.Color = clWindowText
-      FooterFont.Height = -10
+      FooterFont.Height = -13
       FooterFont.Name = 'MS Sans Serif'
       FooterFont.Style = []
       FooterRowCount = 1
@@ -56,7 +56,7 @@ object fmPlayer: TfmPlayer
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
-      TitleFont.Height = -10
+      TitleFont.Height = -13
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
       UseMultiTitle = True
@@ -71,7 +71,7 @@ object fmPlayer: TfmPlayer
           FieldName = 'NUMBER'
           Footers = <>
           Title.Caption = #8470
-          Width = 20
+          Width = 25
         end
         item
           EditButtons = <>
@@ -80,7 +80,7 @@ object fmPlayer: TfmPlayer
           Footer.ValueType = fvtStaticText
           Footers = <>
           Title.Caption = #1048#1075#1088#1086#1082#1080'|'#1048#1084#1103
-          Width = 39
+          Width = 48
         end
         item
           AutoFitColWidth = False
@@ -88,7 +88,7 @@ object fmPlayer: TfmPlayer
           FieldName = 'PLAYER_TYPE'
           Footers = <>
           Title.Caption = #1048#1075#1088#1086#1082#1080'|'#1040#1084#1087#1083#1091#1072
-          Width = 105
+          Width = 129
         end
         item
           Alignment = taCenter
@@ -97,12 +97,11 @@ object fmPlayer: TfmPlayer
           FieldName = 'GOAL_COUNT'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
+          Font.Height = -15
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
           Footers = <>
           Title.Caption = #1043#1086#1083#1099'|'#1050#1086#1083'-'#1074#1086
-          Width = 52
         end
         item
           Alignment = taCenter
@@ -111,17 +110,16 @@ object fmPlayer: TfmPlayer
           FieldName = 'GOAL_MINUTE'
           Footers = <>
           Title.Caption = #1043#1086#1083#1099'|'#1052#1080#1085#1091#1090#1072
-          Width = 52
         end>
       object RowDetailData: TRowDetailPanelControlEh
       end
     end
     object dbgMatch2: TDBGridEh
       Tag = 1
-      Left = 287
-      Top = 16
-      Width = 566
-      Height = 371
+      Left = 353
+      Top = 19
+      Width = 499
+      Height = 314
       Align = alClient
       AllowedOperations = []
       Ctl3D = False
@@ -130,13 +128,13 @@ object fmPlayer: TfmPlayer
       Flat = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       FooterColor = clBtnFace
       FooterFont.Charset = DEFAULT_CHARSET
       FooterFont.Color = clWindowText
-      FooterFont.Height = -11
+      FooterFont.Height = -15
       FooterFont.Name = 'MS Sans Serif'
       FooterFont.Style = []
       FooterRowCount = 1
@@ -152,7 +150,7 @@ object fmPlayer: TfmPlayer
       TabOrder = 1
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
-      TitleFont.Height = -11
+      TitleFont.Height = -15
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
       UseMultiTitle = True
@@ -167,7 +165,7 @@ object fmPlayer: TfmPlayer
           Footer.FieldName = 'NUMBER'
           Footers = <>
           Title.Caption = #8470
-          Width = 27
+          Width = 33
         end
         item
           EditButtons = <>
@@ -177,7 +175,7 @@ object fmPlayer: TfmPlayer
           Footer.ValueType = fvtCount
           Footers = <>
           Title.Caption = #1048#1075#1088#1086#1082#1080'|'#1048#1084#1103
-          Width = 85
+          Width = 105
         end
         item
           AutoFitColWidth = False
@@ -185,7 +183,7 @@ object fmPlayer: TfmPlayer
           FieldName = 'PLAYER_TYPE'
           Footers = <>
           Title.Caption = #1048#1075#1088#1086#1082#1080'|'#1040#1084#1087#1083#1091#1072
-          Width = 106
+          Width = 130
         end
         item
           Alignment = taCenter
@@ -194,12 +192,11 @@ object fmPlayer: TfmPlayer
           FieldName = 'GOAL_COUNT'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
+          Font.Height = -15
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
           Footers = <>
           Title.Caption = #1043#1086#1083#1099'|'#1050#1086#1083'-'#1074#1086
-          Width = 52
         end
         item
           Alignment = taCenter
@@ -208,50 +205,49 @@ object fmPlayer: TfmPlayer
           FieldName = 'GOAL_MINUTE'
           Footers = <>
           Title.Caption = #1043#1086#1083#1099'|'#1052#1080#1085#1091#1090#1072
-          Width = 52
         end>
       object RowDetailData: TRowDetailPanelControlEh
       end
     end
     object pnlBottom2: TPanel
       Left = 2
-      Top = 387
+      Top = 333
       Width = 858
-      Height = 6
+      Height = 8
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 2
     end
     object pnlLeft2: TPanel
       Left = 2
-      Top = 16
-      Width = 6
-      Height = 371
+      Top = 19
+      Width = 8
+      Height = 314
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 3
     end
     object pnlMiddle2: TPanel
-      Left = 280
-      Top = 16
-      Width = 7
-      Height = 371
+      Left = 345
+      Top = 19
+      Width = 8
+      Height = 314
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 4
     end
     object pnlRight2: TPanel
-      Left = 853
-      Top = 16
-      Width = 7
-      Height = 371
+      Left = 852
+      Top = 19
+      Width = 8
+      Height = 314
       Align = alRight
       BevelOuter = bvNone
       TabOrder = 5
     end
     object pnlTop2: TPanel
       Left = 2
-      Top = 15
+      Top = 18
       Width = 858
       Height = 1
       Align = alTop
@@ -261,23 +257,23 @@ object fmPlayer: TfmPlayer
   end
   object pnlPlayer1: TGroupBox
     Left = 0
-    Top = 3
+    Top = 4
     Width = 862
-    Height = 206
+    Height = 253
     Align = alTop
     Caption = 'pnlPlayer1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -12
+    Font.Height = -15
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
     TabOrder = 0
     object dbgChamp1: TDBGridEh
-      Left = 8
-      Top = 16
-      Width = 271
-      Height = 181
+      Left = 10
+      Top = 19
+      Width = 333
+      Height = 223
       Align = alLeft
       AllowedOperations = []
       Ctl3D = False
@@ -287,7 +283,7 @@ object fmPlayer: TfmPlayer
       FooterColor = clBtnFace
       FooterFont.Charset = DEFAULT_CHARSET
       FooterFont.Color = clWindowText
-      FooterFont.Height = -12
+      FooterFont.Height = -15
       FooterFont.Name = 'MS Sans Serif'
       FooterFont.Style = []
       FooterRowCount = 1
@@ -301,7 +297,7 @@ object fmPlayer: TfmPlayer
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
-      TitleFont.Height = -12
+      TitleFont.Height = -15
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
       UseMultiTitle = True
@@ -316,7 +312,7 @@ object fmPlayer: TfmPlayer
           FieldName = 'NUMBER'
           Footers = <>
           Title.Caption = #8470
-          Width = 23
+          Width = 28
         end
         item
           EditButtons = <>
@@ -325,7 +321,7 @@ object fmPlayer: TfmPlayer
           Footer.ValueType = fvtStaticText
           Footers = <>
           Title.Caption = #1048#1075#1088#1086#1082#1080'|'#1048#1084#1103
-          Width = 27
+          Width = 34
         end
         item
           AutoFitColWidth = False
@@ -333,7 +329,7 @@ object fmPlayer: TfmPlayer
           FieldName = 'PLAYER_TYPE'
           Footers = <>
           Title.Caption = #1048#1075#1088#1086#1082#1080'|'#1040#1084#1087#1083#1091#1072
-          Width = 105
+          Width = 129
         end
         item
           Alignment = taCenter
@@ -342,12 +338,11 @@ object fmPlayer: TfmPlayer
           FieldName = 'GOAL_COUNT'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
+          Font.Height = -15
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
           Footers = <>
           Title.Caption = #1043#1086#1083#1099'|'#1050#1086#1083'-'#1074#1086
-          Width = 52
         end
         item
           Alignment = taCenter
@@ -356,16 +351,15 @@ object fmPlayer: TfmPlayer
           FieldName = 'GOAL_MINUTE'
           Footers = <>
           Title.Caption = #1043#1086#1083#1099'|'#1052#1080#1085#1091#1090#1072
-          Width = 52
         end>
       object RowDetailData: TRowDetailPanelControlEh
       end
     end
     object dbgMatch1: TDBGridEh
-      Left = 285
-      Top = 16
-      Width = 568
-      Height = 181
+      Left = 351
+      Top = 19
+      Width = 501
+      Height = 223
       Align = alClient
       AllowedOperations = []
       Ctl3D = False
@@ -374,13 +368,13 @@ object fmPlayer: TfmPlayer
       Flat = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       FooterColor = clBtnFace
       FooterFont.Charset = DEFAULT_CHARSET
       FooterFont.Color = clWindowText
-      FooterFont.Height = -12
+      FooterFont.Height = -15
       FooterFont.Name = 'MS Sans Serif'
       FooterFont.Style = []
       FooterRowCount = 1
@@ -396,7 +390,7 @@ object fmPlayer: TfmPlayer
       TabOrder = 1
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
-      TitleFont.Height = -12
+      TitleFont.Height = -15
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
       UseMultiTitle = True
@@ -411,7 +405,7 @@ object fmPlayer: TfmPlayer
           Footer.FieldName = 'NUMBER'
           Footers = <>
           Title.Caption = #8470
-          Width = 27
+          Width = 33
         end
         item
           EditButtons = <>
@@ -420,13 +414,13 @@ object fmPlayer: TfmPlayer
           Footer.FieldName = 'NUMBER'
           Footer.Font.Charset = DEFAULT_CHARSET
           Footer.Font.Color = clWindowText
-          Footer.Font.Height = -11
+          Footer.Font.Height = -15
           Footer.Font.Name = 'MS Sans Serif'
           Footer.Font.Style = []
           Footer.ValueType = fvtCount
           Footers = <>
           Title.Caption = #1048#1075#1088#1086#1082#1080'|'#1048#1084#1103
-          Width = 86
+          Width = 106
         end
         item
           AutoFitColWidth = False
@@ -434,7 +428,7 @@ object fmPlayer: TfmPlayer
           FieldName = 'PLAYER_TYPE'
           Footers = <>
           Title.Caption = #1048#1075#1088#1086#1082#1080'|'#1040#1084#1087#1083#1091#1072
-          Width = 106
+          Width = 131
         end
         item
           Alignment = taCenter
@@ -443,7 +437,6 @@ object fmPlayer: TfmPlayer
           FieldName = 'GOAL_COUNT'
           Footers = <>
           Title.Caption = #1043#1086#1083#1099'|'#1050#1086#1083'-'#1074#1086
-          Width = 52
         end
         item
           Alignment = taCenter
@@ -452,50 +445,49 @@ object fmPlayer: TfmPlayer
           FieldName = 'GOAL_MINUTE'
           Footers = <>
           Title.Caption = #1043#1086#1083#1099'|'#1052#1080#1085#1091#1090#1072
-          Width = 52
         end>
       object RowDetailData: TRowDetailPanelControlEh
       end
     end
     object pnlBottom1: TPanel
       Left = 2
-      Top = 197
+      Top = 242
       Width = 858
-      Height = 7
+      Height = 9
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 2
     end
     object pnlLeft1: TPanel
       Left = 2
-      Top = 16
-      Width = 6
-      Height = 181
+      Top = 19
+      Width = 8
+      Height = 223
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 3
     end
     object pnlMiddle1: TPanel
-      Left = 279
-      Top = 16
-      Width = 6
-      Height = 181
+      Left = 343
+      Top = 19
+      Width = 8
+      Height = 223
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 4
     end
     object pnlRight1: TPanel
-      Left = 853
-      Top = 16
-      Width = 7
-      Height = 181
+      Left = 852
+      Top = 19
+      Width = 8
+      Height = 223
       Align = alRight
       BevelOuter = bvNone
       TabOrder = 5
     end
     object pnlTop1: TPanel
       Left = 2
-      Top = 15
+      Top = 18
       Width = 858
       Height = 1
       Align = alTop
@@ -505,9 +497,9 @@ object fmPlayer: TfmPlayer
   end
   object pnlMiddle: TPanel
     Left = 0
-    Top = 209
+    Top = 257
     Width = 862
-    Height = 6
+    Height = 8
     Align = alTop
     BevelOuter = bvNone
     Ctl3D = True
@@ -518,7 +510,7 @@ object fmPlayer: TfmPlayer
     Left = 0
     Top = 0
     Width = 862
-    Height = 3
+    Height = 4
     Align = alTop
     BevelOuter = bvNone
     Ctl3D = True
