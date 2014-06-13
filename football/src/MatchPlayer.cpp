@@ -221,6 +221,8 @@ void __fastcall TfmPlayer::dbgGetCellParams(TObject *Sender, TColumnEh *Column, 
   TDataSet *dsSender = dbgSender->DataSource->DataSet;
   if(Column->Index==0)
     Background = static_cast<TColor>(dsSender->FieldByName("card_color")->AsInteger);
+  if(Column->Index==1)
+    Background = static_cast<TColor>(dsSender->FieldByName("player_color")->AsInteger);
   if(dsSender->FieldByName("ord_num")->AsInteger<1000000)
     AFont->Style = AFont->Style >> fsItalic;
   else AFont->Style = AFont->Style << fsItalic;
