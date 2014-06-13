@@ -12,10 +12,10 @@
 class TPlayer {
 public:
   const int Id;
-  const String Country, Type, Name;
-  __fastcall TPlayer(int I, const String &C, const String &T, const String &N) : Id(I), Country(C), Type(T), Name(N) {}
+  const String Country, Type, Name, Birthday;
+  __fastcall TPlayer(int I, const String &C, const String &T, const String &N, const String &B) : Id(I), Country(C), Type(T), Name(N), Birthday(B) {}
   void __fastcall Write(FILE *outp) const {
-    fprintf(outp, "insert into t_player_buf(country, player_type, num, name) values('%s', '%s', %d, '%s');\n", Country, Type, Id, Name);
+    fprintf(outp, "insert into t_player_buf(country, player_type, num, name, birthday) values('%s', '%s', %d, '%s', '%s');\n", Country, Type, Id, Name, Birthday);
   }
 };
 typedef std::map<int, TPlayer> TPlayerList;
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
     TFilePtr outp(argv[2], "wt");
     ns_Functions::TFileList FileList;
     ns_Functions::GetFileList(FileList, argv[1]);
-    String Country="", PlayerType="", Player="";
+    String Country="", PlayerType="", Player="", Birthday = "";
     for(ns_Functions::TFileIt i=FileList.begin(); i!=FileList.end(); ++i) {
       TPlayerList PlayerList;
       printf("%s\n", *i);
@@ -41,23 +41,25 @@ int main(int argc, char* argv[]) {
           N = Str.ToInt();
           fgets(buf, 1024, inp);
           *strchr(buf, '\t')=0;
-          Player = StringReplace(buf, "'", "''", TReplaceFlags()<<rfReplaceAll);
+          Player = StringReplace(buf, "'", "''", TReplaceFlags()<<rfReplaceAll).Trim();
           fgets(buf, 1024, inp);
+          *strchr(buf, '\t') = 0;
+          Birthday = String(buf).Trim();
           fgets(buf, 1024, inp);
         } catch(...) {
           PlayerType = Str;
           printf("%s\n", PlayerType);
           continue;
         }
-        PlayerList.insert(std::make_pair(N, TPlayer(N, Country, PlayerType, Player)));
-        printf("%s, %s, %d, %s\n", *i, PlayerType, N, Player);
+        PlayerList.insert(std::make_pair(N, TPlayer(N, Country, PlayerType, Player, Birthday)));
+        printf("%s, %s, %d, %s, %s\n", *i, PlayerType, N, Player, Birthday);
       }
       printf("\n");
       for(TPlayerList::const_iterator i=PlayerList.begin(); i!=PlayerList.end(); ++i) {
         i->second.Write(outp);
         printf("%2d %s\n", i->second.Id, i->second.Name);
       }
-      printf("%u\n", PlayerList.size());
+      printf("total: %u\n\n", PlayerList.size());
       fprintf(outp, "commit;\n");
     }
   }
