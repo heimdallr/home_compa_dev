@@ -1,6 +1,7 @@
 //---------------------------------------------------------------------------
 #include <DateUtils.hpp>
 #include <vcl.h>
+#include <algorithm>
 #pragma hdrstop
 
 #include "Main.h"
@@ -39,14 +40,12 @@ void __fastcall TfmMain::actLoadExecute(TObject *Sender) {
   {
     TDataSetLayout L(dsData, "id");
     dsData->Data = _connect->GetReadDataSet("select * from get_match(:id_champ)", TQueryParams(ftInteger, "id_champ", _id_champ))->Data;
-    TDateTime now=Now();
+    _date_time_list.clear();
     for(dsData->First(); !dsData->Eof; dsData->Next())
-      if(GreaterThanValue	== CompareDateTime(dsData->FieldByName("play_at")->AsDateTime, now)) {
-        _nearest = dsData->FieldByName("id")->AsInteger;
-        break;
-      }
-    if(DaysBetween(dsData->FieldByName("play_at")->AsFloat, now)>3) _nearest=0;
+      _date_time_list.insert(TDateTimeList::value_type(dsData->FieldByName("play_at")->AsDateTime, dsData->FieldByName("id")->AsInteger));
   }
+  Timer->Enabled = true;
+  Timer->OnTimer(Sender);
   if(first && !dsData->Locate("id", _nearest, TLocateOptions()))
     dsData->First();
 }
@@ -96,8 +95,6 @@ void __fastcall TfmMain::dbgDataGetCellParams(TObject *Sender, TColumnEh *Column
   else Background = clWindow;
 }
 //---------------------------------------------------------------------------
-
-
 
 // Инициализация
 void __fastcall TfmMain::FormPaint(TObject *Sender) {
@@ -189,4 +186,15 @@ void __fastcall TfmMain::FormClose(TObject *Sender, TCloseAction &Action) {
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TfmMain::TimerTimer(TObject *Sender)
+{
+  // Смотрим, сколько сейчас времени, минус сдвиг (вдруг матчи заданы по Москве), минус 2 чвса на длительность матча
+  TDateTime now=IncHour(Now(), -TOptions::Instance->Get("Options", "HoursShift", "0").ToInt() - 2);
+  TDateTimeList::const_iterator nearest = _date_time_list.upper_bound(now);
+  _nearest = nearest == _date_time_list.end()? 0: nearest->second;
+  if(_nearest != dsData->FieldByName("id")->AsInteger)
+    dbgData->Repaint();
+}
+//---------------------------------------------------------------------------
 
