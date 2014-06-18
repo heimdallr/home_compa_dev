@@ -106,6 +106,8 @@ __published:	// IDE-managed Components
   void __fastcall actSetPlaceExecute(TObject *Sender);
   void __fastcall dsDataAfterScroll(TDataSet *DataSet);
   void __fastcall dbgDataDrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol, TColumnEh *Column, TGridDrawState State);
+  void __fastcall FormPaint(TObject *Sender);
+  void __fastcall FormDestroy(TObject *Sender);
 private:	// User declarations
 typedef std::map<int, TGroup> TGroupList;
   TConnect::TEventMessage::Ptr _eventer;

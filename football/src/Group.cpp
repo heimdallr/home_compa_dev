@@ -6,6 +6,7 @@
 #include "Group.h"
 #include "Connect.h"
 #include "DataSetLayout.h"
+#include "Options.h"
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)
@@ -85,6 +86,7 @@ void __fastcall TfmGroup::MakeDataSet() {
     Defs->Add("Point", ftInteger);
     Defs->Add("Place", ftString, 10);
     MakeFlags();
+    TOptions::Instance->RestoreLayout(dbgData);
   }
   dsData->CreateDataSet();
 }
@@ -201,4 +203,16 @@ void __fastcall TfmGroup::dbgDataDrawColumnCell(TObject *Sender, const TRect &Re
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TfmGroup::FormPaint(TObject *Sender) {
+/*  OnPaint = 0;
+  TOptions::Instance->RestoreLayout(dbgData);
+*/
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfmGroup::FormDestroy(TObject *Sender) {
+  TOptions::Instance->SaveLayout(dbgData);
+}
+//---------------------------------------------------------------------------
 

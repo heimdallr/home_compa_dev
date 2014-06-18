@@ -7,7 +7,7 @@ object fmGroup: TfmGroup
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -14
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIChild
@@ -16,13 +16,15 @@ object fmGroup: TfmGroup
   Visible = True
   WindowState = wsMaximized
   OnClose = FormClose
-  PixelsPerInch = 96
-  TextHeight = 13
+  OnDestroy = FormDestroy
+  OnPaint = FormPaint
+  PixelsPerInch = 120
+  TextHeight = 16
   object dbgData: TDBGridEh
     Left = 0
     Top = 0
     Width = 862
-    Height = 610
+    Height = 608
     Align = alClient
     AllowedOperations = []
     AutoFitColWidths = True
@@ -34,13 +36,13 @@ object fmGroup: TfmGroup
     Flat = True
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -20
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     FooterColor = clWindow
     FooterFont.Charset = DEFAULT_CHARSET
     FooterFont.Color = clWindowText
-    FooterFont.Height = -12
+    FooterFont.Height = -15
     FooterFont.Name = 'MS Sans Serif'
     FooterFont.Style = []
     IndicatorOptions = []
@@ -53,7 +55,7 @@ object fmGroup: TfmGroup
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
-    TitleFont.Height = -16
+    TitleFont.Height = -20
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
     VertScrollBar.VisibleMode = sbNeverShowEh
@@ -66,13 +68,13 @@ object fmGroup: TfmGroup
         FieldName = 'Group'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -16
+        Font.Height = -20
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         Footers = <>
         HideDuplicates = True
         Title.Caption = ' '
-        Width = 34
+        Width = 42
       end
       item
         Alignment = taCenter
@@ -81,7 +83,7 @@ object fmGroup: TfmGroup
         FieldName = 'Num'
         Footers = <>
         Title.Caption = #8470
-        Width = 33
+        Width = 40
       end
       item
         AutoFitColWidth = False
@@ -90,7 +92,7 @@ object fmGroup: TfmGroup
         Footers = <>
         ImageList = ilFlag
         Title.Caption = #1060#1083#1072#1075
-        Width = 36
+        Width = 45
       end
       item
         Alignment = taCenter
@@ -98,12 +100,12 @@ object fmGroup: TfmGroup
         FieldName = 'Country'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -16
+        Font.Height = -20
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         Footers = <>
         Title.Caption = #1057#1073#1086#1088#1085#1072#1103
-        Width = 107
+        Width = 131
       end
       item
         Alignment = taCenter
@@ -112,7 +114,7 @@ object fmGroup: TfmGroup
         FieldName = 'Game'
         Footers = <>
         Title.Caption = #1048
-        Width = 22
+        Width = 28
       end
       item
         Alignment = taCenter
@@ -121,7 +123,7 @@ object fmGroup: TfmGroup
         FieldName = 'Win'
         Footers = <>
         Title.Caption = #1042
-        Width = 20
+        Width = 24
       end
       item
         Alignment = taCenter
@@ -130,7 +132,7 @@ object fmGroup: TfmGroup
         FieldName = 'Deuce'
         Footers = <>
         Title.Caption = #1053
-        Width = 18
+        Width = 22
       end
       item
         Alignment = taCenter
@@ -139,7 +141,7 @@ object fmGroup: TfmGroup
         FieldName = 'Lose'
         Footers = <>
         Title.Caption = #1055
-        Width = 19
+        Width = 24
       end
       item
         Alignment = taCenter
@@ -148,7 +150,7 @@ object fmGroup: TfmGroup
         FieldName = 'Goal'
         Footers = <>
         Title.Caption = #1052#1103#1095#1080
-        Width = 38
+        Width = 46
       end
       item
         Alignment = taCenter
@@ -157,12 +159,12 @@ object fmGroup: TfmGroup
         FieldName = 'Point'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -16
+        Font.Height = -20
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         Footers = <>
         Title.Caption = #1054
-        Width = 20
+        Width = 25
       end
       item
         Alignment = taCenter
@@ -171,12 +173,12 @@ object fmGroup: TfmGroup
         FieldName = 'Place'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -16
+        Font.Height = -20
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         Footers = <>
         Title.Caption = #1052
-        Width = 37
+        Width = 46
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end
