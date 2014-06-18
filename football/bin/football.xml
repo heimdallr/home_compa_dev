@@ -3,13 +3,35 @@
 	<Options Year="2010" IdChamp="733" HoursShift="3"/>
 	<Layout>
 		<fmMain Top="3" Left="101" Height="1204" Width="962">
-			<dbgData Top="0" Left="0" Height="1135" Width="976">
+			<dbgData Top="0" Left="0" Height="747" Width="522">
 				<ORD_NUM Visible="True" Index="0" Width="44"/>
 				<PLAY_AT Visible="True" Index="1" Width="104"/>
 				<STATUS Visible="True" Index="2" Width="167"/>
 				<GROUP_NAME Visible="True" Index="3" Width="110"/>
-				<COUNTRIES Visible="True" Index="4" Width="279"/>
-				<GOAL_COUNT Visible="True" Index="5" Width="59"/><CITY_NAME Visible="True" Index="6" Width="204"/></dbgData>
+				<COUNTRIES Visible="True" Index="4" Width="17"/>
+				<GOAL_COUNT Visible="True" Index="5" Width="59"/>
+				<CITY_NAME Visible="True" Index="6" Width="12"/>
+			</dbgData>
 		</fmMain>
-		<fmMDIMain Top="8" Left="169" Height="1186" Width="984"/><fmMain_1><dbgData Top="0" Left="0" Height="725" Width="590"><ORD_NUM Visible="True" Index="0" Width="54"/><PLAY_AT Visible="True" Index="1" Width="128"/><STATUS Visible="True" Index="2" Width="128"/><GROUP_NAME Visible="True" Index="3" Width="75"/><COUNTRIES Visible="True" Index="4" Width="65"/><GOAL_COUNT Visible="True" Index="5" Width="110"/><CITY_NAME Visible="True" Index="6" Width="21"/></dbgData></fmMain_1></Layout>
+		<fmMDIMain Top="8" Left="169" Height="1185" Width="893"/>
+		<fmGroup>
+			<dbgData Top="0" Left="0" Height="1134" Width="885">
+				<GROUP Visible="True" Index="0" Width="42"/>
+				<NUM Visible="True" Index="1" Width="40"/>
+				<ID Visible="True" Index="2" Width="45"/>
+				<COUNTRY Visible="True" Index="3" Width="318"/>
+				<GAME Visible="True" Index="4" Width="49"/>
+				<M1 Visible="True" Index="5" Width="40"/>
+				<M2 Visible="True" Index="6" Width="40"/>
+				<M3 Visible="True" Index="7" Width="40"/>
+				<M4 Visible="True" Index="8" Width="40"/>
+				<WIN Visible="True" Index="9" Width="24"/>
+				<DEUCE Visible="True" Index="10" Width="22"/>
+				<LOSE Visible="True" Index="11" Width="24"/>
+				<GOAL Visible="True" Index="12" Width="73"/>
+				<POINT Visible="True" Index="13" Width="25"/>
+				<PLACE Visible="True" Index="14" Width="46"/>
+			</dbgData>
+		</fmGroup>
+	</Layout>
 </Football>
