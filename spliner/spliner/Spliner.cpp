@@ -6,6 +6,7 @@
 
 const Spliner::ValueType Spliner::NULL_VALUE = static_cast<Spliner::ValueType>(0);
 
+// Инициализация базовых структур
 Spliner::Spliner(const ValueListType &x, size_t dim)
 	: m_regressors(boost::assign::list_of(&Spliner::f1)(&Spliner::f2)(&Spliner::f3)(&Spliner::f4).convert_to_container<RegressorListType>())
 	, m_bounds(dim)
@@ -18,22 +19,19 @@ Spliner::Spliner(const ValueListType &x, size_t dim)
 	InitSLAE();
 }
 
-Spliner::~Spliner()
-{
-}
-
-// Подготовка вектора правой части СЛАУ
+// Подготовка вектора правой части и решение СЛАУ
 void Spliner::Initialize(const ValueListType &y)
 {
-	// Правая часть
+	// правая часть
 	ValueListType b(2*m_bounds.size(), NULL_VALUE);
 	for (size_t i = 0, sz = b.size(); i < sz; ++i)
 		m_coefficients[i] = b[i] = std::inner_product(m_regressorValues[i].begin(), m_regressorValues[i].end(), y.begin(), NULL_VALUE);
 
+	// решение
 	cg(m_slae, b, m_coefficients, 2*m_coefficients.size(), static_cast<ValueType>(1.0e-7));
 }
 
-// Вычисление ряда значений сплайна. ВНИМАНИЕ: ряд аргументов (x) должен быть неубывающим
+// Вычисление ряда значений сплайна. ВНИМАНИЕ: ряд аргументов (x) должен неубывать
 void Spliner::Compute(const ValueListType &x, ValueListType &y) const
 {
 	for (size_t i = 0, j = 0, sz = x.size(); i < sz; ++i)
@@ -47,7 +45,8 @@ void Spliner::Compute(const ValueListType &x, ValueListType &y) const
 	}
 }
 
-// Набор базисных кубических функций
+// Набор базисных кубических функций.
+// Определены на [0, 1], в реальной работе аргументы нужно нормировать исходя из границ кусков сплайна
 Spliner::ValueType Spliner::f1(ValueType x)
 {	// f1(0) = 1, f1(1) = 0, f1'(0) = 0, f1'(1) = 0
 	return 2*x*x*x - 3*x*x + 1;
@@ -65,7 +64,7 @@ Spliner::ValueType Spliner::f4(ValueType x)
 	return x*x*x - x*x;
 }
 
-// Решение СЛАУ методом сопряженных градиентов ///@todo оптимизировать умножение матрицы на вектор, скаларное произведение
+// Решение СЛАУ методом сопряженных градиентов ///@todo оптимизировать умножение матрицы на вектор и скаларное произведение
 Spliner::ValueType Spliner::cg(const ValueMatrixType &a, const ValueListType &f, ValueListType &u, size_t maxIter, ValueType eps)
 {
 	const size_t n = u.size();
@@ -90,6 +89,7 @@ Spliner::ValueType Spliner::cg(const ValueMatrixType &a, const ValueListType &f,
 			r[i] -= alpha * ap[i];
 		}
 
+		// а вот и квадрат нормы невязки, может пора уже выходить?
 		ValueType newNorm = std::inner_product(r.begin(), r.end(), r.begin(), NULL_VALUE);
 		if (newNorm < eps)
 			return newNorm;

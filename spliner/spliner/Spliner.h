@@ -8,7 +8,6 @@ public:
 	typedef std::vector<ValueType> ValueListType;
 	typedef std::vector<ValueListType> ValueMatrixType;
 	Spliner(const ValueListType &x, size_t dim);
-	~Spliner();
 
 public:
 	void Initialize(const ValueListType &y);
