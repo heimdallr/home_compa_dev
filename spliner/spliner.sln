@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "spliner", "spliner\spliner.vcxproj", "{030F3070-712F-42E4-84C9-981326CFBD5E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{4A419723-8648-4387-B0EC-B3D62F407EEF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{030F3070-712F-42E4-84C9-981326CFBD5E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{030F3070-712F-42E4-84C9-981326CFBD5E}.Debug|Win32.Build.0 = Debug|Win32
+		{030F3070-712F-42E4-84C9-981326CFBD5E}.Release|Win32.ActiveCfg = Release|Win32
+		{030F3070-712F-42E4-84C9-981326CFBD5E}.Release|Win32.Build.0 = Release|Win32
+		{4A419723-8648-4387-B0EC-B3D62F407EEF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4A419723-8648-4387-B0EC-B3D62F407EEF}.Debug|Win32.Build.0 = Debug|Win32
+		{4A419723-8648-4387-B0EC-B3D62F407EEF}.Release|Win32.ActiveCfg = Release|Win32
+		{4A419723-8648-4387-B0EC-B3D62F407EEF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
