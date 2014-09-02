@@ -49,19 +49,19 @@ void Spliner::Compute(const ValueListType &x, ValueListType &y) const
 // Определены на [0, 1], в реальной работе аргументы нужно нормировать исходя из границ кусков сплайна
 Spliner::ValueType Spliner::f1(ValueType x)
 {	// f1(0) = 1, f1(1) = 0, f1'(0) = 0, f1'(1) = 0
-	return 2*x*x*x - 3*x*x + 1;
+	return (2*x - 3) * x*x + 1;
 }
 Spliner::ValueType Spliner::f2(ValueType x)
 {	// f2(0) = 0, f2(1) = 0, f2'(0) = 1, f2'(1) = 0
-	return x*x*x - 2*x*x + x;
+	return (x - 2) * x*x + x;
 }
 Spliner::ValueType Spliner::f3(ValueType x)
 {	// f3(0) = 0, f3(1) = 1, f3'(0) = 0, f3'(1) = 0
-	return -2*x*x*x + 3*x*x;
+	return (3 - 2*x) * x*x;
 }
 Spliner::ValueType Spliner::f4(ValueType x)
 {	// f4(0) = 0, f4(1) = 0, f4'(0) = 0, f4'(1) = 1
-	return x*x*x - x*x;
+	return (x - 1) * x*x;
 }
 
 // Решение СЛАУ методом сопряженных градиентов ///@todo оптимизировать умножение матрицы на вектор и скаларное произведение
