@@ -19,6 +19,14 @@ public:
   }
 };
 typedef std::map<int, TPlayer> TPlayerList;
+
+char* FGets(char *buf, FILE *f) {
+  char *res = fgets(buf, 1024, f);
+  if (char *t = strchr(buf, '\t'))
+    *t = '\0';
+  return res;
+}
+
 int main(int argc, char* argv[]) {
   try {
     if(argc<3) throw Exception("usage:\nPlayerParser mask output");
@@ -32,20 +40,18 @@ int main(int argc, char* argv[]) {
       Country = StringReplace(*i, "'", "''", TReplaceFlags()<<rfReplaceAll);
       TFilePtr inp(*i, "rt");
       char buf[1024];
-      while(fgets(buf, 1024, inp)) {
+      while(FGets(buf, inp)) {
 //        printf(".");
         String Str=String(buf).Trim();
         if(Str.Length()<1) continue;
         int N=0;
         try {
           N = Str.ToInt();
-          fgets(buf, 1024, inp);
-          *strchr(buf, '\t')=0;
+          FGets(buf, inp);
           Player = StringReplace(buf, "'", "''", TReplaceFlags()<<rfReplaceAll).Trim();
-          fgets(buf, 1024, inp);
-          *strchr(buf, '\t') = 0;
+          FGets(buf, inp);
           Birthday = String(buf).Trim();
-          fgets(buf, 1024, inp);
+          FGets(buf, inp);
         } catch(...) {
           PlayerType = Str;
           printf("%s\n", PlayerType);

@@ -82,7 +82,6 @@ private:	// User declarations
   TConnect *_connect;
   const int _id1, _id2, _id_match;
   int _id_array[2], _id;
-  String _minute_mask;
   TConnect::TEventMessage::Ptr _eventer;
   TClientDataSet *dsChamp, *dsMatch, *dsChampArray[2], *dsMatchArray[2];
   void __fastcall Load(int Id, TDBGridEh *dbgChamp, TDBGridEh *dbgMatch);

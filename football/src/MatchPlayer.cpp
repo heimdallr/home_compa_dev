@@ -16,12 +16,27 @@
 #pragma link "DBGridEhGrouping"
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------
+
 TfmPlayer *fmPlayer=0;
 
+namespace {
+  const String MINUTE_MASK = "[0-9]{1,3}(\\+[0-9]{1,2})?";
+  typedef std::pair<String, String> Minute;
+  Minute GetMinute(const String &str)
+  {
+    if (int n = str.Pos("+"))
+      return Minute(str.SubString(1, n-1), str.SubString(n+1, str.Length()));
+
+    return Minute(str, String());
+  }
+}
+
 // Конструктор
-__fastcall TfmPlayer::TfmPlayer(int id_match, int id1, int id2) : TForm(static_cast<TComponent*>(0)),
-_connect(TConnect::Instance), _id_match(id_match), _id1(id1), _id2(id2), _minute_mask("[0-9]{1,3}"),
-_eventer(_connect->SetEventHandler(String().sprintf("match_player_%d;match_player_%d;match_%d", _id1, _id2, _id_match), &EventAlertPlayer))
+__fastcall TfmPlayer::TfmPlayer(int id_match, int id1, int id2)
+  : TForm(static_cast<TComponent*>(0))
+  , _connect(TConnect::Instance)
+  , _id_match(id_match), _id1(id1), _id2(id2)
+  , _eventer(_connect->SetEventHandler(String().sprintf("match_player_%d;match_player_%d;match_%d", _id1, _id2, _id_match), &EventAlertPlayer))
 {
   TDynamicMenu("select id, name from get_goal_type", miGoal, &actGoalExecute);
   TDynamicMenu("select id, name from get_card_type", miCardChamp, &actCardChampExecute);
@@ -108,13 +123,19 @@ void __fastcall TfmPlayer::actDelExecute(TObject *Sender) {
 // Проводим замену
 void __fastcall TfmPlayer::actSubstExecute(TObject *Sender) {
   String strVal="";
-  if(!GetString(strVal, "Укажите минуту матча", _minute_mask))
+  if(!GetString(strVal, "Укажите минуту матча", MINUTE_MASK))
     return;
-  TSQLPtr SQL=_connect->GetWriteSQL("select id from add_substitute(:id_from, :id_to, :minute)", false);
+
+  const Minute minute = GetMinute(strVal);
+  TSQLPtr SQL=_connect->GetWriteSQL("select id from add_substitute(:id_from, :id_to, :minute, :minute2)", false);
   TTranPtr T(SQL->Transaction);
   SQL->ParamByName("id_from")->AsInteger  = dsMatch->FieldByName("id_match_player")->AsInteger;
   SQL->ParamByName("id_to")->AsInteger    = dsChamp->FieldByName("id_champ_player")->AsInteger;
-  SQL->ParamByName("minute")->AsString    = strVal;
+  SQL->ParamByName("minute")->AsString    = minute.first;
+  if (minute.second.IsEmpty())
+    SQL->ParamByName("minute2")->Clear();
+  else
+    SQL->ParamByName("minute2")->AsString   = minute.second;
   SQL->ExecQuery();
   SQL->Transaction->Commit();
 }
@@ -126,13 +147,19 @@ void __fastcall TfmPlayer::actGoalExecute(TObject *Sender) {
   int default_time = tag % 1000;
   String strVal=default_time?IntToStr(default_time):String("");
   if(!default_time)
-    if(!GetString(strVal, "Укажите минуту матча", _minute_mask))
+    if(!GetString(strVal, "Укажите минуту матча", MINUTE_MASK))
       return;
-  TSQLPtr SQL=_connect->GetWriteSQL("select id from add_goal(:id_player, :id_type, :minute)", false);
+
+  const Minute minute = GetMinute(strVal);
+  TSQLPtr SQL=_connect->GetWriteSQL("select id from add_goal(:id_player, :id_type, :minute, :minute2)", false);
   TTranPtr T(SQL->Transaction);
   SQL->ParamByName("id_player")->AsInteger  = dsMatch->FieldByName("id_match_player")->AsInteger;
   SQL->ParamByName("id_type")->AsInteger    = tag/1000;
-  SQL->ParamByName("minute")->AsString      = strVal;
+  SQL->ParamByName("minute")->AsString      = minute.first;
+  if (minute.second.IsEmpty())
+    SQL->ParamByName("minute2")->Clear();
+  else
+    SQL->ParamByName("minute2")->AsString   = minute.second;
   SQL->ExecQuery();
   SQL->Transaction->Commit();
 }
@@ -141,27 +168,39 @@ void __fastcall TfmPlayer::actGoalExecute(TObject *Sender) {
 // Карточка
 void __fastcall TfmPlayer::actCardChampExecute(TObject *Sender) {
   String strVal="";
-  if(!GetString(strVal, "Укажите минуту матча", _minute_mask))
+  if(!GetString(strVal, "Укажите минуту матча", MINUTE_MASK))
     return;
-  TSQLPtr SQL=_connect->GetWriteSQL("select id from add_card(:id_match, :id_player, :id_type, :minute)", false);
+
+  const Minute minute = GetMinute(strVal);
+  TSQLPtr SQL=_connect->GetWriteSQL("select id from add_card(:id_match, :id_player, :id_type, :minute, :minute2)", false);
   TTranPtr T(SQL->Transaction);
   SQL->ParamByName("id_match")->AsInteger  = _id;
   SQL->ParamByName("id_player")->AsInteger  = dsChamp->FieldByName("id_champ_player")->AsInteger;
   SQL->ParamByName("id_type")->AsInteger    = dynamic_cast<TMenuItem*>(Sender)->Tag;
-  SQL->ParamByName("minute")->AsString      = strVal;
+  SQL->ParamByName("minute")->AsString      = minute.first;
+  if (minute.second.IsEmpty())
+    SQL->ParamByName("minute2")->Clear();
+  else
+    SQL->ParamByName("minute2")->AsString   = minute.second;
   SQL->ExecQuery();
   SQL->Transaction->Commit();
 }
 void __fastcall TfmPlayer::actCardMatchExecute(TObject *Sender) {
   String strVal="";
-  if(!GetString(strVal, "Укажите минуту матча", _minute_mask))
+  if(!GetString(strVal, "Укажите минуту матча", MINUTE_MASK))
     return;
-  TSQLPtr SQL=_connect->GetWriteSQL("select id from add_card(:id_match, :id_player, :id_type, :minute)", false);
+
+  const Minute minute = GetMinute(strVal);
+  TSQLPtr SQL=_connect->GetWriteSQL("select id from add_card(:id_match, :id_player, :id_type, :minute, :minute2)", false);
   TTranPtr T(SQL->Transaction);
   SQL->ParamByName("id_match")->AsInteger  = _id;
   SQL->ParamByName("id_player")->AsInteger  = dsMatch->FieldByName("id_champ_player")->AsInteger;
   SQL->ParamByName("id_type")->AsInteger    = dynamic_cast<TMenuItem*>(Sender)->Tag;
-  SQL->ParamByName("minute")->AsString      = strVal;
+  SQL->ParamByName("minute")->AsString      = minute.first;
+  if (minute.second.IsEmpty())
+    SQL->ParamByName("minute2")->Clear();
+  else
+    SQL->ParamByName("minute2")->AsString   = minute.second;
   SQL->ExecQuery();
   SQL->Transaction->Commit();
 }

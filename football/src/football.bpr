@@ -41,7 +41,7 @@
     <SYSDEFINES value="NO_STRICT"/>
     <MAINSOURCE value="football.cpp"/>
     <INCLUDEPATH value="..\..\Common;$(BCB)\include;$(BCB)\include\vcl;..\..\Common\Include;&quot;C:\Program Files (x86)\Borland\EhLib&quot;"/>
-    <LIBPATH value="..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;&quot;C:\Program Files (x86)\Borland\EhLib&quot;"/>
+    <LIBPATH value="..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;&quot;Y:\Program Files (x86)\Borland\EhLib&quot;;&quot;C:\Program Files (x86)\Borland\EhLib&quot;"/>
     <WARNINGS value="-w-par"/>
     <OTHERFILES value=""/>
   </MACROS>
@@ -91,7 +91,7 @@ AutoIncBuild=1
 MajorVer=1
 MinorVer=0
 Release=1
-Build=9
+Build=10
 Debug=0
 PreRelease=0
 Special=0
@@ -103,7 +103,7 @@ CodePage=1251
 [Version Info Keys]
 CompanyName=
 FileDescription=Главный модуль программы
-FileVersion=1.0.1.9
+FileVersion=1.0.1.10
 InternalName=football
 LegalCopyright=
 LegalTrademarks=
@@ -113,26 +113,28 @@ ProductVersion=1.0.1
 SourceCRC=00000000
 
 [HistoryLists\hlIncludePath]
-Count=9
+Count=10
 Item0=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;..\..\Common\Include;C:\Program Files (x86)\Borland\EhLib
-Item1=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;..\..\Common\Include;$(BCB)\..\EhLib
-Item2=C:\Program Files\Borland\CBuilder6\Projects;D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib;..\..\Common\Include
-Item3=D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib;..\..\Common\Include
-Item4=D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib;..\..\Include
-Item5=D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
-Item6=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
-Item7=..\..\Common;D:\;D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl
-Item8=D:\;D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl
+Item1=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;..\..\Common\Include;Y:\Program Files (x86)\Borland\EhLib
+Item2=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;..\..\Common\Include;$(BCB)\..\EhLib
+Item3=C:\Program Files\Borland\CBuilder6\Projects;D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib;..\..\Common\Include
+Item4=D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib;..\..\Common\Include
+Item5=D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib;..\..\Include
+Item6=D:\;..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
+Item7=..\..\Common;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files\Borland\EhLib
+Item8=..\..\Common;D:\;D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl
+Item9=D:\;D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl
 
 [HistoryLists\hlLibraryPath]
-Count=7
-Item0=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files (x86)\Borland\EhLib
-Item1=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
-Item2=C:\Program Files\Borland\CBuilder6\Projects;D:\;..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
-Item3=D:\;..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
-Item4=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
-Item5=..\..\Common;D:\;D:\Sasha\football\src;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
-Item6=D:\;D:\Sasha\football\src;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Count=8
+Item0=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;Y:\Program Files (x86)\Borland\EhLib;C:\Program Files (x86)\Borland\EhLib
+Item1=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files (x86)\Borland\EhLib
+Item2=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item3=C:\Program Files\Borland\CBuilder6\Projects;D:\;..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
+Item4=D:\;..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
+Item5=..\..\Common;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files\Borland\EhLib
+Item6=..\..\Common;D:\;D:\Sasha\football\src;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item7=D:\;D:\Sasha\football\src;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
 
 [HistoryLists\hlDebugSourcePath]
 Count=1

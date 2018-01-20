@@ -1,6 +1,6 @@
 object fmMain: TfmMain
-  Left = 255
-  Top = 117
+  Left = 820
+  Top = 110
   Width = 873
   Height = 659
   HorzScrollBar.Visible = False
@@ -9,7 +9,7 @@ object fmMain: TfmMain
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -10
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIChild
@@ -20,13 +20,13 @@ object fmMain: TfmMain
   OnClose = FormClose
   OnDestroy = FormDestroy
   OnPaint = FormPaint
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 13
   object dbgData: TDBGridEh
     Left = 0
     Top = 0
-    Width = 865
-    Height = 627
+    Width = 857
+    Height = 624
     Align = alClient
     AllowedOperations = [alopUpdateEh]
     AutoFitColWidths = True
@@ -38,7 +38,7 @@ object fmMain: TfmMain
     FooterColor = clWindow
     FooterFont.Charset = DEFAULT_CHARSET
     FooterFont.Color = clWindowText
-    FooterFont.Height = -13
+    FooterFont.Height = -10
     FooterFont.Name = 'MS Sans Serif'
     FooterFont.Style = []
     IndicatorOptions = []
@@ -49,7 +49,7 @@ object fmMain: TfmMain
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
-    TitleFont.Height = -13
+    TitleFont.Height = -10
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
     VertScrollBar.VisibleMode = sbNeverShowEh
@@ -64,14 +64,13 @@ object fmMain: TfmMain
         FieldName = 'ORD_NUM'
         Footers = <>
         Title.Caption = #8470
-        Width = 54
+        Width = 44
       end
       item
         EditButtons = <>
         FieldName = 'CITY_NAME'
         Footers = <>
         Title.Caption = #1043#1086#1088#1086#1076
-        Width = 79
       end
       item
         AutoFitColWidth = False
@@ -80,7 +79,7 @@ object fmMain: TfmMain
         FieldName = 'PLAY_AT'
         Footers = <>
         Title.Caption = #1053#1072#1095#1072#1083#1086
-        Width = 128
+        Width = 104
       end
       item
         Alignment = taCenter
@@ -90,7 +89,7 @@ object fmMain: TfmMain
         Footers = <>
         HideDuplicates = True
         Title.Caption = #1069#1090#1072#1087
-        Width = 128
+        Width = 104
       end
       item
         Alignment = taCenter
@@ -100,7 +99,7 @@ object fmMain: TfmMain
         Footers = <>
         HideDuplicates = True
         Title.Caption = #1043#1088#1091#1087#1087#1072
-        Width = 75
+        Width = 61
       end
       item
         Alignment = taCenter
@@ -108,7 +107,7 @@ object fmMain: TfmMain
         FieldName = 'COUNTRIES'
         Footers = <>
         Title.Caption = #1059#1095#1072#1089#1090#1085#1080#1082#1080' '#1084#1072#1090#1095#1072
-        Width = 186
+        Width = 151
       end
       item
         Alignment = taCenter
@@ -117,7 +116,7 @@ object fmMain: TfmMain
         FieldName = 'GOAL_COUNT'
         Footers = <>
         Title.Caption = #1057#1095#1077#1090
-        Width = 128
+        Width = 104
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end

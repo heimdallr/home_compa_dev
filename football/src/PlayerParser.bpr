@@ -30,14 +30,14 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="NO_STRICT;_RTLDLL;USEPACKAGES"/>
     <MAINSOURCE value="PlayerParser.bpf"/>
-    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;..\..\common;..\..\common\include"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;..\..\common;..\..\common\include;$(BCB)\..\Ehlib"/>
     <LIBPATH value="..\..\Common;$(BCB)\Projects\Lib;D:\Sasha\football\src;$(BCB)\lib\obj;$(BCB)\lib"/>
     <WARNINGS value="-w-par"/>
     <OTHERFILES value=""/>
   </MACROS>
   <OPTIONS>
     <IDLCFLAGS value="-I$(BCB)\include -I$(BCB)\include\vcl -I..\..\common 
-      -I..\..\common\include -src_suffix cpp -D_DEBUG -boa"/>
+      -I..\..\common\include -I$(BCB)\..\Ehlib -src_suffix cpp -D_DEBUG -boa"/>
     <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -tWC 
       -tWM -c"/>
     <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
@@ -90,13 +90,14 @@ ProductVersion=1.0.0.0
 Comments=
 
 [HistoryLists\hlIncludePath]
-Count=6
-Item0=$(BCB)\include;$(BCB)\include\vcl;..\..\common;..\..\common\include
-Item1=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;..\..\common
-Item2=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;,,\..\common;..\common;D:\Sasha\Common
-Item3=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;,,\..\common
-Item4=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl
-Item5=$(BCB)\include;$(BCB)\include\vcl
+Count=7
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\..\common;..\..\common\include;$(BCB)\..\Ehlib
+Item1=$(BCB)\include;$(BCB)\include\vcl;..\..\common;..\..\common\include
+Item2=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;..\..\common
+Item3=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;,,\..\common;..\common;D:\Sasha\Common
+Item4=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl;,,\..\common
+Item5=D:\Sasha\football\src;$(BCB)\include;$(BCB)\include\vcl
+Item6=$(BCB)\include;$(BCB)\include\vcl
 
 [HistoryLists\hlLibraryPath]
 Count=3
@@ -121,7 +122,7 @@ Item1=..\bin
 DebugSourceDirs=$(BCB)\source\vcl
 
 [Parameters]
-RunParams=*. script.sql
+RunParams=Австрия. script.sql
 Launcher=
 UseLauncher=0
 DebugCWD=

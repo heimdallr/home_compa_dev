@@ -190,11 +190,6 @@ object fmPlayer: TfmPlayer
           AutoFitColWidth = False
           EditButtons = <>
           FieldName = 'GOAL_COUNT'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'MS Sans Serif'
-          Font.Style = [fsBold]
           Footers = <>
           Title.Caption = #1043#1086#1083#1099'|'#1050#1086#1083'-'#1074#1086
         end
@@ -412,11 +407,6 @@ object fmPlayer: TfmPlayer
           FieldName = 'NAME'
           Footer.Alignment = taRightJustify
           Footer.FieldName = 'NUMBER'
-          Footer.Font.Charset = DEFAULT_CHARSET
-          Footer.Font.Color = clWindowText
-          Footer.Font.Height = -15
-          Footer.Font.Name = 'MS Sans Serif'
-          Footer.Font.Style = []
           Footer.ValueType = fvtCount
           Footers = <>
           Title.Caption = #1048#1075#1088#1086#1082#1080'|'#1048#1084#1103

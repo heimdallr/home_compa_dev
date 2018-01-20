@@ -36,7 +36,7 @@ _group_place_regex(String().sprintf("[%s][0-9]", _connect->GetReadSQL(String().s
 
 // Перегрузка
 void __fastcall TfmMain::actLoadExecute(TObject *Sender) {
-  bool first=!dsData->Active;
+  bool first = !dsData->Active;
   {
     TDataSetLayout L(dsData, "id");
     dsData->Data = _connect->GetReadDataSet("select * from get_match(:id_champ)", TQueryParams(ftInteger, "id_champ", _id_champ))->Data;
@@ -91,8 +91,16 @@ void __fastcall TfmMain::dsDataAfterScroll(TDataSet *DataSet) {
 
 // Красим ячейки
 void __fastcall TfmMain::dbgDataGetCellParams(TObject *Sender, TColumnEh *Column, TFont *AFont, TColor &Background, TGridDrawState State) {
-  if(dsData->FieldByName("id")->AsInteger==_nearest) Background = clHighlightText;
-  else Background = clWindow;
+  const int id = dsData->FieldByName("id")->AsInteger;
+  if (id ==_nearest)
+  {
+    AFont->Color = clBlack;
+    Background = clAqua;
+    return;
+  }
+
+  AFont->Color = clWindowText;
+  Background = clWindow;
 }
 //---------------------------------------------------------------------------
 
@@ -150,8 +158,6 @@ void __fastcall TfmMain::actSetCountryByGroupExecute(TObject *Sender) {
 }
 //---------------------------------------------------------------------------
 
-
-
 void __fastcall TfmMain::dbgDataMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y) {
   if(mbLeft!=Button) return;
   _id_match_buf = dsData->FieldByName("id")->AsInteger;
@@ -187,10 +193,9 @@ void __fastcall TfmMain::FormClose(TObject *Sender, TCloseAction &Action) {
 //---------------------------------------------------------------------------
 
 
-void __fastcall TfmMain::TimerTimer(TObject *Sender)
-{
+void __fastcall TfmMain::TimerTimer(TObject *Sender) {
   // Смотрим, сколько сейчас времени, минус сдвиг (вдруг матчи заданы по Москве), минус 2 чвса на длительность матча
-  TDateTime now=IncHour(Now(), -TOptions::Instance->Get("Options", "HoursShift", "0").ToInt() - 2);
+  TDateTime now = IncHour(Now(), -TOptions::Instance->Get("Options", "HoursShift", "0").ToInt() - 2);
   TDateTimeList::const_iterator nearest = _date_time_list.upper_bound(now);
   _nearest = nearest == _date_time_list.end()? 0: nearest->second;
   if(_nearest != dsData->FieldByName("id")->AsInteger)
