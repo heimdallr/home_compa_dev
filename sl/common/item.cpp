@@ -19,37 +19,6 @@ std::ostream& Out(std::ostream &outp, const Item &item, const std::string &end /
 	return outp << end;
 }
 
-Data Read(const std::string &fileName)
-{
-	std::ifstream inp(fileName);
-	if (!inp)
-		throw std::invalid_argument(std::string("Cannot read from \"") + fileName + "\"");
-
-	Data data;
-
-	// читаем данные из файла
-	while (!inp.eof())
-	{
-		std::string s;
-		std::getline(inp, s);
-		std::istringstream stream(s);
-
-		data.push_back(Item());
-		std::copy(std::istream_iterator<int>(stream), std::istream_iterator<int>(), std::back_inserter(data.back()));
-		//		Out(std::cout, data.back());
-
-		if (data.back().empty())
-			data.pop_back();
-
-		if (data.back().size() != data.front().size())
-			throw std::runtime_error(std::string("Incorrect string: #") + std::to_string(data.size()));
-	}
-
-	assert(!data.empty());
-
-	return data;
-}
-
 template <typename T>
 bool Grouper<T>::ItemComparer::operator()(const ItemType &a, const ItemType &b) const
 {
@@ -90,6 +59,46 @@ void Grouper<T>::Group(GroupCounter &groupCounter, const ItemType &item, size_t 
 	GrouperImpl<T>::Group(groupCounter, ItemType(), n, item.cbegin(), item.cend(), m);
 }
 
+template <typename T>
+typename Reader<T>::DataType Reader<T>::Read(const std::string &fileName, bool checkCount /*= true*/)
+{
+	std::ifstream inp(fileName);
+	if (!inp)
+		throw std::invalid_argument(std::string("Cannot read from \"") + fileName + "\"");
+
+	DataType data;
+
+	// читаем данные из файла
+	while (!inp.eof())
+	{
+		std::string s;
+		std::getline(inp, s);
+		std::istringstream stream(s);
+
+		data.push_back(ItemType());
+		std::copy(std::istream_iterator<int>(stream), std::istream_iterator<int>(), std::back_inserter(data.back()));
+		//		Out(std::cout, data.back());
+
+		if (data.back().empty())
+			data.pop_back();
+
+		if (checkCount && data.back().size() != data.front().size())
+			throw std::runtime_error(std::string("Incorrect string: #") + std::to_string(data.size()));
+	}
+
+	assert(!data.empty());
+
+	return data;
+}
+
+Data Read(const std::string &fileName)
+{
+	return Reader<uint8_t>::Read(fileName);
+}
+
 template class Grouper<uint8_t>;
 template class Grouper<int>;
 template class Grouper<size_t>;
+
+template class Reader<uint8_t>;
+template class Reader<int>;

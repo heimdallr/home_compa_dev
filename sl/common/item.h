@@ -9,9 +9,6 @@ std::wstring utf8to16(const std::string &src);
 // Выводим в поток
 std::ostream& Out(std::ostream &outp, const Item &item, const std::string &end = "\n");
 
-// Читааем из файла
-Data Read(const std::string &fileName);
-
 template <typename T>
 class Grouper
 {
@@ -28,3 +25,14 @@ public:
 	static void Group(GroupCounter &groupCounter, const ItemType &item, size_t n, int m);
 };
 
+// Читааем из файла
+template <typename T>
+class Reader
+{
+public:
+	using ItemType = std::vector<T>;
+	using DataType = std::vector<ItemType>;
+	static DataType Read(const std::string &fileName, bool checkCount = true);
+};
+
+Data Read(const std::string &fileName);

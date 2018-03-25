@@ -1,6 +1,5 @@
 #include "stdafx.h"
-
-#include "../common/item.h"
+#include "item.h"
 
 // Общая статистика: сколько раз выпадало число; сколько раз оно выпадало каким по счёту
 void CountNumbers(const Data &data, const std::string &fileName)
