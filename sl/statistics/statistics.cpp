@@ -1,33 +1,9 @@
 #include "stdafx.h"
 
-// Вспомогательные типы данных
-using Item = std::vector<uint8_t>;
-using Data = std::vector<Item>;
+#include "../common/item.h"
 
-struct ItemComparer
-{
-	bool operator()(const Item &a, const Item &b) const
-	{
-		auto ia = a.cbegin(), ib = b.cbegin();
-		for (; ia != a.cend() && ib != b.cend(); ++ia, ++ib)
-			if (*ia != *ib)
-				return *ia < *ib;
-		
-		return ib != b.cend();
-	}
-};
-
-using GroupCounter = std::map<Item, size_t, ItemComparer>;
-
-// Выводим в поток
-std::ostream& Out(std::ostream &outp, const Item &item, const std::string &end = "\n")
-{
-	std::copy(item.cbegin(), item.cend(), std::ostream_iterator<int>(outp, " "));
-	return outp << end;		
-}
-
-// Общая статистика: сколько раз выпадало число; сколько раз оно выпадало каким по счёту
-void CountNumbers(const Data &data, const std::string fileName)
+// РћР±С‰Р°СЏ СЃС‚Р°С‚РёСЃС‚РёРєР°: СЃРєРѕР»СЊРєРѕ СЂР°Р· РІС‹РїР°РґР°Р»Рѕ С‡РёСЃР»Рѕ; СЃРєРѕР»СЊРєРѕ СЂР°Р· РѕРЅРѕ РІС‹РїР°РґР°Р»Рѕ РєР°РєРёРј РїРѕ СЃС‡С‘С‚Сѓ
+void CountNumbers(const Data &data, const std::string &fileName)
 {
 	std::cout << "Simple statistics... ";
 	using NumberCounter = std::map<uint8_t, std::pair<size_t, std::vector<size_t>>>;
@@ -43,7 +19,7 @@ void CountNumbers(const Data &data, const std::string fileName)
 		}
 	}
 		
-	std::ofstream outp(fileName);
+	std::ofstream outp(utf8to16(fileName));
 	if (!outp)
 		throw std::ios_base::failure(std::string("Cannot write to \"") + fileName + "\"");
 	
@@ -57,7 +33,7 @@ void CountNumbers(const Data &data, const std::string fileName)
 	std::cout << "done" << std::endl;
 }
 
-// Статистика чётных: всего тиражей; количества тиражей с 1, 2, и т.д. чётными; количество чётных, выпавших по счёту
+// РЎС‚Р°С‚РёСЃС‚РёРєР° С‡С‘С‚РЅС‹С…: РІСЃРµРіРѕ С‚РёСЂР°Р¶РµР№; РєРѕР»РёС‡РµСЃС‚РІР° С‚РёСЂР°Р¶РµР№ СЃ 1, 2, Рё С‚.Рґ. С‡С‘С‚РЅС‹РјРё; РєРѕР»РёС‡РµСЃС‚РІРѕ С‡С‘С‚РЅС‹С…, РІС‹РїР°РІС€РёС… РїРѕ СЃС‡С‘С‚Сѓ
 void CountEven(const Data &data, const std::string fileName)
 {
 	std::cout << "Simple even statistics... ";
@@ -77,7 +53,7 @@ void CountEven(const Data &data, const std::string fileName)
 		++stat[std::accumulate(d.cbegin(), d.cend(), size_t(0), [](size_t init, uint8_t item){ return init + ((item + 1) & 1); })];
 	}
 		
-	std::ofstream outp(fileName);
+	std::ofstream outp(utf8to16(fileName));
 	if (!outp)
 		throw std::ios_base::failure(std::string("Cannot write to \"") + fileName + "\"");
 	
@@ -92,52 +68,65 @@ void CountEven(const Data &data, const std::string fileName)
 	std::cout << "done" << std::endl;
 }
 
-// Собираем группы по n
-void Group(GroupCounter &groupCounter, Item result, size_t n, Item::const_iterator beg, Item::const_iterator end)
-{
-	result.push_back(0);
-	while (beg != end)
-	{
-		result.back() = *beg++;
-		if (result.size() == n)
-		{
-			++groupCounter[result];
-//			Out(result);
-		}
-		else
-		{
-			Group(groupCounter, result, n, beg, end);
-		}
-	}
-}
+const std::string g_fileNames[] = {
+	"",
+	"",
+	"РїР°СЂС‹",
+	"С‚СЂРѕР№РєРё",
+	"С‡РµС‚РІС‘СЂРєРё",
+	"РїСЏС‚С‘СЂРєРё",
+	"С€РµСЃС‚С‘СЂРєРё",
+};
 
 std::string GetFileName(const std::string &prefix, size_t n)
 {
 	std::ostringstream fileName;
-	fileName << prefix << n << ".txt";
+	fileName << prefix;
+	if (n < std::size(g_fileNames))
+		fileName << g_fileNames[n];
+	else
+		fileName << "_" << n;
+	fileName << ".txt";
+
 	return fileName.str();
 }
 
-// Статистика групп
+// РЎС‚Р°С‚РёСЃС‚РёРєР° РіСЂСѓРїРї
 void CountGroups(const Data &data)
 {
 	std::cout << "Groups statistics";
 
 	for (size_t i = 2, sz = data.front().size(); i < sz; ++i)
 	{
-		const auto fileName = GetFileName("group", i);
-		std::ofstream outp(fileName);
+		const auto fileName = GetFileName("", i);
+		std::ofstream outp(utf8to16(fileName));
 		if (!outp)
 			throw std::ios_base::failure(std::string("Cannot write to \"") + fileName + "\"");
 		
-		GroupCounter groupCounter;
+		Grouper<uint8_t>::GroupCounter groupCounter;
 			
-		// собираем группы
-		for (auto &d : data)
-			Group(groupCounter, Item(), i, d.cbegin(), d.cend());
+		// СЃРѕР±РёСЂР°РµРј РіСЂСѓРїРїС‹
+		for (size_t j = 0, sz = data.size(); j < sz; ++j)
+			Grouper<uint8_t>::Group(groupCounter, data[j], i, static_cast<int>(j + 1));
 			
-		for (const auto &g : groupCounter)
-			Out(outp, g.first, " ") << g.second << std::endl;
+		std::vector<std::pair<decltype(groupCounter)::key_type, decltype(groupCounter)::mapped_type>> sorted;
+		std::copy(groupCounter.cbegin(), groupCounter.cend(), std::back_inserter(sorted));
+
+		Grouper<uint8_t>::ItemComparer comparer;
+		std::sort(sorted.begin(), sorted.end(), [&comparer](const decltype(sorted)::value_type &item1, const decltype(sorted)::value_type &item2) -> bool
+		{
+			if (item1.second.size() != item2.second.size())
+				return item1.second.size() > item2.second.size();
+
+			return comparer(item1.first, item2.first);
+		});
+
+		for (const auto &g : sorted)
+		{
+			Out(outp, g.first, "\t") << g.second.size() << ": ";
+			std::copy(g.second.cbegin(), g.second.cend(), std::ostream_iterator<int>(outp, " "));
+			outp << std::endl;
+		}
 
 		std::cout << ".";
 	}
@@ -145,38 +134,40 @@ void CountGroups(const Data &data)
 	std::cout << " done" << std::endl;
 }
 
-// Статистика чётных групп
+// РЎС‚Р°С‚РёСЃС‚РёРєР° С‡С‘С‚РЅС‹С… РіСЂСѓРїРї
 void CountEvenGroups(const Data &data)
 {
 	std::cout << "Even statistics";
 
 	for (size_t i = 2, sz = data.front().size(); i < sz; ++i)
 	{
-		const auto fileName = GetFileName("EvenGroups", i);
-		std::ofstream outp(fileName);
+		const auto fileName = GetFileName("С‡С‘С‚РЅС‹Рµ ", i);
+		std::ofstream outp(utf8to16(fileName));
 		if (!outp)
 			throw std::ios_base::failure(std::string("Cannot write to \"") + fileName + "\"");
 		
-		GroupCounter groupCounter;
+		Grouper<uint8_t>::GroupCounter groupCounter;
 		Item index(data.front().size());
 		std::iota(index.begin(), index.end(), 0);
-		Group(groupCounter, std::vector<uint8_t>(), i, index.cbegin(), index.cend());
+		Grouper<uint8_t>::Group(groupCounter, index, i, 0);
 		
 		for (auto &g : groupCounter)
-			g.second = 0;
+			g.second.clear();
 
-		for (const auto &d : data)
+		for (size_t j = 0, sz = data.size(); j < sz; ++j)
 			for (auto &g : groupCounter)
-				if (std::find_if(g.first.cbegin(), g.first.cend(), [&d](auto i) {return (d[i] & 1) != 0; }) == g.first.cend())
-					++g.second;
+				if (std::find_if(g.first.cbegin(), g.first.cend(), [&d = data[j]](auto i) {return (d[i] & 1) != 0; }) == g.first.cend())
+					g.second.push_back(static_cast<int>(j + 1));
 
 		for (const auto &g : groupCounter)
 		{
-			if (g.second > 0)
+			if (g.second.size() > 0)
 			{
 				Item group(g.first.size());
 				std::transform(g.first.cbegin(), g.first.cend(), group.begin(), [](auto n) {return n + 1; });
-				Out(outp, group, " ") << g.second << std::endl;
+				Out(outp, group, "\t") << g.second.size() << ": ";
+				std::copy(g.second.cbegin(), g.second.cend(), std::ostream_iterator<int>(outp, " "));
+				outp << std::endl;
 			}
 		}
 
@@ -186,7 +177,7 @@ void CountEvenGroups(const Data &data)
 	std::cout << " done" << std::endl;
 }
 
-// Поехали
+// РџРѕРµС…Р°Р»Рё
 int main(int argc, char* argv[])
 {
 	try
@@ -194,48 +185,26 @@ int main(int argc, char* argv[])
 		if (argc < 2)
 			throw std::invalid_argument("usage:\nstatistics input_file_name\n");
 		
-		std::ifstream inp(argv[1]);
-		if (!inp)
-			throw std::invalid_argument(std::string("Cannot read from \"") + argv[1] + "\"");
-		
-		Data data;
-		
-		// читаем данные из файла
-		while (!inp.eof())
-		{
-			std::string s(100, 0);
-			inp.getline(&s[0], 100);
-			std::istringstream stream(s);
-	
-			data.push_back(Item());
-			std::copy(std::istream_iterator<int>(stream), std::istream_iterator<int>(), std::back_inserter(data.back()));
-	//		Out(std::cout, data.back());
-	
-			if (data.back().empty())
-				data.pop_back();
-			
-			if (data.back().size() != data.front().size())
-				throw std::runtime_error(std::string("Incorrect string: #") + std::to_string(data.size()));
-		}
-		
+		Data data = Read(argv[1]);
+
 		if (data.empty())
 		{
 			std::cerr << "File is empty";
 			return 1;
 		}
 		
-		// собираем простую статистику
-		CountNumbers(data, "NumberCount.txt");
-		CountEven(data, "EvenStat.txt");
+		// СЃРѕР±РёСЂР°РµРј РїСЂРѕСЃС‚СѓСЋ СЃС‚Р°С‚РёСЃС‚РёРєСѓ
+		CountNumbers(data, "СЃС‚Р°С‚РёСЃС‚РёРєР° РїРѕ С‡РёСЃР»Р°Рј.txt");
+		CountEven(data, "СЃС‚Р°С‚РёСЃС‚РёРєР° РїРѕ С‡С‘С‚РЅС‹Рј С‡РёСЃР»Р°Рј.txt");
 		
-		// сортируем данные в элементах
+		// СЃРѕСЂС‚РёСЂСѓРµРј РґР°РЅРЅС‹Рµ РІ СЌР»РµРјРµРЅС‚Р°С…
 		for (auto &d : data)
 			std::sort(d.begin(), d.end());
 	
-		// собираем статистику по группам 
+		// СЃРѕР±РёСЂР°РµРј СЃС‚Р°С‚РёСЃС‚РёРєСѓ РїРѕ РіСЂСѓРїРїР°Рј 
 		CountGroups(data);
 		
-		// собираем статистику по группам чётных
+		// СЃРѕР±РёСЂР°РµРј СЃС‚Р°С‚РёСЃС‚РёРєСѓ РїРѕ РіСЂСѓРїРїР°Рј С‡С‘С‚РЅС‹С…
 		CountEvenGroups(data);
 	}
 	catch(const std::exception &ex)
