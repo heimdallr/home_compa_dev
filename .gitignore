@@ -21,3 +21,4 @@ ipch/
 bin/
 
 GeneratedFiles/
+*/.vs/
