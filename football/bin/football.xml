@@ -3,7 +3,7 @@
 	<Options Year="2016" IdChamp="1306" HoursShift="3"/>
 	<Layout>
 		<fmMain Top="3" Left="101" Height="1204" Width="962">
-			<dbgData Top="0" Left="0" Height="1140" Width="1039">
+			<dbgData Top="0" Left="0" Height="1136" Width="1039">
 				<ORD_NUM Visible="True" Index="0" Width="44"/>
 				<PLAY_AT Visible="True" Index="1" Width="104"/>
 				<STATUS Visible="True" Index="2" Width="138"/>
@@ -13,9 +13,9 @@
 				<CITY_NAME Visible="True" Index="6" Width="279"/>
 			</dbgData>
 		</fmMain>
-		<fmMDIMain Top="68" Left="372" Height="1194" Width="1055"/>
+		<fmMDIMain Top="18" Left="-3" Height="1194" Width="1055"/>
 		<fmGroup>
-			<dbgData Top="0" Left="0" Height="1140" Width="1039">
+			<dbgData Top="0" Left="0" Height="1136" Width="1039">
 				<GROUP Visible="True" Index="0" Width="42"/>
 				<NUM Visible="True" Index="1" Width="40"/>
 				<ID Visible="True" Index="2" Width="70"/>
