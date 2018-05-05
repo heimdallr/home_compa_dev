@@ -183,7 +183,7 @@ int main(int argc, char* argv[])
 	{
 		if (argc < 2)
 			throw std::invalid_argument("usage:\nstatistics input_file_name\n");
-		
+
 		Data data = Read(argv[1]);
 
 		if (data.empty())
