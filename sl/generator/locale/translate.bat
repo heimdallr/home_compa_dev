@@ -1,0 +1,1 @@
+C:\Qt\5.10.1\msvc2017_64\bin\lrelease.exe D:\user\Sasha\home_compa_dev\sl\generator\locale\en_US.ts D:\user\Sasha\home_compa_dev\sl\generator\locale\ru_RU.ts
