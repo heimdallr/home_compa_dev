@@ -19,8 +19,10 @@ public:
 private:
 	void changeEvent(QEvent *event) override;
 
-private:
+private slots:
 	void ChangeLocale();
+
+private:
 	std::vector<QAction*> GetLocaleActions() const;
 	void LoadSettings();
 	void SaveSettings() const;

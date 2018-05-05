@@ -4,17 +4,17 @@
 <context>
     <name>Generator</name>
     <message>
-        <location filename="../Generator.cpp" line="27"/>
+        <location filename="../Generator.cpp" line="31"/>
         <source>About generator</source>
         <translation>About generator</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="27"/>
+        <location filename="../Generator.cpp" line="31"/>
         <source>generator generates generated</source>
         <translation>generator generates generated</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="31"/>
+        <location filename="../Generator.cpp" line="35"/>
         <source>Open file</source>
         <translation>Open file</translation>
     </message>
@@ -22,106 +22,145 @@
 <context>
     <name>GeneratorClass</name>
     <message>
-        <location filename="../Generator.ui" line="20"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="307"/>
+        <location filename="../Generator.ui" line="26"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="460"/>
         <source>Generator</source>
         <translation>Generator</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="35"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="312"/>
+        <location filename="../Generator.ui" line="45"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="465"/>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generator.ui" line="59"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="466"/>
         <source>File A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="65"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="313"/>
+        <location filename="../Generator.ui" line="93"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="467"/>
         <source>File B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="95"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="314"/>
+        <location filename="../Generator.ui" line="127"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="468"/>
         <source>File C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="119"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="315"/>
-        <source>Pairs B filter</source>
+        <location filename="../Generator.ui" line="168"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="469"/>
+        <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="139"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="316"/>
-        <source>Fours A filter</source>
+        <location filename="../Generator.ui" line="188"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="470"/>
+        <source>Pairs from file B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="156"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="317"/>
-        <source>Sum C filter</source>
+        <location filename="../Generator.ui" line="211"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="471"/>
+        <source>Fours from file A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="206"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="318"/>
+        <location filename="../Generator.ui" line="231"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="472"/>
+        <source>Sum from file C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generator.ui" line="299"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="473"/>
+        <source>Positions values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generator.ui" line="326"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="475"/>
+        <source>File with strings such as
+1, 3, 8, 10
+2, 6, 12, 18
+and so on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generator.ui" line="354"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="480"/>
+        <source>Even positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generator.ui" line="379"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="482"/>
+        <source>Comma separated list of numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generator.ui" line="403"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="484"/>
         <source>Result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="243"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="319"/>
+        <location filename="../Generator.ui" line="441"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="485"/>
         <source>Run!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="262"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="320"/>
+        <location filename="../Generator.ui" line="460"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="486"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="268"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="321"/>
+        <location filename="../Generator.ui" line="466"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="487"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="274"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="322"/>
+        <location filename="../Generator.ui" line="472"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="488"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="278"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="323"/>
+        <location filename="../Generator.ui" line="476"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="489"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="300"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="308"/>
+        <location filename="../Generator.ui" line="498"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="461"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="305"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="309"/>
+        <location filename="../Generator.ui" line="503"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="462"/>
         <source>About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="310"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="310"/>
+        <location filename="../Generator.ui" line="511"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="463"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>English</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="318"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="311"/>
+        <location filename="../Generator.ui" line="522"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="464"/>
         <source>Russian</source>
-        <translation type="unfinished"></translation>
+        <translation>Русский</translation>
     </message>
 </context>
 </TS>

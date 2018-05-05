@@ -28,6 +28,7 @@ Generator::Generator(QWidget *parent)
 {
 	m_ui->setupUi(this);
 
+	connect(m_ui->pushButtonRun, &QAbstractButton::clicked, [this]() {setEnabled(false); });
 	connect(m_ui->actionAbout, &QAction::triggered, [parent = this](bool) {QMessageBox::about(parent, tr("About generator"), tr("generator generates generated")); });
 
 	const auto openFileDialog = [parent = this](QLineEdit *edit, bool existingOnly = true)
@@ -39,21 +40,25 @@ Generator::Generator(QWidget *parent)
 			edit->setText(dialog.selectedFiles().front());
 	};
 
-	m_ui->checkBoxFilterPairsB->setLayoutDirection(Qt::RightToLeft);
-	m_ui->checkBoxFilterFoursA->setLayoutDirection(Qt::RightToLeft);
-
-	connect(m_ui->toolButtonA		, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditA		]() {openFileDialog(edit); });
-	connect(m_ui->toolButtonB		, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditB		]() {openFileDialog(edit); });
-	connect(m_ui->toolButtonC		, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditC		]() {openFileDialog(edit); });
-	connect(m_ui->toolButtonResult	, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditResult	]() {openFileDialog(edit, false); });
+	connect(m_ui->toolButtonA				, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditA				]() {openFileDialog(edit); });
+	connect(m_ui->toolButtonB				, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditB				]() {openFileDialog(edit); });
+	connect(m_ui->toolButtonC				, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditC				]() {openFileDialog(edit); });
+	connect(m_ui->toolButtonPositionsValues	, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditPositionsValues	]() {openFileDialog(edit); });
+	connect(m_ui->toolButtonResult			, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditResult			]() {openFileDialog(edit, false); });
 	connect(m_ui->checkBoxFilterSumC, &QCheckBox::stateChanged, [this](int state)
 	{
 		m_ui->spinBoxSumCMin->setEnabled(state == Qt::Checked);
 		m_ui->spinBoxSumCMax->setEnabled(state == Qt::Checked);
 	});
-
-	connect(m_ui->actionEnglish, &QAction::triggered, this, &Generator::ChangeLocale);
-	connect(m_ui->actionRussian, &QAction::triggered, this, &Generator::ChangeLocale);
+	connect(m_ui->checkBoxFilterPositionsValues, &QCheckBox::stateChanged, [this](int state)
+	{
+		m_ui->lineEditPositionsValues->setEnabled(state == Qt::Checked);
+		m_ui->toolButtonPositionsValues->setEnabled(state == Qt::Checked);
+	});
+	connect(m_ui->checkBoxFilterEvenPositions, &QCheckBox::stateChanged, [this](int state)
+	{
+		m_ui->lineEditEvenPositions->setEnabled(state == Qt::Checked);
+	});
 
 	LoadSettings();
 }
@@ -94,11 +99,16 @@ void Generator::LoadSettings()
 	m_ui->lineEditA->setText(setting.value(m_ui->lineEditA->objectName(), "").toString());
 	m_ui->lineEditB->setText(setting.value(m_ui->lineEditB->objectName(), "").toString());
 	m_ui->lineEditC->setText(setting.value(m_ui->lineEditC->objectName(), "").toString());
+	m_ui->lineEditC->setText(setting.value(m_ui->lineEditC->objectName(), "").toString());
 	m_ui->lineEditResult->setText(setting.value(m_ui->lineEditResult->objectName(), "").toString());
+	m_ui->lineEditPositionsValues->setText(setting.value(m_ui->lineEditPositionsValues->objectName(), "").toString());
+	m_ui->lineEditEvenPositions->setText(setting.value(m_ui->lineEditEvenPositions->objectName(), "").toString());
 
 	m_ui->checkBoxFilterPairsB->setChecked(setting.value(m_ui->checkBoxFilterPairsB->objectName(), m_ui->checkBoxFilterPairsB->isChecked()).toBool());
 	m_ui->checkBoxFilterFoursA->setChecked(setting.value(m_ui->checkBoxFilterFoursA->objectName(), m_ui->checkBoxFilterFoursA->isChecked()).toBool());
 	m_ui->checkBoxFilterSumC->setChecked(setting.value(m_ui->checkBoxFilterSumC->objectName(), m_ui->checkBoxFilterSumC->isChecked()).toBool());
+	m_ui->checkBoxFilterPositionsValues->setChecked(setting.value(m_ui->checkBoxFilterPositionsValues->objectName(), m_ui->checkBoxFilterPositionsValues->isChecked()).toBool());
+	m_ui->checkBoxFilterEvenPositions->setChecked(setting.value(m_ui->checkBoxFilterEvenPositions->objectName(), m_ui->checkBoxFilterEvenPositions->isChecked()).toBool());
 
 	m_ui->spinBoxSumCMin->setValue(setting.value(m_ui->spinBoxSumCMin->objectName(), m_ui->spinBoxSumCMin->value()).toInt());
 	m_ui->spinBoxSumCMax->setValue(setting.value(m_ui->spinBoxSumCMax->objectName(), m_ui->spinBoxSumCMax->value()).toInt());
@@ -115,6 +125,8 @@ void Generator::LoadSettings()
 	}
 	if (needForce)
 		m_ui->actionEnglish->trigger();
+
+	setGeometry(setting.value("geometry", geometry()).toRect());
 }
 
 void Generator::SaveSettings() const
@@ -124,10 +136,14 @@ void Generator::SaveSettings() const
 	setting.setValue(m_ui->lineEditB->objectName(), m_ui->lineEditB->text());
 	setting.setValue(m_ui->lineEditC->objectName(), m_ui->lineEditC->text());
 	setting.setValue(m_ui->lineEditResult->objectName(), m_ui->lineEditResult->text());
+	setting.setValue(m_ui->lineEditPositionsValues->objectName(), m_ui->lineEditPositionsValues->text());
+	setting.setValue(m_ui->lineEditEvenPositions->objectName(), m_ui->lineEditEvenPositions->text());
 
 	setting.setValue(m_ui->checkBoxFilterPairsB->objectName(), m_ui->checkBoxFilterPairsB->isChecked());
 	setting.setValue(m_ui->checkBoxFilterFoursA->objectName(), m_ui->checkBoxFilterFoursA->isChecked());
 	setting.setValue(m_ui->checkBoxFilterSumC->objectName(), m_ui->checkBoxFilterSumC->isChecked());
+	setting.setValue(m_ui->checkBoxFilterPositionsValues->objectName(), m_ui->checkBoxFilterPositionsValues->isChecked());
+	setting.setValue(m_ui->checkBoxFilterEvenPositions->objectName(), m_ui->checkBoxFilterEvenPositions->isChecked());
 
 	setting.setValue(m_ui->spinBoxSumCMin->objectName(), m_ui->spinBoxSumCMin->value());
 	setting.setValue(m_ui->spinBoxSumCMax->objectName(), m_ui->spinBoxSumCMax->value());
@@ -135,4 +151,6 @@ void Generator::SaveSettings() const
 	for (auto *action : GetLocaleActions())
 		if (action->isChecked())
 			setting.setValue(LOCALE, action->property(LOCALE).toString());
+
+	setting.setValue("geometry", geometry());
 }
