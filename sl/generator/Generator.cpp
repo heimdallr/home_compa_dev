@@ -50,7 +50,11 @@ Generator::Generator(QWidget *parent)
 		m_taskbarProgress = button->progress();
 		m_taskbarProgress->setRange(m_ui->progressBar->minimum(), m_ui->progressBar->maximum());
 		m_taskbarProgress->setVisible(true);
-		connect(m_ui->progressBar, &QProgressBar::valueChanged, m_taskbarProgress, &QWinTaskbarProgress::setValue);
+		connect(m_ui->progressBar, &QProgressBar::valueChanged, [this](int value)
+		{
+			m_taskbarProgress->setValue(value);
+			m_ui->statusBar->showMessage(GetStatusMessage());
+		});
 	});
 
 	connect(m_ui->actionAbout, &QAction::triggered, [parent = this](bool) {QMessageBox::about(parent, tr("About generator"), tr("generator generates generated")); });
@@ -105,6 +109,7 @@ void Generator::changeEvent(QEvent *event)
 
 void Generator::Handle(std::vector<std::vector<uint8_t>> &data)
 {
+	assert(!data.empty());
 	std::vector<std::vector<uint8_t>> passed;
 	for (auto &d : data)
 	{
@@ -112,17 +117,18 @@ void Generator::Handle(std::vector<std::vector<uint8_t>> &data)
 		passed.back().swap(d);
 	}
 
-	m_forwarder->Forward([this, inc = data.size(), passed = std::move(passed)]
+	m_forwarder->Forward([this, current = data.size(), passed = passed.size()]
 	{
-		m_current += inc;
-		m_passed += passed.size();
-		m_ui->progressBar->setValue(m_current * 100 / m_maximum);
-
-		if (m_current < m_maximum)
-			m_ui->statusBar->showMessage(GetStatusMessage());
-		else
-			m_ui->pushButtonRun->click();
-		});
+		m_current += current;
+		m_passed += passed;
+		const auto pct = m_current * 100 / m_maximum;
+		if (m_ui->progressBar->value() != pct)
+		{
+			m_ui->progressBar->setValue(pct);
+			if (pct == 100)
+				m_ui->pushButtonRun->click();
+		}
+	});
 }
 
 void Generator::ChangeLocale()
@@ -154,7 +160,7 @@ void Generator::Run()
 void Generator::Start()
 {
 	assert(!m_enumerator);
-	std::make_unique<Enumerator>(*this, 5, 36).swap(m_enumerator);
+	std::make_unique<Enumerator>(*this, 6, 49).swap(m_enumerator);
 
 	m_current = 0;
 	m_passed = 0;
@@ -171,17 +177,10 @@ void Generator::Stop()
 	assert(m_enumerator);
 	m_enumerator.reset();
 
-	m_ui->statusBar->clearMessage();
-
 	if (m_current < m_maximum)
-	{
 		m_taskbarProgress->stop();
-	}
 	else
-	{
 		m_taskbarProgress->hide();
-		m_ui->statusBar->showMessage(GetStatusMessage(), 10000);
-	}
 }
 
 void Generator::RetranslateRun()
