@@ -37,10 +37,14 @@ Generator::Generator(QWidget *parent)
 	: QMainWindow(parent)
 	, m_ui(std::make_unique<Ui::GeneratorClass>())
 	, m_forwarder(new FunctorExecutionForwarder(this))
+	, m_progressMessaageTimer(new QTimer(this))
 {
 	m_ui->setupUi(this);
 	m_ui->progressBar->setVisible(false);
 	m_ui->horizontalLayoutRun->setAlignment(Qt::AlignRight);
+
+	m_progressMessaageTimer->setInterval(100);
+	connect(m_progressMessaageTimer, &QTimer::timeout, [this] {m_ui->statusBar->showMessage(GetStatusMessage()); });
 
 	QTimer::singleShot(0, [this]
 	{
@@ -50,11 +54,7 @@ Generator::Generator(QWidget *parent)
 		m_taskbarProgress = button->progress();
 		m_taskbarProgress->setRange(m_ui->progressBar->minimum(), m_ui->progressBar->maximum());
 		m_taskbarProgress->setVisible(true);
-		connect(m_ui->progressBar, &QProgressBar::valueChanged, [this](int value)
-		{
-			m_taskbarProgress->setValue(value);
-			m_ui->statusBar->showMessage(GetStatusMessage());
-		});
+		connect(m_ui->progressBar, &QProgressBar::valueChanged, m_taskbarProgress, &QWinTaskbarProgress::setValue);
 	});
 
 	connect(m_ui->actionAbout, &QAction::triggered, [parent = this](bool) {QMessageBox::about(parent, tr("About generator"), tr("generator generates generated")); });
@@ -170,6 +170,7 @@ void Generator::Start()
 	m_taskbarProgress->show();
 	m_taskbarProgress->resume();
 	m_ui->statusBar->clearMessage();
+	m_progressMessaageTimer->start();
 }
 
 void Generator::Stop()
@@ -177,6 +178,8 @@ void Generator::Stop()
 	assert(m_enumerator);
 	m_enumerator.reset();
 
+	m_progressMessaageTimer->stop();
+	m_ui->statusBar->showMessage(GetStatusMessage());
 	if (m_current < m_maximum)
 		m_taskbarProgress->stop();
 	else

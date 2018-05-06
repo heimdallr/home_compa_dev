@@ -8,6 +8,7 @@
 #include "GeneratorHandler.h"
 
 class FunctorExecutionForwarder;
+class QTimer;
 class QWinTaskbarProgress;
 
 namespace Ui {
@@ -50,6 +51,7 @@ private:
 	std::unique_ptr<Enumerator> m_enumerator;
 	QPointer<FunctorExecutionForwarder> m_forwarder;
 	QPointer<QWinTaskbarProgress> m_taskbarProgress;
+	QPointer<QTimer> m_progressMessaageTimer;
 	size_t m_current, m_maximum, m_passed;
 };
 
