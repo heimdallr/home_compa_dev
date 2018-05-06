@@ -76,11 +76,12 @@ private:
 				std::copy(tail.cbegin(), tail.cend(), std::back_inserter(buf.back()));
 			}
 
-			m_handler.Handle(buf);
+			if (!buf.empty())
+				m_handler.Handle(buf);
 		}
 	}
 
-	std::vector<std::vector<uint8_t>> Generate(uint8_t from, uint8_t to, uint8_t m)
+	static std::vector<std::vector<uint8_t>> Generate(uint8_t from, uint8_t to, uint8_t m)
 	{
 		assert(from <= to && to < m);
 		std::vector<std::vector<uint8_t>> result;
