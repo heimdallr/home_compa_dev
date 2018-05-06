@@ -145,34 +145,34 @@ and so on</source>
 <context>
     <name>HomeCompa::sl::Generator</name>
     <message>
-        <location filename="../Generator.cpp" line="42"/>
+        <location filename="../Generator.cpp" line="56"/>
         <source>About generator</source>
         <translation>О генераторе</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="42"/>
+        <location filename="../Generator.cpp" line="56"/>
         <source>generator generates generated</source>
         <translation>генератор генерирует генерируемое</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="46"/>
+        <location filename="../Generator.cpp" line="60"/>
         <source>Open file</source>
         <translation>Укажите файл</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="146"/>
-        <source> processed</source>
-        <translation> обработано</translation>
-    </message>
-    <message>
-        <location filename="../Generator.cpp" line="151"/>
+        <location filename="../Generator.cpp" line="184"/>
         <source>Run!</source>
         <translation>Погнали!</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="151"/>
+        <location filename="../Generator.cpp" line="184"/>
         <source>Stop</source>
         <translation>Не гони</translation>
+    </message>
+    <message>
+        <location filename="../Generator.cpp" line="251"/>
+        <source>%1 / %2 processed, %3 passed</source>
+        <translation type="unfinished">%1 / %2 обработано, %3 прошли фильтр</translation>
     </message>
 </context>
 </TS>

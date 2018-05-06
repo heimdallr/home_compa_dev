@@ -142,33 +142,33 @@ and so on</source>
 <context>
     <name>HomeCompa::sl::Generator</name>
     <message>
-        <location filename="../Generator.cpp" line="42"/>
+        <location filename="../Generator.cpp" line="56"/>
         <source>About generator</source>
         <translation type="unfinished">About generator</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="42"/>
+        <location filename="../Generator.cpp" line="56"/>
         <source>generator generates generated</source>
         <translation type="unfinished">generator generates generated</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="46"/>
+        <location filename="../Generator.cpp" line="60"/>
         <source>Open file</source>
         <translation type="unfinished">Open file</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="146"/>
-        <source> processed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Generator.cpp" line="151"/>
+        <location filename="../Generator.cpp" line="184"/>
         <source>Run!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="151"/>
+        <location filename="../Generator.cpp" line="184"/>
         <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generator.cpp" line="251"/>
+        <source>%1 / %2 processed, %3 passed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

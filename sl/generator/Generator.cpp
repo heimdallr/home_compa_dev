@@ -6,8 +6,11 @@
 #include <QMessageBox>
 #include <QProgressBar>
 #include <QSettings>
+#include <QTimer>
 #include <QTranslator>
 #include <QVariant>
+#include <QWinTaskbarButton>
+#include <QWinTaskbarProgress>
 
 #include "Enumerator.h"
 #include "FunctorExecutionForwarder.h"
@@ -38,6 +41,17 @@ Generator::Generator(QWidget *parent)
 	m_ui->setupUi(this);
 	m_ui->progressBar->setVisible(false);
 	m_ui->horizontalLayoutRun->setAlignment(Qt::AlignRight);
+
+	QTimer::singleShot(0, [this]
+	{
+		QWinTaskbarButton *button = new QWinTaskbarButton(this);
+		button->setWindow(windowHandle());
+
+		m_taskbarProgress = button->progress();
+		m_taskbarProgress->setRange(m_ui->progressBar->minimum(), m_ui->progressBar->maximum());
+		m_taskbarProgress->setVisible(true);
+		connect(m_ui->progressBar, &QProgressBar::valueChanged, m_taskbarProgress, &QWinTaskbarProgress::setValue);
+	});
 
 	connect(m_ui->actionAbout, &QAction::triggered, [parent = this](bool) {QMessageBox::about(parent, tr("About generator"), tr("generator generates generated")); });
 
@@ -89,15 +103,26 @@ void Generator::changeEvent(QEvent *event)
 	QWidget::changeEvent(event);
 }
 
-void Generator::Handle(std::vector<std::vector<uint8_t>> &&data)
+void Generator::Handle(std::vector<std::vector<uint8_t>> &data)
 {
-	m_forwarder->Forward([this, data = std::move(data)]
+	std::vector<std::vector<uint8_t>> passed;
+	for (auto &d : data)
 	{
-		m_current += data.size();
+		passed.emplace_back();
+		passed.back().swap(d);
+	}
+
+	m_forwarder->Forward([this, inc = data.size(), passed = std::move(passed)]
+	{
+		m_current += inc;
+		m_passed += passed.size();
 		m_ui->progressBar->setValue(m_current * 100 / m_maximum);
-		if (m_current == m_maximum)
+
+		if (m_current < m_maximum)
+			m_ui->statusBar->showMessage(GetStatusMessage());
+		else
 			m_ui->pushButtonRun->click();
-	});
+		});
 }
 
 void Generator::ChangeLocale()
@@ -129,12 +154,15 @@ void Generator::Run()
 void Generator::Start()
 {
 	assert(!m_enumerator);
-	std::make_unique<Enumerator>(*this, 7, 49).swap(m_enumerator);
+	std::make_unique<Enumerator>(*this, 5, 36).swap(m_enumerator);
 
 	m_current = 0;
+	m_passed = 0;
 	m_maximum = m_enumerator->GetProgressMax();
 
 	m_ui->progressBar->setValue(0);
+	m_taskbarProgress->show();
+	m_taskbarProgress->resume();
 	m_ui->statusBar->clearMessage();
 }
 
@@ -143,7 +171,17 @@ void Generator::Stop()
 	assert(m_enumerator);
 	m_enumerator.reset();
 
-	m_ui->statusBar->showMessage(QString::number(m_current) + " / " + QString::number(m_maximum) + tr(" processed"), 10000);
+	m_ui->statusBar->clearMessage();
+
+	if (m_current < m_maximum)
+	{
+		m_taskbarProgress->stop();
+	}
+	else
+	{
+		m_taskbarProgress->hide();
+		m_ui->statusBar->showMessage(GetStatusMessage(), 10000);
+	}
 }
 
 void Generator::RetranslateRun()
@@ -211,6 +249,11 @@ void Generator::SaveSettings() const
 			setting.setValue(LOCALE, action->property(LOCALE).toString());
 
 	setting.setValue("geometry", geometry());
+}
+
+QString Generator::GetStatusMessage() const
+{
+	return QString(tr("%1 / %2 processed, %3 passed")).arg(QString::number(m_current)).arg(QString::number(m_maximum)).arg(QString::number(m_passed));
 }
 
 } }

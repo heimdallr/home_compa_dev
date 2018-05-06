@@ -27,7 +27,7 @@ public:
 		: m_handler(handler)
 		, m_n(n)
 		, m_m(m)
-		, m_head(Generate(1, n / 2, m_m - n / 2 - 1))
+		, m_head(Generate(1, n / 2, m_m - n / 2))
 		, m_tail(Generate(n / 2 + 1, n, m_m))
 		, m_thread(std::max<int>(GetCPUCount() - 1, 1))
 	{
@@ -76,7 +76,7 @@ private:
 				std::copy(tail.cbegin(), tail.cend(), std::back_inserter(buf.back()));
 			}
 
-			m_handler.Handle(std::forward<std::vector<std::vector<uint8_t>>>(buf));
+			m_handler.Handle(buf);
 		}
 	}
 
