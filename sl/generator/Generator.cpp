@@ -1,13 +1,21 @@
+#include <cassert>
+
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QLineEdit>
 #include <QMessageBox>
+#include <QProgressBar>
 #include <QSettings>
 #include <QTranslator>
 #include <QVariant>
 
+#include "Enumerator.h"
+#include "FunctorExecutionForwarder.h"
+
 #include "ui_Generator.h"
 #include "Generator.h"
+
+namespace HomeCompa { namespace sl {
 
 namespace {
 
@@ -25,10 +33,12 @@ QString GetIniFileName()
 Generator::Generator(QWidget *parent)
 	: QMainWindow(parent)
 	, m_ui(std::make_unique<Ui::GeneratorClass>())
+	, m_forwarder(new FunctorExecutionForwarder(this))
 {
 	m_ui->setupUi(this);
+	m_ui->progressBar->setVisible(false);
+	m_ui->horizontalLayoutRun->setAlignment(Qt::AlignRight);
 
-	connect(m_ui->pushButtonRun, &QAbstractButton::clicked, [this]() {setEnabled(false); });
 	connect(m_ui->actionAbout, &QAction::triggered, [parent = this](bool) {QMessageBox::about(parent, tr("About generator"), tr("generator generates generated")); });
 
 	const auto openFileDialog = [parent = this](QLineEdit *edit, bool existingOnly = true)
@@ -71,9 +81,23 @@ Generator::~Generator()
 void Generator::changeEvent(QEvent *event)
 {
 	if (event->type() == QEvent::LanguageChange)
+	{
 		m_ui->retranslateUi(this);
+		RetranslateRun();
+	}
 
 	QWidget::changeEvent(event);
+}
+
+void Generator::Handle(std::vector<std::vector<uint8_t>> &&data)
+{
+	m_forwarder->Forward([this, data = std::move(data)]
+	{
+		m_current += data.size();
+		m_ui->progressBar->setValue(m_current * 100 / m_maximum);
+		if (m_current == m_maximum)
+			m_ui->pushButtonRun->click();
+	});
 }
 
 void Generator::ChangeLocale()
@@ -91,6 +115,40 @@ std::vector<QAction*> Generator::GetLocaleActions() const
 		m_ui->actionEnglish,
 		m_ui->actionRussian,
 	};
+}
+
+void Generator::Run()
+{
+	m_ui->frame->setEnabled(!m_ui->frame->isEnabled());
+	m_ui->progressBar->setVisible(!m_ui->frame->isEnabled());
+
+	RetranslateRun();
+	m_ui->frame->isEnabled() ? Stop() : Start();
+}
+
+void Generator::Start()
+{
+	assert(!m_enumerator);
+	std::make_unique<Enumerator>(*this, 7, 49).swap(m_enumerator);
+
+	m_current = 0;
+	m_maximum = m_enumerator->GetProgressMax();
+
+	m_ui->progressBar->setValue(0);
+	m_ui->statusBar->clearMessage();
+}
+
+void Generator::Stop()
+{
+	assert(m_enumerator);
+	m_enumerator.reset();
+
+	m_ui->statusBar->showMessage(QString::number(m_current) + " / " + QString::number(m_maximum) + tr(" processed"), 10000);
+}
+
+void Generator::RetranslateRun()
+{
+	m_ui->pushButtonRun->setText(m_ui->frame->isEnabled() ? tr("Run!") : tr("Stop"));
 }
 
 void Generator::LoadSettings()
@@ -154,3 +212,5 @@ void Generator::SaveSettings() const
 
 	setting.setValue("geometry", geometry());
 }
+
+} }
