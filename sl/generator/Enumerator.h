@@ -12,6 +12,7 @@ public:
 	Enumerator(GeneratorHandler &handler, int n, int m);
 	~Enumerator();
 	size_t GetProgressMax() const;
+	void Start();
 
 private:
 	class Impl;

@@ -5,139 +5,155 @@
     <name>GeneratorClass</name>
     <message>
         <location filename="../Generator.ui" line="26"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="501"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="535"/>
         <source>Generator</source>
         <translation>Генератор</translation>
     </message>
     <message>
         <location filename="../Generator.ui" line="81"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="506"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="540"/>
+        <source>Generate</source>
+        <translation>Генерировать</translation>
+    </message>
+    <message>
+        <location filename="../Generator.ui" line="100"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="541"/>
+        <source>of</source>
+        <translation>из</translation>
+    </message>
+    <message>
+        <location filename="../Generator.ui" line="142"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="542"/>
         <source>Files</source>
         <translation>Файлы</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="98"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="507"/>
+        <location filename="../Generator.ui" line="159"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="543"/>
         <source>File A</source>
         <translation>Файл А</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="132"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="508"/>
+        <location filename="../Generator.ui" line="193"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="544"/>
         <source>File B</source>
         <translation>Файл Б</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="166"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="509"/>
+        <location filename="../Generator.ui" line="227"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="545"/>
         <source>File C</source>
         <translation>Файл С</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="207"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="510"/>
+        <location filename="../Generator.ui" line="268"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="546"/>
         <source>Filters</source>
         <translation>Фильтры</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="230"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="511"/>
+        <location filename="../Generator.ui" line="291"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="547"/>
         <source>Pairs from file B</source>
         <translation>По парам из файла В</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="253"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="512"/>
+        <location filename="../Generator.ui" line="314"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="548"/>
         <source>Fours from file A</source>
         <translation>По четвёркам из файла А</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="273"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="513"/>
+        <location filename="../Generator.ui" line="334"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="549"/>
         <source>Sum from file C</source>
         <translation>По сумме из файла С</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="341"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="514"/>
+        <location filename="../Generator.ui" line="402"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="550"/>
         <source>Positions values</source>
         <translation>Значения в позициях</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="368"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="516"/>
-        <source>File with strings such as
-1, 3, 8, 10
-2, 6, 12, 18
+        <location filename="../Generator.ui" line="429"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="552"/>
+        <source>File with space separated strings such as
+1 3 8 10
+2 6 12 18
 and so on</source>
-        <translation>Файл со строками вида
-1, 3, 8, 10
-2, 6, 12, 18
+        <translation>Файл со строками из чисел, разделённых пробелами, например
+1 3 8 10
+2 6 12 18
 и так далее</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="403"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="521"/>
+        <location filename="../Generator.ui" line="489"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="559"/>
+        <source>Space separated list of numbers</source>
+        <translation>Список чисел, разделённых пробелами</translation>
+    </message>
+    <message>
+        <location filename="../Generator.ui" line="464"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="557"/>
         <source>Even positions</source>
         <translation>Позиции чётных чисел</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="428"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="523"/>
         <source>Comma separated list of numbers</source>
-        <translation>Список разделённых запятыми чисел</translation>
+        <translation type="vanished">Список разделённых запятыми чисел</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="452"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="525"/>
+        <location filename="../Generator.ui" line="513"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="561"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="552"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="526"/>
+        <location filename="../Generator.ui" line="600"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="562"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="558"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="527"/>
+        <location filename="../Generator.ui" line="606"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="563"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="564"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="528"/>
+        <location filename="../Generator.ui" line="612"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="564"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="568"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="529"/>
+        <location filename="../Generator.ui" line="616"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="565"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="590"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="502"/>
+        <location filename="../Generator.ui" line="638"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="536"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="595"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="503"/>
+        <location filename="../Generator.ui" line="643"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="537"/>
         <source>About...</source>
         <translation>О программе...</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="603"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="504"/>
+        <location filename="../Generator.ui" line="651"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="538"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../Generator.ui" line="614"/>
-        <location filename="../GeneratedFiles/ui_Generator.h" line="505"/>
+        <location filename="../Generator.ui" line="662"/>
+        <location filename="../GeneratedFiles/ui_Generator.h" line="539"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
@@ -145,34 +161,39 @@ and so on</source>
 <context>
     <name>HomeCompa::sl::Generator</name>
     <message>
-        <location filename="../Generator.cpp" line="56"/>
+        <location filename="../Generator.cpp" line="66"/>
         <source>About generator</source>
         <translation>О генераторе</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="56"/>
+        <location filename="../Generator.cpp" line="66"/>
         <source>generator generates generated</source>
         <translation>генератор генерирует генерируемое</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="60"/>
+        <location filename="../Generator.cpp" line="70"/>
         <source>Open file</source>
         <translation>Укажите файл</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="184"/>
+        <location filename="../Generator.cpp" line="247"/>
+        <source>Error</source>
+        <translation>Ошибка</translation>
+    </message>
+    <message>
+        <location filename="../Generator.cpp" line="275"/>
         <source>Run!</source>
         <translation>Погнали!</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="184"/>
+        <location filename="../Generator.cpp" line="275"/>
         <source>Stop</source>
         <translation>Не гони</translation>
     </message>
     <message>
-        <location filename="../Generator.cpp" line="251"/>
-        <source>%1 / %2 processed, %3 passed</source>
-        <translation type="unfinished">%1 / %2 обработано, %3 прошли фильтр</translation>
+        <location filename="../Generator.cpp" line="351"/>
+        <source>%1 / %2 processed, %3 passed, %4 saved</source>
+        <translation>%1 / %2 обработано, %3 прошли фильтр, %4 записано</translation>
     </message>
 </context>
 </TS>

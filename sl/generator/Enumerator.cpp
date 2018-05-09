@@ -22,6 +22,13 @@ int GetCPUCount()
 
 class Enumerator::Impl
 {
+private:
+	GeneratorHandler & m_handler;
+	const int m_n, m_m;
+	const std::vector<std::vector<uint8_t>> m_head, m_tail;
+	std::vector<std::thread> m_thread;
+	std::atomic<size_t> m_i{ 0 }, m_readyCount{ 0 };
+
 public:
 	Impl(GeneratorHandler &handler, int n, int m)
 		: m_handler(handler)
@@ -31,8 +38,6 @@ public:
 		, m_tail(Generate(n / 2 + 1, n, m_m))
 		, m_thread(std::max<int>(GetCPUCount() - 1, 1))
 	{
-		for (auto &thread : m_thread)
-			thread = std::thread(&Impl::Enumerate, this);
 	}
 
 	~Impl()
@@ -52,6 +57,12 @@ public:
 			res /= i;
 
 		return res;
+	}
+
+	void Start()
+	{
+		for (auto &thread : m_thread)
+			thread = std::thread(&Impl::Enumerate, this);
 	}
 
 private:
@@ -79,6 +90,9 @@ private:
 			if (!buf.empty())
 				m_handler.Handle(buf);
 		}
+
+		if (++m_readyCount == m_thread.size())
+			m_handler.Ready();
 	}
 
 	static std::vector<std::vector<uint8_t>> Generate(uint8_t from, uint8_t to, uint8_t m)
@@ -122,13 +136,6 @@ private:
 
 		return result;
 	}
-
-private:
-	GeneratorHandler & m_handler;
-	const int m_n, m_m;
-	const std::vector<std::vector<uint8_t>> m_head, m_tail;
-	std::vector<std::thread> m_thread;
-	std::atomic<size_t> m_i{0};
 };
 
 Enumerator::Enumerator(GeneratorHandler &handler, int n, int m)
@@ -143,6 +150,11 @@ Enumerator::~Enumerator()
 size_t Enumerator::GetProgressMax() const
 {
 	return m_impl->GetProgressMax();
+}
+
+void Enumerator::Start()
+{
+	m_impl->Start();
 }
 
 } }

@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 
 // Вспомогательные типы данных
 using Item = std::vector<uint8_t>;

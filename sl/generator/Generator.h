@@ -18,6 +18,8 @@ class GeneratorClass;
 namespace HomeCompa { namespace sl {
 
 class Enumerator;
+class Filter;
+class ResultSaver;
 
 class Generator
 	: public QMainWindow
@@ -32,6 +34,9 @@ public:
 private:
 	void changeEvent(QEvent *event) override;
 	void Handle(std::vector<std::vector<uint8_t>> &data) override;
+	void Ready() override;
+	void Saved(size_t) override;
+	void SaveReady() override;
 
 private slots:
 	void ChangeLocale();
@@ -49,10 +54,12 @@ private:
 private:
 	std::unique_ptr<Ui::GeneratorClass> m_ui;
 	std::unique_ptr<Enumerator> m_enumerator;
+	std::unique_ptr<Filter> m_filter;
+	std::unique_ptr<ResultSaver> m_resultSaver;
 	QPointer<FunctorExecutionForwarder> m_forwarder;
 	QPointer<QWinTaskbarProgress> m_taskbarProgress;
 	QPointer<QTimer> m_progressMessaageTimer;
-	size_t m_current, m_maximum, m_passed;
+	size_t m_current{ 0 }, m_maximum{ 0 }, m_passed{ 0 }, m_saved{ 0 };
 };
 
 } }

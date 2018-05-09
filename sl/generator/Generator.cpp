@@ -12,8 +12,12 @@
 #include <QWinTaskbarButton>
 #include <QWinTaskbarProgress>
 
+#include "log.h"
+
 #include "Enumerator.h"
+#include "Filter.h"
 #include "FunctorExecutionForwarder.h"
+#include "ResultSaver.h"
 
 #include "ui_Generator.h"
 #include "Generator.h"
@@ -25,10 +29,10 @@ namespace {
 QTranslator g_translator;
 const char *LOCALE = "locale";
 
-QString GetIniFileName()
+QString GetFileName(const QString &ext)
 {
 	QFileInfo info(QCoreApplication::applicationFilePath());
-	return info.path() + "/" + info.completeBaseName() + ".ini";
+	return info.path() + "/" + info.completeBaseName() + "." + ext;
 }
 
 }
@@ -39,6 +43,8 @@ Generator::Generator(QWidget *parent)
 	, m_forwarder(new FunctorExecutionForwarder(this))
 	, m_progressMessaageTimer(new QTimer(this))
 {
+	log(GetFileName("log").toStdString());
+
 	m_ui->setupUi(this);
 	m_ui->progressBar->setVisible(false);
 	m_ui->horizontalLayoutRun->setAlignment(Qt::AlignRight);
@@ -67,6 +73,22 @@ Generator::Generator(QWidget *parent)
 		if (dialog.exec() && !dialog.selectedFiles().empty())
 			edit->setText(dialog.selectedFiles().front());
 	};
+
+	const auto checkFile = [this](const QString &fileName)
+	{
+		if (!QFile(fileName).exists())
+			return;
+
+		const auto data = Reader<uint8_t>::Read(fileName.toStdString(), false);
+		if (data.empty())
+			return;
+
+		m_ui->spinBoxN->setValue(data.front().size());
+		m_ui->spinBoxM->setValue(m_ui->spinBoxN->value() == 5 ? 36 : 49);
+	};
+
+	connect(m_ui->lineEditA, &QLineEdit::textChanged, checkFile);
+	connect(m_ui->lineEditB, &QLineEdit::textChanged, checkFile);
 
 	connect(m_ui->toolButtonA				, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditA				]() {openFileDialog(edit); });
 	connect(m_ui->toolButtonB				, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditB				]() {openFileDialog(edit); });
@@ -113,11 +135,14 @@ void Generator::Handle(std::vector<std::vector<uint8_t>> &data)
 	std::vector<std::vector<uint8_t>> passed;
 	for (auto &d : data)
 	{
-		passed.emplace_back();
-		passed.back().swap(d);
+		if (m_filter->Check(d))
+		{
+			passed.emplace_back();
+			passed.back().swap(d);
+		}
 	}
 
-	m_forwarder->Forward([this, current = data.size(), passed = passed.size()]
+	m_forwarder->Forward([this, current = data.size(), passed = passed.size()]()
 	{
 		m_current += current;
 		m_passed += passed;
@@ -125,9 +150,44 @@ void Generator::Handle(std::vector<std::vector<uint8_t>> &data)
 		if (m_ui->progressBar->value() != pct)
 		{
 			m_ui->progressBar->setValue(pct);
-			if (pct == 100)
-				m_ui->pushButtonRun->click();
 		}
+	});
+
+	if (!passed.empty())
+		m_resultSaver->Save(std::forward<Data>(passed));
+}
+
+void Generator::Ready()
+{
+	m_forwarder->Forward([this]()
+	{
+		if (!m_ui->frame->isEnabled())
+			m_ui->pushButtonRun->click();
+	});
+}
+
+void Generator::Saved(size_t saved)
+{
+	m_forwarder->Forward([&s = m_saved, saved]()
+	{
+		s += saved;
+	});
+}
+
+void Generator::SaveReady()
+{
+	m_forwarder->Forward([this]()
+	{
+		m_resultSaver.reset();
+		m_progressMessaageTimer->stop();
+		m_ui->statusBar->showMessage(GetStatusMessage());
+		if (m_current < m_maximum)
+			m_taskbarProgress->stop();
+		else
+			m_taskbarProgress->hide();
+
+		m_ui->progressBar->setVisible(false);
+		m_ui->pushButtonRun->setEnabled(true);
 	});
 }
 
@@ -151,7 +211,6 @@ std::vector<QAction*> Generator::GetLocaleActions() const
 void Generator::Run()
 {
 	m_ui->frame->setEnabled(!m_ui->frame->isEnabled());
-	m_ui->progressBar->setVisible(!m_ui->frame->isEnabled());
 
 	RetranslateRun();
 	m_ui->frame->isEnabled() ? Stop() : Start();
@@ -160,30 +219,56 @@ void Generator::Run()
 void Generator::Start()
 {
 	assert(!m_enumerator);
-	std::make_unique<Enumerator>(*this, 6, 49).swap(m_enumerator);
+	std::make_unique<ResultSaver>(*this, m_ui->lineEditResult->text()).swap(m_resultSaver);
+	std::make_unique<Enumerator>(*this, m_ui->spinBoxN->value(), m_ui->spinBoxM->value()).swap(m_enumerator);
+	m_maximum = m_enumerator->GetProgressMax();
+
+	std::make_unique<Filter>(m_ui->spinBoxN->value(), m_ui->spinBoxM->value()).swap(m_filter);
+	try
+	{
+		if (m_ui->checkBoxFilterFoursA->isChecked())
+			m_filter->AddA(m_ui->lineEditA->text());
+		if (m_ui->checkBoxFilterPairsB->isChecked())
+			m_filter->AddB(m_ui->lineEditB->text());
+		if (m_ui->checkBoxFilterSumC->isChecked())
+			m_filter->AddC(m_ui->lineEditC->text(), m_ui->spinBoxSumCMin->value(), m_ui->spinBoxSumCMax->value());
+		if (m_ui->checkBoxFilterEvenPositions->isChecked())
+			m_filter->AddEven(m_ui->lineEditEvenPositions->text());
+		if (m_ui->checkBoxFilterPositionsValues->isChecked())
+			m_filter->AddPositionsValues(m_ui->lineEditPositionsValues->text());
+	}
+	catch (const std::exception &ex)
+	{
+		m_forwarder->Forward([button = m_ui->pushButtonRun]()
+		{
+			button->click();
+		});
+
+		QMessageBox(QMessageBox::Icon::Critical, tr("Error"), QString(ex.what()), QMessageBox::StandardButton::Ok, this).exec();
+		return;
+	}
 
 	m_current = 0;
 	m_passed = 0;
-	m_maximum = m_enumerator->GetProgressMax();
+	m_saved = 0;
 
 	m_ui->progressBar->setValue(0);
+	m_ui->progressBar->setVisible(true);
 	m_taskbarProgress->show();
 	m_taskbarProgress->resume();
 	m_ui->statusBar->clearMessage();
 	m_progressMessaageTimer->start();
+
+	m_enumerator->Start();
 }
 
 void Generator::Stop()
 {
-	assert(m_enumerator);
+	m_ui->pushButtonRun->setEnabled(false);
 	m_enumerator.reset();
-
-	m_progressMessaageTimer->stop();
-	m_ui->statusBar->showMessage(GetStatusMessage());
-	if (m_current < m_maximum)
-		m_taskbarProgress->stop();
-	else
-		m_taskbarProgress->hide();
+	m_filter.reset();
+	m_resultSaver->Stop();
+	log().flush();
 }
 
 void Generator::RetranslateRun()
@@ -193,7 +278,11 @@ void Generator::RetranslateRun()
 
 void Generator::LoadSettings()
 {
-	QSettings setting(GetIniFileName(), QSettings::IniFormat);
+	const auto iniFileName = GetFileName("ini");
+	if (!QFile(iniFileName).exists())
+		return;
+
+	QSettings setting(iniFileName, QSettings::IniFormat);
 	m_ui->lineEditA->setText(setting.value(m_ui->lineEditA->objectName(), "").toString());
 	m_ui->lineEditB->setText(setting.value(m_ui->lineEditB->objectName(), "").toString());
 	m_ui->lineEditC->setText(setting.value(m_ui->lineEditC->objectName(), "").toString());
@@ -210,6 +299,8 @@ void Generator::LoadSettings()
 
 	m_ui->spinBoxSumCMin->setValue(setting.value(m_ui->spinBoxSumCMin->objectName(), m_ui->spinBoxSumCMin->value()).toInt());
 	m_ui->spinBoxSumCMax->setValue(setting.value(m_ui->spinBoxSumCMax->objectName(), m_ui->spinBoxSumCMax->value()).toInt());
+	m_ui->spinBoxN->setValue(setting.value(m_ui->spinBoxN->objectName(), m_ui->spinBoxN->value()).toInt());
+	m_ui->spinBoxM->setValue(setting.value(m_ui->spinBoxM->objectName(), m_ui->spinBoxM->value()).toInt());
 
 	const auto locale = setting.value(LOCALE, QLocale::system().name());
 	bool needForce = true;
@@ -224,12 +315,13 @@ void Generator::LoadSettings()
 	if (needForce)
 		m_ui->actionEnglish->trigger();
 
+//	setting.
 	setGeometry(setting.value("geometry", geometry()).toRect());
 }
 
 void Generator::SaveSettings() const
 {
-	QSettings setting(GetIniFileName(), QSettings::IniFormat);
+	QSettings setting(GetFileName("ini"), QSettings::IniFormat);
 	setting.setValue(m_ui->lineEditA->objectName(), m_ui->lineEditA->text());
 	setting.setValue(m_ui->lineEditB->objectName(), m_ui->lineEditB->text());
 	setting.setValue(m_ui->lineEditC->objectName(), m_ui->lineEditC->text());
@@ -245,6 +337,8 @@ void Generator::SaveSettings() const
 
 	setting.setValue(m_ui->spinBoxSumCMin->objectName(), m_ui->spinBoxSumCMin->value());
 	setting.setValue(m_ui->spinBoxSumCMax->objectName(), m_ui->spinBoxSumCMax->value());
+	setting.setValue(m_ui->spinBoxN->objectName(), m_ui->spinBoxN->value());
+	setting.setValue(m_ui->spinBoxM->objectName(), m_ui->spinBoxM->value());
 
 	for (auto *action : GetLocaleActions())
 		if (action->isChecked())
@@ -255,7 +349,12 @@ void Generator::SaveSettings() const
 
 QString Generator::GetStatusMessage() const
 {
-	return QString(tr("%1 / %2 processed, %3 passed")).arg(QString::number(m_current)).arg(QString::number(m_maximum)).arg(QString::number(m_passed));
+	return QString(tr("%1 / %2 processed, %3 passed, %4 saved"))
+		.arg(QString::number(m_current))
+		.arg(QString::number(m_maximum))
+		.arg(QString::number(m_passed))
+		.arg(QString::number(m_saved))
+		;
 }
 
 } }
