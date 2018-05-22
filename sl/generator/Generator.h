@@ -47,6 +47,7 @@ private:
 	void Stop();
 	void RetranslateRun();
 	std::vector<QAction*> GetLocaleActions() const;
+	void SetLocale(const QString &locale);
 	void LoadSettings();
 	void SaveSettings() const;
 	QString GetStatusMessage() const;

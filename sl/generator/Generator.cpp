@@ -276,8 +276,25 @@ void Generator::RetranslateRun()
 	m_ui->pushButtonRun->setText(m_ui->frame->isEnabled() ? tr("Run!") : tr("Stop"));
 }
 
+void Generator::SetLocale(const QString &locale)
+{
+	for (auto *action : GetLocaleActions())
+	{
+		if (action->property(LOCALE).toString() == locale)
+		{
+			action->trigger();
+			return;
+		}
+	}
+
+	m_ui->actionEnglish->trigger();
+}
+
 void Generator::LoadSettings()
 {
+	const auto locale = QLocale::system().name();
+	SetLocale(locale);
+
 	const auto iniFileName = GetFileName("ini");
 	if (!QFile(iniFileName).exists())
 		return;
@@ -302,20 +319,10 @@ void Generator::LoadSettings()
 	m_ui->spinBoxN->setValue(setting.value(m_ui->spinBoxN->objectName(), m_ui->spinBoxN->value()).toInt());
 	m_ui->spinBoxM->setValue(setting.value(m_ui->spinBoxM->objectName(), m_ui->spinBoxM->value()).toInt());
 
-	const auto locale = setting.value(LOCALE, QLocale::system().name());
-	bool needForce = true;
-	for (auto *action : GetLocaleActions())
-	{
-		if (action->property(LOCALE).toString() == locale)
-		{
-			action->trigger();
-			needForce = false;
-		}
-	}
-	if (needForce)
-		m_ui->actionEnglish->trigger();
+	const auto settingsLocale = setting.value(LOCALE, locale).toString();
+	if (settingsLocale != locale)
+		SetLocale(settingsLocale);
 
-//	setting.
 	setGeometry(setting.value("geometry", geometry()).toRect());
 }
 
