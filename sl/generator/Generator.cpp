@@ -12,8 +12,6 @@
 #include <QWinTaskbarButton>
 #include <QWinTaskbarProgress>
 
-#include "log.h"
-
 #include "Enumerator.h"
 #include "Filter.h"
 #include "FunctorExecutionForwarder.h"
@@ -43,8 +41,6 @@ Generator::Generator(QWidget *parent)
 	, m_forwarder(new FunctorExecutionForwarder(this))
 	, m_progressMessaageTimer(new QTimer(this))
 {
-	log(GetFileName("log").toStdString());
-
 	m_ui->setupUi(this);
 	m_ui->progressBar->setVisible(false);
 	m_ui->horizontalLayoutRun->setAlignment(Qt::AlignRight);
@@ -268,7 +264,6 @@ void Generator::Stop()
 	m_enumerator.reset();
 	m_filter.reset();
 	m_resultSaver->Stop();
-	log().flush();
 }
 
 void Generator::RetranslateRun()

@@ -6,8 +6,6 @@
 
 #include <QString>
 
-#include "log.h"
-
 #include "GeneratorHandler.h"
 #include "ResultSaver.h"
 
@@ -38,7 +36,6 @@ public:
 	}
 	~Impl()
 	{
-		log() << "saver going dead" << std::endl;
 		{
 			std::unique_lock<std::mutex> lock(m_queueGuard);
 			std::queue<Data>().swap(m_queue);
@@ -46,13 +43,9 @@ public:
 		Stop();
 		if (m_thread.joinable())
 			m_thread.join();
-
-		log() << "saver dead" << std::endl;
 	}
 	void Save(Data &&data)
 	{
-		log() << "to save: " << data.size() << std::endl;
-
 		std::unique_lock<std::mutex> lock(m_queueGuard);
 		m_queue.emplace();
 		m_queue.back().swap(data);
@@ -86,7 +79,7 @@ private:
 					m_queue.pop();
 				}
 			}
-			log() << "saving: " << data.size() << std::endl;
+
 			for (const auto &d : data)
 				Out(m_outp, d);
 
