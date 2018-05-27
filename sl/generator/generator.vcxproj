@@ -88,22 +88,22 @@
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;.\..\Common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2017_64_static\include;.\GeneratedFiles\$(ConfigurationName);C:\Qt\5.10.1\msvc2017_64_static\include\QtCore;C:\Qt\5.10.1\msvc2017_64_static\include\QtGui;C:\Qt\5.10.1\msvc2017_64_static\include\QtWidgets;C:\Qt\5.10.1\msvc2017_64_static\include\QtWinExtras;.\..\Common</AdditionalIncludeDirectories>
       <DebugInformationFormat />
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Qt\5.10.1\msvc2017_64_static\lib;C:\Qt\5.10.1\msvc2017_64_static\plugins\platforms;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5WinExtras.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dwmapi.lib;imm32.lib;netapi32.lib;version.lib;winmm.lib;ws2_32.lib;userenv.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5WinExtras.lib;qtfreetype.lib;qtharfbuzz.lib;qtlibpng.lib;qtmain.lib;qtpcre2.lib;qwindows.lib;Qt5FontDatabaseSupport.lib;Qt5ThemeSupport.lib;Qt5EventDispatcherSupport.lib;Qt5AccessibilitySupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;.\..\Common</IncludePath>
+      <IncludePath>.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2017_64_static\include;.\GeneratedFiles\$(ConfigurationName);C:\Qt\5.10.1\msvc2017_64_static\include\QtCore;C:\Qt\5.10.1\msvc2017_64_static\include\QtGui;C:\Qt\5.10.1\msvc2017_64_static\include\QtWidgets;C:\Qt\5.10.1\msvc2017_64_static\include\QtWinExtras;.\..\Common</IncludePath>
       <Define>UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtUic>
@@ -120,7 +120,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\common\item.cpp" />
-    <ClCompile Include="..\common\log.cpp" />
     <ClCompile Include="Enumerator.cpp" />
     <ClCompile Include="Filter.cpp" />
     <ClCompile Include="FunctorExecutionForwarder.cpp" />
@@ -140,7 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\item.h" />
-    <ClInclude Include="..\common\log.h" />
     <ClInclude Include="Enumerator.h" />
     <ClInclude Include="ResultSaver.h" />
     <QtMoc Include="FunctorExecutionForwarder.h">
