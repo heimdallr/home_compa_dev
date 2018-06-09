@@ -21,6 +21,6 @@ ipch/
 bin/
 
 GeneratedFiles/
-*/.vs/
+**/.vs/
 
 *.qm
