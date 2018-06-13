@@ -26,20 +26,19 @@ args = parser.parse_args()
 torch.manual_seed(42)
 
 print('===> Loading data')
-kwargs = {}
 train_loader = torch.utils.data.DataLoader(
     datasets.MNIST('data', train=True, download=True,
                    transform=transforms.Compose([
                        transforms.ToTensor(),
                        transforms.Normalize((0.1307,), (0.3081,))
                    ])),
-    batch_size=args.batch_size, shuffle=True, **kwargs)
+    batch_size=args.batch_size, shuffle=True)
 test_loader = torch.utils.data.DataLoader(
     datasets.MNIST('data', train=False, transform=transforms.Compose([
                        transforms.ToTensor(),
                        transforms.Normalize((0.1307,), (0.3081,))
                    ])),
-    batch_size=args.batch_size, shuffle=True, **kwargs)
+    batch_size=args.batch_size, shuffle=True)
 
 
 print('===> Building model')
