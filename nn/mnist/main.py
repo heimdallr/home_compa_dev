@@ -1,5 +1,5 @@
 from __future__ import print_function
-import os, argparse
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -10,21 +10,14 @@ from torch.autograd import Variable
 epochs = 1
 batch_size = 32
 rate = 0.01
-
-# Training settings
-parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
-parser.add_argument('--momentum', type=float, default=0.5, metavar='M',
-                    help='SGD momentum (default: 0.5)')
-parser.add_argument('--log-interval', type=int, default=10, metavar='N',
-                    help='how many batches to wait before logging training status')
-args = parser.parse_args()
+momentum = 0.5
+log_interval = 10
 
 torch.manual_seed(42)
 
 print('===> Loading data')
 train_loader = torch.utils.data.DataLoader(
-    datasets.MNIST('data', train=True, download=True,
-                   transform=transforms.Compose([
+    datasets.MNIST('data', train=True, transform=transforms.Compose([
                        transforms.ToTensor(),
                        transforms.Normalize((0.1307,), (0.3081,))
                    ])),
@@ -35,7 +28,6 @@ test_loader = torch.utils.data.DataLoader(
                        transforms.Normalize((0.1307,), (0.3081,))
                    ])),
     batch_size=batch_size, shuffle=True)
-
 
 print('===> Building model')
 class Net(nn.Module):
@@ -58,7 +50,7 @@ class Net(nn.Module):
 
 model = Net()
 
-optimizer = optim.SGD(model.parameters(), lr=rate, momentum=args.momentum)
+optimizer = optim.SGD(model.parameters(), lr=rate, momentum=momentum)
 
 def train(epoch):
     model.train()
@@ -71,7 +63,7 @@ def train(epoch):
         loss.backward()
         optimizer.step()
         samples_seen += data.size(0)
-        if (samples_seen // data.size(0)) % args.log_interval == 0:
+        if (samples_seen // data.size(0)) % log_interval == 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, samples_seen, len(train_loader.dataset),
                 100. * samples_seen / len(train_loader.dataset), loss.data[0]))
