@@ -8,7 +8,7 @@ from torchvision import datasets, transforms
 from torch.autograd import Variable
 
 epochs = 10
-batch_size = 200
+batch_size = 50
 rate = 0.01
 momentum = 0.5
 log_interval = 10
@@ -59,7 +59,7 @@ def train(epoch):
         data, target = Variable(data), Variable(target)
         optimizer.zero_grad()
         output = model(data)
-        loss = F.nll_loss(output, target)
+        loss = F.cross_entropy(output, target)
         loss.backward()
         optimizer.step()
         samples_seen += data.size(0)
