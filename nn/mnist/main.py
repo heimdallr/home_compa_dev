@@ -9,11 +9,10 @@ from torch.autograd import Variable
 
 epochs = 1
 batch_size = 32
+rate = 0.01
 
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
-parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
-                    help='learning rate (default: 0.01)')
 parser.add_argument('--momentum', type=float, default=0.5, metavar='M',
                     help='SGD momentum (default: 0.5)')
 parser.add_argument('--log-interval', type=int, default=10, metavar='N',
@@ -59,7 +58,7 @@ class Net(nn.Module):
 
 model = Net()
 
-optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
+optimizer = optim.SGD(model.parameters(), lr=rate, momentum=args.momentum)
 
 def train(epoch):
     model.train()
