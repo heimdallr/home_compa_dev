@@ -16,6 +16,7 @@ public:
 	void AddA(const QString &fileName);
 	void AddB(const QString &fileName);
 	void AddC(const QString &fileName, int from, int to);
+	void AddD(const QString &fileName, int from, int to);
 	void AddEven(const QString &even);
 	void AddPositionsValues(const QString &fileName);
 

@@ -89,6 +89,7 @@ Generator::Generator(QWidget *parent)
 	connect(m_ui->toolButtonA				, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditA				]() {openFileDialog(edit); });
 	connect(m_ui->toolButtonB				, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditB				]() {openFileDialog(edit); });
 	connect(m_ui->toolButtonC				, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditC				]() {openFileDialog(edit); });
+	connect(m_ui->toolButtonD				, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditD				]() {openFileDialog(edit); });
 	connect(m_ui->toolButtonPositionsValues	, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditPositionsValues	]() {openFileDialog(edit); });
 	connect(m_ui->toolButtonResult			, &QAbstractButton::clicked, [openFileDialog, edit = m_ui->lineEditResult			]() {openFileDialog(edit, false); });
 	connect(m_ui->checkBoxFilterSumC, &QCheckBox::stateChanged, [this](int state)
@@ -228,6 +229,8 @@ void Generator::Start()
 			m_filter->AddB(m_ui->lineEditB->text());
 		if (m_ui->checkBoxFilterSumC->isChecked())
 			m_filter->AddC(m_ui->lineEditC->text(), m_ui->spinBoxSumCMin->value(), m_ui->spinBoxSumCMax->value());
+		if (m_ui->checkBoxFilterPairsD->isChecked())
+			m_filter->AddD(m_ui->lineEditD->text(), m_ui->spinBoxPairsDMin->value(), m_ui->spinBoxPairsDMax->value());
 		if (m_ui->checkBoxFilterEvenPositions->isChecked())
 			m_filter->AddEven(m_ui->lineEditEvenPositions->text());
 		if (m_ui->checkBoxFilterPositionsValues->isChecked())
@@ -298,7 +301,7 @@ void Generator::LoadSettings()
 	m_ui->lineEditA->setText(setting.value(m_ui->lineEditA->objectName(), "").toString());
 	m_ui->lineEditB->setText(setting.value(m_ui->lineEditB->objectName(), "").toString());
 	m_ui->lineEditC->setText(setting.value(m_ui->lineEditC->objectName(), "").toString());
-	m_ui->lineEditC->setText(setting.value(m_ui->lineEditC->objectName(), "").toString());
+	m_ui->lineEditD->setText(setting.value(m_ui->lineEditD->objectName(), "").toString());
 	m_ui->lineEditResult->setText(setting.value(m_ui->lineEditResult->objectName(), "").toString());
 	m_ui->lineEditPositionsValues->setText(setting.value(m_ui->lineEditPositionsValues->objectName(), "").toString());
 	m_ui->lineEditEvenPositions->setText(setting.value(m_ui->lineEditEvenPositions->objectName(), "").toString());
@@ -306,11 +309,14 @@ void Generator::LoadSettings()
 	m_ui->checkBoxFilterPairsB->setChecked(setting.value(m_ui->checkBoxFilterPairsB->objectName(), m_ui->checkBoxFilterPairsB->isChecked()).toBool());
 	m_ui->checkBoxFilterFoursA->setChecked(setting.value(m_ui->checkBoxFilterFoursA->objectName(), m_ui->checkBoxFilterFoursA->isChecked()).toBool());
 	m_ui->checkBoxFilterSumC->setChecked(setting.value(m_ui->checkBoxFilterSumC->objectName(), m_ui->checkBoxFilterSumC->isChecked()).toBool());
+	m_ui->checkBoxFilterPairsD->setChecked(setting.value(m_ui->checkBoxFilterPairsD->objectName(), m_ui->checkBoxFilterPairsD->isChecked()).toBool());
 	m_ui->checkBoxFilterPositionsValues->setChecked(setting.value(m_ui->checkBoxFilterPositionsValues->objectName(), m_ui->checkBoxFilterPositionsValues->isChecked()).toBool());
 	m_ui->checkBoxFilterEvenPositions->setChecked(setting.value(m_ui->checkBoxFilterEvenPositions->objectName(), m_ui->checkBoxFilterEvenPositions->isChecked()).toBool());
 
 	m_ui->spinBoxSumCMin->setValue(setting.value(m_ui->spinBoxSumCMin->objectName(), m_ui->spinBoxSumCMin->value()).toInt());
 	m_ui->spinBoxSumCMax->setValue(setting.value(m_ui->spinBoxSumCMax->objectName(), m_ui->spinBoxSumCMax->value()).toInt());
+	m_ui->spinBoxPairsDMin->setValue(setting.value(m_ui->spinBoxPairsDMin->objectName(), m_ui->spinBoxPairsDMin->value()).toInt());
+	m_ui->spinBoxPairsDMax->setValue(setting.value(m_ui->spinBoxPairsDMax->objectName(), m_ui->spinBoxPairsDMax->value()).toInt());
 	m_ui->spinBoxN->setValue(setting.value(m_ui->spinBoxN->objectName(), m_ui->spinBoxN->value()).toInt());
 	m_ui->spinBoxM->setValue(setting.value(m_ui->spinBoxM->objectName(), m_ui->spinBoxM->value()).toInt());
 
@@ -327,6 +333,7 @@ void Generator::SaveSettings() const
 	setting.setValue(m_ui->lineEditA->objectName(), m_ui->lineEditA->text());
 	setting.setValue(m_ui->lineEditB->objectName(), m_ui->lineEditB->text());
 	setting.setValue(m_ui->lineEditC->objectName(), m_ui->lineEditC->text());
+	setting.setValue(m_ui->lineEditD->objectName(), m_ui->lineEditD->text());
 	setting.setValue(m_ui->lineEditResult->objectName(), m_ui->lineEditResult->text());
 	setting.setValue(m_ui->lineEditPositionsValues->objectName(), m_ui->lineEditPositionsValues->text());
 	setting.setValue(m_ui->lineEditEvenPositions->objectName(), m_ui->lineEditEvenPositions->text());
@@ -334,11 +341,14 @@ void Generator::SaveSettings() const
 	setting.setValue(m_ui->checkBoxFilterPairsB->objectName(), m_ui->checkBoxFilterPairsB->isChecked());
 	setting.setValue(m_ui->checkBoxFilterFoursA->objectName(), m_ui->checkBoxFilterFoursA->isChecked());
 	setting.setValue(m_ui->checkBoxFilterSumC->objectName(), m_ui->checkBoxFilterSumC->isChecked());
+	setting.setValue(m_ui->checkBoxFilterPairsD->objectName(), m_ui->checkBoxFilterPairsD->isChecked());
 	setting.setValue(m_ui->checkBoxFilterPositionsValues->objectName(), m_ui->checkBoxFilterPositionsValues->isChecked());
 	setting.setValue(m_ui->checkBoxFilterEvenPositions->objectName(), m_ui->checkBoxFilterEvenPositions->isChecked());
 
 	setting.setValue(m_ui->spinBoxSumCMin->objectName(), m_ui->spinBoxSumCMin->value());
 	setting.setValue(m_ui->spinBoxSumCMax->objectName(), m_ui->spinBoxSumCMax->value());
+	setting.setValue(m_ui->spinBoxPairsDMin->objectName(), m_ui->spinBoxPairsDMin->value());
+	setting.setValue(m_ui->spinBoxPairsDMax->objectName(), m_ui->spinBoxPairsDMax->value());
 	setting.setValue(m_ui->spinBoxN->objectName(), m_ui->spinBoxN->value());
 	setting.setValue(m_ui->spinBoxM->objectName(), m_ui->spinBoxM->value());
 

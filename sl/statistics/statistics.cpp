@@ -68,8 +68,8 @@ void CountEven(const Data &data, const std::string fileName)
 }
 
 const std::string g_fileNames[] = {
-	"",
-	"",
+	"нулёвки",
+	"одиночки",
 	"пары",
 	"тройки",
 	"четвёрки",
@@ -138,39 +138,38 @@ void CountEvenGroups(const Data &data)
 {
 	std::cout << "Even statistics";
 
-	for (size_t i = 2, sz = data.front().size(); i < sz; ++i)
+	std::vector<Grouper<uint8_t>::GroupCounter> result(data.front().size() + 1);
+
+	for (size_t i = 0, sz = data.size(); i < sz; ++i)
 	{
-		const auto fileName = GetFileName("чётные ", i);
+		const auto &d = data[i];
+		Item item;
+		for (size_t j = 0, sz = d.size(); j < sz; ++j)
+			if (!(d[j] & 1))
+				item.push_back(static_cast<uint8_t>(j + 1));
+
+		result[item.size()][item].push_back(static_cast<int>(i + 1));
+	}
+
+	for (const auto &r : result)
+	{
+		if (r.empty())
+			continue;
+
+		const auto fileName = GetFileName("чётные ", r.begin()->first.size());
 		std::ofstream outp(utf8to16(fileName));
 		if (!outp)
 			throw std::ios_base::failure(std::string("Cannot write to \"") + fileName + "\"");
-		
-		Grouper<uint8_t>::GroupCounter groupCounter;
-		Item index(data.front().size());
-		std::iota(index.begin(), index.end(), 0);
-		Grouper<uint8_t>::Group(groupCounter, index, i, 0);
-		
-		for (auto &g : groupCounter)
-			g.second.clear();
 
-		for (size_t j = 0, sz = data.size(); j < sz; ++j)
-			for (auto &g : groupCounter)
-				if (std::find_if(g.first.cbegin(), g.first.cend(), [&d = data[j]](auto i) {return (d[i] & 1) != 0; }) == g.first.cend())
-					g.second.push_back(static_cast<int>(j + 1));
+		std::vector<std::pair<Item, std::vector<int>>> sorted(r.cbegin(), r.cend());
+		std::sort(sorted.begin(), sorted.end(), [](const std::pair<Item, std::vector<int>> &item1, const std::pair<Item, std::vector<int>> &item2) { return item1.second.size() > item2.second.size(); });
 
-		for (const auto &g : groupCounter)
+		for (const auto &g : sorted)
 		{
-			if (g.second.size() > 0)
-			{
-				Item group(g.first.size());
-				std::transform(g.first.cbegin(), g.first.cend(), group.begin(), [](auto n) {return n + 1; });
-				Out(outp, group, "\t") << g.second.size() << ": ";
-				std::copy(g.second.cbegin(), g.second.cend(), std::ostream_iterator<int>(outp, " "));
-				outp << std::endl;
-			}
+			Out(outp, g.first, "\t") << g.second.size() << ": ";
+			std::copy(g.second.cbegin(), g.second.cend(), std::ostream_iterator<int>(outp, " "));
+			outp << std::endl;
 		}
-
-		std::cout << ".";
 	}
 
 	std::cout << " done" << std::endl;

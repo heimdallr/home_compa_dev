@@ -15,6 +15,9 @@ class Filter::Impl
 	Item m_c;
 	int m_cFrom, m_cTo;
 
+	Grouper<uint8_t>::GroupCounter m_d;
+	int m_dFrom, m_dTo;
+
 	Item m_even;
 
 	Data m_positionsValues;
@@ -57,6 +60,13 @@ public:
 			m_c[d.front()] = d.back();
 		}
 	}
+	void AddD(const QString &fileName, int from, int to)
+	{
+		m_dFrom = from;
+		m_dTo = to;
+		for (const auto &d : Read(fileName.toStdString()))
+			m_d.emplace(d, std::vector<int>());
+	}
 	void AddEven(const QString &even)
 	{
 		const auto list = even.split(' ', QString::SplitBehavior::SkipEmptyParts);
@@ -93,6 +103,15 @@ public:
 			if (std::count_if(item.cbegin(), item.cend(), [&a](uint8_t item) {return std::find(a.cbegin(), a.cend(), item) != a.cend(); }) >= 4)
 				return false;
 
+		if (!m_d.empty())
+		{
+			Grouper<uint8_t>::GroupCounter groupCounter;
+			Grouper<uint8_t>::Group(groupCounter, item, 2, 0);
+			const auto count = std::count_if(groupCounter.cbegin(), groupCounter.cend(), [&d = m_d](const std::pair<Item, std::vector<int>> &item) { return d.find(item.first) != d.end(); });
+			if (count < m_dFrom || count > m_dTo)
+				return false;
+		}
+
 		return true;
 	}
 };
@@ -115,6 +134,10 @@ void Filter::AddB(const QString &fileName)
 void Filter::AddC(const QString &fileName, int from, int to)
 {
 	m_impl->AddC(fileName, from, to);
+}
+void Filter::AddD(const QString &fileName, int from, int to)
+{
+	m_impl->AddD(fileName, from, to);
 }
 void Filter::AddEven(const QString &even)
 {
