@@ -1,6 +1,6 @@
 <Football>
 	<Connect Host="localhost" DatabaseName="football" User="FOOTBALL" Password="football" CType="WIN1251"/>
-	<Options Year="2016" IdChamp="1306" HoursShift="3"/>
+	<Options Year="2016" IdChamp="1306" HoursShift="0"/>
 	<Layout>
 		<fmMain Top="3" Left="101" Height="1204" Width="962">
 			<dbgData Top="0" Left="0" Height="1136" Width="1039">
