@@ -22,7 +22,7 @@ Detectorists 1
 Doctor Doctor 3
 Forbrydelsen 3.
 Fortitude -2
-Frikjent 1-
+Frikjent -1
 Game ot Thrones 8.
 Goliath 1
 Guyane -1
@@ -34,11 +34,11 @@ Hem Till Midgard 2.
 How to Get Away with a Murderer -2
 Hraunið 1
 Jack Irish 3
-Justified 1-
+Justified -1
 Jonathan Creek 5.
 Killing Eve 1
 La Casa De Papel 1
-Lethal Weapon 2
+Lethal Weapon 3
 Love, Death & Robots 1
 Luther 4.
 Mad Dogs 4.
@@ -69,6 +69,7 @@ The End of the Fucking World 1
 The Expanse -1
 The Fall 3.
 The Good Guys 1.
+The Good Place 3
 The Handmaid's Tale -1
 The Hundred Code 1.
 The Knick 1
