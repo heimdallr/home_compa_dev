@@ -2,6 +2,7 @@ A Series of Unfortunate Events 3.
 After Life 1
 Altered Carbon 1
 American Horror Story -1
+Angie Tribeca 4
 Arne Dahl 2.
 Avenue 5 1
 Beck 7.
@@ -9,7 +10,8 @@ Beforeigners 1
 Better Off Ted 2.
 Black Mirror 5
 Body of Proof 3.
-Bosch 4-
+Bosch 6
+Brassic 2
 Broadchurch 3
 Brooklyn Nine-Nine 7
 Bron 4
@@ -25,7 +27,9 @@ Death in Paradise 6
 Den fördömde 2.
 Den som draeb 1
 Detectorists 1
+Disenchantment 2-
 Doctor Doctor 4
+Estoy vivo 1
 Fangar 1
 Fleabag 2
 Forbrydelsen 3.
@@ -36,6 +40,7 @@ Goliath 1
 Guyane -1
 Hamarinn 1
 Happy 1
+Happy Valley 2
 Harrow 2
 Hellfiord 1
 Hem Till Midgard 2.
@@ -49,14 +54,16 @@ Killing Eve 1
 La Casa De Papel 1
 Lethal Weapon 3.
 Lie To Me -1
-Love, Death & Robots 1
+Love, Death & Robots 2
 Luther 4.
 Mad Dogs 4.
 Mannaveiðar 1.
+Mare of Easttown 1
 Marvel's The Punisher 1
 Midnattssol 1
 Mike and Molly 6.
 Mindhunter 1
+Miracle Workers 2
 Modus 1
 Morden i Sandhamn 5
 Mr Inbetween 2
@@ -66,31 +73,35 @@ Orville 2
 Oz 6.
 Ozark 1
 Øyevitne 1
-Perry Mason (1957-1958) 1
+Perry Mason (1957-1958) 2
 Perry Mason (2020) 1
 Preacher 1
 Prime Suspect 1.
 Psych -1
 Rake -5
 Rejseholdet 4.
-Resident Alien 1-
+Resident Alien 1
 Russian Doll 1
 Seinfeld 9.
 Sex Education 2
 Shameless 10
+Shetland 5.
 Sneaky Pete -1
 Springfloden 2
 Staged 1
+Strike 3
 Suits 7-
 Taxi 5.
 TBBT 12.
+Ted Lasso 1
 The Boys 1
 The Brink 1.
 The End of the Fucking World 1
 The Expanse -1
 The Fall 3.
+The Flight Attendant 1
 The Good Guys 1.
-The Good Place 3
+The Good Place 4-
 The Handmaid's Tale -1
 The Hundred Code 1.
 The Knick 1
@@ -101,6 +112,7 @@ The Morning Show 1
 The Mysteries of Laura 2.
 The Punisher 1
 The Rookie 2
+The Serpent 1
 The Wrong Mans 2
 This is Us ---1
 Thorne: Sleepyhead & Scaredy Cat 1
@@ -110,7 +122,7 @@ Trust -1
 Unbelievable 1
 Upload 1
 V 2.
-Valkyrien 1-
+Valkyrien 1
 Vexed 2.
 Vicious 2.
 Vis a vis 1
