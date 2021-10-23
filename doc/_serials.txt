@@ -13,7 +13,7 @@ Body of Proof 3.
 Bosch 6
 Brassic 2
 Broadchurch 3
-Brooklyn Nine-Nine 7
+Brooklyn Nine-Nine 8
 Bron 4
 Burn Notice 4
 Catch-22 -1
@@ -88,8 +88,9 @@ Shameless 10
 Shetland 5.
 Sneaky Pete -1
 Springfloden 2
+Squid Game 1-
 Staged 1
-Strike 3
+Strike 4
 Suits 7-
 Taxi 5.
 TBBT 12.
@@ -123,6 +124,7 @@ Unbelievable 1
 Upload 1
 V 2.
 Valkyrien 1
+Veronica Mars 3
 Vexed 2.
 Vicious 2.
 Vis a vis 1
@@ -131,3 +133,4 @@ What We Do in the Shadow 2
 White Collar 6
 Why Women Kill 1
 Young Sheldon 3
+Большая секунда 1
