@@ -13,9 +13,9 @@
 				<CITY_NAME Visible="True" Index="6" Width="256"/>
 			</dbgData>
 		</fmMain>
-		<fmMDIMain Top="321" Left="-5" Height="1124" Width="956"/>
+		<fmMDIMain Top="297" Left="212" Height="1124" Width="956"/>
 		<fmGroup>
-			<dbgData Top="0" Left="0" Height="1054" Width="940">
+			<dbgData Top="0" Left="0" Height="1066" Width="940">
 				<GROUP Visible="True" Index="0" Width="42"/>
 				<NUM Visible="True" Index="1" Width="40"/>
 				<ID Visible="True" Index="2" Width="43"/>
@@ -25,5 +25,5 @@
 				<DEUCE Visible="True" Index="10" Width="34"/>
 				<LOSE Visible="True" Index="11" Width="33"/><GOAL Visible="True" Index="13" Width="51"/><POINT Visible="True" Index="12" Width="33"/><PLACE Visible="True" Index="14" Width="32"/><M1 Visible="True" Index="5" Width="51"/><M2 Visible="True" Index="6" Width="49"/><M3 Visible="True" Index="7" Width="47"/><M4 Visible="True" Index="8" Width="49"/></dbgData>
 		</fmGroup>
-		<fmMain_1><dbgData Top="0" Left="0" Height="677" Width="586"><ORD_NUM Visible="True" Index="0" Width="44"/><CITY_NAME Visible="True" Index="6" Width="47"/><PLAY_AT Visible="True" Index="1" Width="104"/><STATUS Visible="True" Index="2" Width="104"/><GROUP_NAME Visible="True" Index="3" Width="61"/><COUNTRIES Visible="True" Index="4" Width="113"/><GOAL_COUNT Visible="True" Index="5" Width="104"/></dbgData></fmMain_1></Layout>
+		<fmMain_1><dbgData Top="0" Left="0" Height="689" Width="586"><ORD_NUM Visible="True" Index="0" Width="44"/><CITY_NAME Visible="True" Index="6" Width="47"/><PLAY_AT Visible="True" Index="1" Width="104"/><STATUS Visible="True" Index="2" Width="104"/><GROUP_NAME Visible="True" Index="3" Width="61"/><COUNTRIES Visible="True" Index="4" Width="113"/><GOAL_COUNT Visible="True" Index="5" Width="104"/></dbgData></fmMain_1></Layout>
 </Football>
